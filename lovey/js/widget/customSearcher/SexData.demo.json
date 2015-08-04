@@ -1,0 +1,18 @@
+{
+  "result": {
+    "datas": {
+      "rows": [
+          {
+              "value": "1",
+              "display": "男"
+          },{
+              "value": "2",
+              "display": "女"
+          }
+      ],
+      "pageSize": 5,
+      "pageNo": 1,
+      "totalSize": 7
+    }
+  }
+}

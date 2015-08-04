@@ -1,0 +1,8 @@
+<div ms-visible="$show">
+    <div ms-visible="status!='readonly'">
+        <textarea ms-attr-id="'tex_'+$vid" class="e-richEditor" ms-duplex="value"/>
+    </div>
+    <div ms-if="status=='readonly'" class="e-richEditorShowCon">
+       {{value|html}}
+    </div>
+</div>

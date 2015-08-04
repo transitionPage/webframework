@@ -1,0 +1,120 @@
+{
+  "result": {
+    "datas": {
+      "ds1":{
+        "rows":[
+          {
+            "wid":"001",
+            "name": "张肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1989-11-03",
+            "rxDate": "2007-09-02",
+            "isParty": "是",
+            "className": "信息0701班",
+            "checked":"false",
+            "notes": "",
+            "_customDetail":"<div style='text-align:center;background-color: #F5F5F6;'><h2>Hello in Custom Detail</h2><p>This is the detail content,{{rowdata.name}}.</p></div>"
+          },
+          {
+            "wid":"002",
+            "name": "李肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1987-03-19",
+            "rxDate": "2007-09-02",
+            "isParty": "是",
+            "isParty_DISPLAY":"shi",
+            "className": "信息0701班",
+            "checked":"true",
+            "notes": "",
+            "_customDetailShow":true,
+            "_customDetail":"<div style='text-align:center;background-color: #F5F5F6;'><h2>Hello in Custom Detail</h2><p>This is the detail content,{{rowdata.name}}.</p></div>"
+          },
+          {
+            "wid":"003",
+            "name": "杨肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1990-10-22",
+            "rxDate": "2007-09-02",
+            "isParty": "否",
+            "className": "信息0701班",
+            "notes": "",
+            "_customDetail":"<div style='text-align:center;background-color: #F5F5F6;'><h2>Hello in Custom Detail</h2><p>This is the detail content,{{rowdata.name}}.</p></div>"
+          },
+          {
+            "wid":"004",
+            "name": "丁肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": "是",
+            "className": "信息0701班",
+            "notes": "单亲",
+            "_customDetail":"<div style='text-align:center;background-color: #F5F5F6;'><h2>Hello in Custom Detail</h2><p>This is the detail content,{{rowdata.name}}.</p></div>"
+          },
+          {
+            "wid":"005",
+            "name": "曾肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": "否",
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"006",
+            "name": "毕肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": "否",
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"007",
+            "name": "裴肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": "否",
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"008",
+            "name": "刘肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": "是",
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"009",
+            "name": "吴肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": "否",
+            "className": "信息0701班",
+            "notes": ""
+          }
+        ],
+        "pageSize": 15,
+        "pageNumber": 2,
+        "totalSize": 83
+      }
+    }
+  }
+}

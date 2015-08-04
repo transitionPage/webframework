@@ -1,0 +1,73 @@
+<div ms-visible="show" style="vertical-align: middle;">
+    <div class="simpleGrid_tableCon">
+    <table ms-attr-class="tableClass">
+        <thead>
+        <tr>
+            <th style="width:20px" ms-if="showCheckbox">
+                <div class="icheckbox_square-green" style="position: relative;"
+                     ms-class-checked="allChecked" ms-click="allClick(vid, this)">
+                </div>
+            </th>
+            <th ms-if="opColumnMap['op_front']" ms-repeat-opcolumn="opColumnMap['op_front']"
+                ms-css-width="opcolumn.width">
+                {{opcolumn.title}}
+            </th>
+            <th ms-repeat-col="allColumns" ms-css-width="col.width">
+                <div ms-if="col.isOpColumn||!canSort">
+                    {{col.title}}
+                </div>
+                <div ms-if="!col.isOpColumn&&canSort">
+                    <div ms-if="!col.sortDisabled&&col.orderType=='asc'" ms-click="sortByCol(vid,col,'desc')">{{col.title}} <div class="fa fa-caret-down"></div></div>
+                    <div ms-if="!col.sortDisabled&&col.orderType=='desc'" ms-click="sortByCol(vid,col,'unsort')">{{col.title}} <div class="fa fa-caret-up"></div></div>
+                    <div ms-if="!col.sortDisabled&&!col.orderType" ms-click="sortByCol(vid,col,'asc')">{{col.title}} <div class="fa fa-unsorted"></div></div>
+                    <div ms-if="col.sortDisabled"> {{col.title}} </div>
+                </div>
+            </th>
+            <th ms-if="opColumnMap['op_end']" ms-repeat-opcolumn="opColumnMap['op_end']" ms-css-width="opcolumn.width">
+                {{opcolumn.title}}
+            </th>
+        </tr>
+        </thead>
+        <tbody ms-repeat-rowdata="data" ms-attr-id="rowdata._uuid" style="border:0px;">
+            <tr ms-click="activeRow(vid,rowdata,this)">
+                <td ms-if="showCheckbox">
+                    <div class="icheckbox_square-green"
+                         ms-class-checked="rowdata['checked']" ms-click="checkRow(vid,rowdata)">
+                    </div>
+                </td>
+                <td ms-attr-rowIndex="$index" ms-if="opColumnMap['op_front']"
+                    ms-repeat-opcolumn="opColumnMap['op_front']"
+                    style="vertical-align:middle;"
+                    ms-html="getColTemplate(vid,rowdata,opcolumn)">
+                </td>
+                <td ms-repeat-col="allColumns" ms-attr-xtype="col.xtype" style="vertical-align:middle;">
+                    <div ms-if="col.isOpColumn" ms-html="getColTemplate(vid,rowdata,col)">
+                    </div>
+                    <div ms-if="!col.isOpColumn">
+                        <div ms-if="col.showDisplay">
+                            {{rowdata[col.dataField+'_DISPLAY']}}
+                        </div>
+                        <div ms-if="!col.showDisplay">
+                            {{rowdata[col.dataField]}}
+                        </div>
+                    </div>
+                </td>
+                <td ms-attr-rowIndex="$index" ms-if="opColumnMap['op_end']"
+                    ms-repeat-opcolumn="opColumnMap['op_end']"
+                    style="vertical-align:middle;"
+                    ms-html="getColTemplate(vid,rowdata,opcolumn)">
+                </td>
+            </tr>
+            <tr ms-if="canExpand&&rowdata._customDetailShow">
+                <td colspan="100">{{rowdata._customDetail|html}}</td>
+            </tr>
+        </tbody>
+        <tr ms-if="(!totalNum||totalNum<1)&&(!data||data.length<1)">
+            <td colspan="100"><div class="expandGrid_noDataTip">{{noDataTip}}</div></td>
+        </tr>
+    </table>
+    </div>
+    <nav ms-if="usePager">
+        <div ms-attr-id="'pager_'+vid"></div>
+    </nav>
+</div>

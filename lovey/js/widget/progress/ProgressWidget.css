@@ -1,0 +1,18 @@
+.pace .pace-progress {
+      left: 0 !important;
+      height: 5px !important;
+      top:25px !important;
+      position: absolute !important;
+      border-radius: 4px 0 0 4px;
+      -webkit-transition: width 1s;
+      -moz-transition: width 1s;
+      -o-transition: width 1s;
+      transition: width 1s;
+  }
+.pace .pace-progress:after {
+    content: attr(data-progress-text);
+    display: inline-block;
+    position: absolute;
+    top:-21px;
+    white-space: nowrap;
+}

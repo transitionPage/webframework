@@ -1,0 +1,5 @@
+<div class="input-group date" ms-if="status!='readonly'">
+    <input ms-attr-id="datePicker_{{vid}}" ms-duplex="value" class="form-control form-widget-to-focus-class" ms-attr-readonly="status=='readonly'" ms-attr-disabled="status=='disabled'"/>
+    <span ms-if="showIcon" ms-click="showPanel(vid)" class="input-group-addon"><i class="fa fa-calendar"></i></span>
+</div>
+<input ms-if="status=='readonly'" class="form-control form-text" ms-duplex="display"  readonly/>

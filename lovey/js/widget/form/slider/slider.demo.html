@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/Page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/Page2/src/css/page.css" rel="stylesheet">
+
+    <!--<link href="../../../../lib/kendoui/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="../../../../lib/kendoui/styles/kendo.rtl.min.css" rel="stylesheet">
+    <link href="../../../../lib/kendoui/styles/kendo.default.min.css" rel="stylesheet">-->
+
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Horizontal form</h5>
+
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="nameContainer"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="widgetContainer"></div>
+                    </div>
+                    <input type="button" onclick="setValue();" value="setValue"/>
+                    <input type="button" onclick="getValue();" value="getValue"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/Page2/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<!--依赖的外部组件kendoui-->
+<script src="/Page2/lib/kendoui/js/kendo.core.js"></script>
+<script src="/Page2/lib/kendoui/js/kendo.userevents.js"></script>
+<script src="/Page2/lib/kendoui/js/kendo.draganddrop.js"></script>
+<script src="/Page2/lib/kendoui/js/kendo.slider.js"></script>
+
+<script>
+    $.noConflict();
+</script>
+<script src="/Page2/bower_components/avalon/avalon.js"></script>
+<script>
+    var inp,inp1;
+    require(["../../src/Bootstrap"], function () {
+        inp = Page.create("slider", {
+            $parentId: 'nameContainer',
+            $id: 'username',
+            $label:"双向slider",
+            $multi:true,
+            value:'1,2',
+            $opts:{
+                min: 0,
+                max: 10,
+                smallStep: 1,
+                largeStep: 4,
+                tickPlacement: "both",
+                showButtons: false,
+                showTick:true
+            }
+//            ,status:"disabled"
+        });
+        inp.render();
+        inp1 = Page.create("slider", {
+            $parentId: 'widgetContainer',
+            $id: 'username1',
+            $label:"单向slider",
+            value: 5,
+            $opts:{
+                min: -20,
+                max: 20,
+                smallStep: 1,
+                largeStep: 20,
+                showButtons: true,
+                showTick:true
+            }
+//            ,status:"readonly"
+        });
+        inp1.render();
+
+    });
+    function getValue(){
+        alert(inp.getValue() +"        "+ inp1.getValue());
+    }
+    function setValue(){
+        inp.setValue([1,5]);
+        inp1.setValue(10);
+    }
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

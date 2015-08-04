@@ -1,0 +1,72 @@
+<table class="form-horizontal-table" ms-visible="show&&(($hidePagerWhenNull&&totalNum&&totalNum>0)||!$hidePagerWhenNull)">
+    <tr ms-if="!$showTipWhenNull||(totalNum&&totalNum>0)">
+        <td class="col-md-5 emap_pagination_pageDetailTD" ms-if="$showPageDetail">
+            <div class="dataTables_info" role="status" aria-live="polite">
+                {{pageIndex}}/{{totalPage}}页,从{{recordBegin}}到{{recordTo}},共{{totalNum}}条记录.
+                <div ms-if="$showPageSizeInput" class="emap_pagination_displayInline">
+                    每页
+                    <div class="emap_pagination_displayInline emap_pagination_verticalAlign">
+                        <input class="form-control input-sm emap_pagination_pageSizeInput" aria-controls="editable"
+                               ms-attr-value="pageSize" ms-on-keypress="inputPageSize(event,vid,this)">
+                    </div>
+                    条.
+                </div>
+            </div>
+        </td>
+        <td class="col-md-7 emap_pagination_pageDetailTD">
+            <div class="dataTables_paginate paging_simple_numbers emap_pagination_floatRight">
+                <ul class="pagination">
+                    <li ms-if="$showFirstPage&&pageIndex!=1" class="paginate_button previous emap_pagination_pageNoLink" aria-controls="DataTables_Table_0" tabindex="0">
+                        <a href="javascript:void(0);" ms-click="goPage(vid,1)">
+                            首页
+                        </a>
+                    </li>
+                    <li ms-if="$showPreviousAndNextPage" class="paginate_button previous emap_pagination_pageNoLink disabled:pageIndex<2" aria-controls="DataTables_Table_0" tabindex="0">
+                        <a href="javascript:void(0);" ms-click="goPreviousPage(vid)">
+                            上一页
+                        </a>
+                    </li>
+                    <li class="paginate_button emap_pagination_pageNoLink" ms-if="pageIndex>3&&totalPage>6&&$showPageBeforeAfterCount>2" aria-controls="DataTables_Table_0" tabindex="0"><a
+                            href="javascript:void(0);" ms-click="goPage(vid,pageIndex-3)">{{pageIndex-3}}</a></li>
+                    <li class="paginate_button emap_pagination_pageNoLink" ms-if="pageIndex>2&&$showPageBeforeAfterCount>1" aria-controls="DataTables_Table_0" tabindex="0"><a
+                            href="javascript:void(0);" ms-click="goPage(vid,pageIndex-2)">{{pageIndex-2}}</a></li>
+                    <li class="paginate_button emap_pagination_pageNoLink" ms-if="pageIndex>1&&$showPageBeforeAfterCount>0" aria-controls="DataTables_Table_0" tabindex="0"><a
+                            href="javascript:void(0);" ms-click="goPage(vid,pageIndex-1)">{{pageIndex-1}}</a></li>
+                    <li class="paginate_button emap_pagination_pageNoLink active" aria-controls="DataTables_Table_0" tabindex="0"><a>{{pageIndex}}</a>
+                    </li>
+                    <li class="paginate_button emap_pagination_pageNoLink" ms-if="totalPage>pageIndex&&$showPageBeforeAfterCount>0" aria-controls="DataTables_Table_0" tabindex="0">
+                        <a href="javascript:void(0);" ms-click="goPage(vid,pageIndex+1)">{{pageIndex+1}}</a></li>
+                    <li class="paginate_button emap_pagination_pageNoLink" ms-if="totalPage>pageIndex+1&&$showPageBeforeAfterCount>1" aria-controls="DataTables_Table_0" tabindex="0">
+                        <a href="javascript:void(0);" ms-click="goPage(vid,pageIndex+2)">{{pageIndex+2}}</a></li>
+                    <li class="paginate_button emap_pagination_pageNoLink" ms-if="totalPage>pageIndex+2&&totalPage>6&&$showPageBeforeAfterCount>2" aria-controls="DataTables_Table_0" tabindex="0">
+                        <a href="javascript:void(0);" ms-click="goPage(vid,pageIndex+3)">{{pageIndex+3}}</a></li>
+                    <li ms-if="$showPreviousAndNextPage" class="paginate_button next emap_pagination_pageNoLink disabled:pageIndex>totalPage-1" aria-controls="DataTables_Table_0" tabindex="0">
+                        <a href="javascript:void(0);" ms-click="goNextPage(vid)" ms-attr-data-pageIndex="pageIndex<totalPage?pageIndex+1:pageIndex">
+                            下一页
+                        </a>
+                    </li>
+                    <li ms-if="$showLastPage&&pageIndex!=totalPage" class="paginate_button emap_pagination_pageNoLink" aria-controls="DataTables_Table_0" tabindex="0">
+                        <a href="javascript:void(0);" ms-click="goPage(vid,totalPage)">
+                            末页
+                        </a>
+                    </li>
+                    <li ms-if="$showPageIndexInput&&totalPage>6">
+                        <div class="emap_pagination_pageNoCon">
+                            第
+                            <input class="emap_pagination_pageIndexInput" ms-attr-value="pageIndex"
+                                   ms-on-keypress="inputPageIndex(event,vid,this)"
+                                   ms-on-change="changePageIndex(event,vid,this)">
+                            页
+                        </div>
+                        <div class="emap_pagination_pageNoCon">
+                            <a class="btn btn-xs btn-primary" href="javascript:void(0);" ms-click="setPageIndex(vid)">跳转</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    <tr ms-if="$showTipWhenNull&&(!totalNum||totalNum<1)">
+        <td><div class="emap_pagination_noDataTip">{{$noDataTip}}</div></td>
+    </tr>
+</table>

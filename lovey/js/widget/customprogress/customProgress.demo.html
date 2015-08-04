@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.dataviz.default.min.css" />
+    <style>
+        .k-state-selected,
+        .k-state-selected:link,
+        .k-state-selected:visited,
+        .k-list>.k-state-selected,
+        .k-list>.k-state-highlight,
+        .k-panel>.k-state-selected,
+        .k-ghost-splitbar-vertical,
+        .k-ghost-splitbar-horizontal,
+        .k-draghandle.k-state-selected:hover,
+        .k-scheduler .k-scheduler-toolbar .k-state-selected,
+        .k-scheduler .k-today.k-state-selected,
+        .k-marquee-color {
+            color: #fff;
+            background-color: #1ab394;
+            border-width: 0px;
+            border-color: #1ab394;
+        }
+        .k-progressbar>.k-reset {
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                ==========================蓝色主题：==========================
+                <div class="row">
+                    <div class="col-md-12" id="ops" style="padding-bottom: 30px;">
+                        <a class="btn btn-primary" href="javascript:alert(simpleProgress.getValue());">当前进度</a>
+                        <a class="btn btn-primary" href="javascript:simpleProgress.setValue(88);">设置为88%</a>
+                        <a class="btn btn-primary" href="javascript:simpleProgress.disable();">禁用</a>
+                        <a class="btn btn-primary" href="javascript:simpleProgress.enable();">可用</a>
+                        <a class="btn btn-primary" href="javascript:simpleProgress.setIndeterminate();">缓冲状态</a>
+                        <a class="btn btn-primary" href="javascript:simpleProgress.setValue(89);">恢复显示</a>
+                        <a class="btn btn-primary" href="javascript:simpleProgress.destroy();">销毁</a>
+                        <a class="btn btn-primary" href="javascript:simpleProgress1.setIndeterminate();">缓冲2</a>
+                    </div>
+                </div>
+
+                <div class="row" style="width:800px;">
+                    <div class="col-md-10" id="simpleProgress">
+                    </div>
+                </div>
+                ==========================条纹主题：==========================
+                <div class="row" style="width:800px;">
+                    <div class="col-md-10" id="simpleProgress1">
+                    </div>
+                </div>
+                ==========================middle大小:==========================
+                <div class="row" style="width:800px;">
+                    <div class="col-md-10" id="simpleProgress2">
+                    </div>
+                </div>
+                ==========================small大小:==========================
+                <div class="row" style="width:800px;">
+                    <div class="col-md-10" id="simpleProgress3">
+                    </div>
+                </div>
+                ==========================分段进度条(自动均分):==========================
+                <div class="row" style="width:800px;">
+                    <div class="col-md-10" id="simpleProgress4">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-lg btn-primary center-block" data-toggle="modal" data-target="#myModal">弹窗</button>
+    <div class="modal  fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog" style="width: 773px;">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">fsdfsdfs
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="/page/bower_components/mootools/dist/mootools-core.js"></script>
+<script src="/page/bower_components/jquery/dist/jquery.js"></script>
+<script src="/page/lib/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $.noConflict();
+</script>
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+    var simpleProgress = null;
+    require(["../../../page/src/Bootstrap"], function () {
+        simpleProgress = Page.create("customProgress", {
+            $parentId: 'simpleProgress',
+            value:50,//默认
+            type: "percent",//percent,chunk
+            sceneType:"large",//large:20px;middle:10px;small:5px;
+            themeType:"blue",
+            showStatus:true,
+            showDetail:true,
+            complete: function(e){
+                alert("完成了,OK！");
+            },
+
+            //其他属性
+            reverse: false,//反向
+            enable: true,//可用
+            detailTemplate:null,
+            animation: true,//动画
+            chunkCount: 100,//type为chunk时
+            min: 0,//type为chunk时
+            max: 100,//type为chunk时
+            orientation: "horizontal",//方向 horizontal，vertical
+            change:null,//进度改变事件，参数e
+            isVertical:false//orientation的便捷设置，true则竖排
+        });
+        simpleProgress.render();
+
+        simpleProgress1 = Page.create("customProgress", {
+            $parentId: 'simpleProgress1',
+            value:60,//默认
+            type: "percent",//percent,chunk
+            sceneType:"large",//large:20px;middle:10px;small:5px;
+            themeType:"stripe",
+            showStatus:false,
+            //showDetail:true,
+            //reverse: true,//反向
+            complete: function(e){
+                alert("完成了,OK！");
+            }
+        });
+        simpleProgress1.render();
+        simpleProgress2 = Page.create("customProgress", {
+            $parentId: 'simpleProgress2',
+            value:40,//默认
+            type: "percent",//percent,chunk
+            sceneType:"middle",
+            //showDetail:true,
+            complete: function(e){
+                alert("完成了,OK！");
+            },
+            animation: false//动画
+        });
+        simpleProgress2.render();
+        simpleProgress3 = Page.create("customProgress", {
+            $parentId: 'simpleProgress3',
+            value:30,//默认
+            type: "percent",//percent,chunk
+            sceneType:"small",//large:20px;middle:10px;small:5px;
+            //showStatus:true,
+            //showDetail:true,
+            complete: function(e){
+                alert("完成了,OK！");
+            }
+            //isVertical:true,
+            //verticalBarHeight:50
+        });
+        simpleProgress3.render();
+        simpleProgress4 = Page.create("customProgress", {
+            $parentId: 'simpleProgress4',
+            value:4,//默认
+            type: "chunk",//percent,chunk
+            chunkCount: 5,//type为chunk时
+            min: 0,//type为chunk时
+            max: 5,//type为chunk时
+            sceneType:"large",
+            showDetail:true,
+            complete: function(e){
+                alert("完成了,OK！");
+            },
+            animation: false//动画
+        });
+        simpleProgress4.render();
+    });
+</script>
+</body>
+</html>

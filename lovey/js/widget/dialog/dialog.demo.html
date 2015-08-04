@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    我只是一个div：<br/>
+                    <button onclick="openD()" id="abc">click me</button>
+                    <div class="col-md-12" id="dialogContainer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<!-- Dialog -->
+<!--<script src="/page/lib/artdialog/artDialog.source.js"></script>-->
+<!--<script src="/page/lib/artdialog/iframeTools.source.js"></script>-->
+<!--<link href="/page/lib/artdialog/skins/blue.css" rel="stylesheet">-->
+<!--<link href="/page/lib/artdialog/css/ui-dialog.css" rel="stylesheet">-->
+<!-- Dialog End -->
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+
+    var topParam = "top";
+
+    require(["../../../page/src/Bootstrap"], function () {
+
+        Page.dialog.data("topParam", "我是父页面参数");
+        Page.dialog.data("topFunc", topFunc);
+        var dialog = Page.create('dialog', {
+            $id: "dialog",
+            url: "dialogChild.demo.html",
+//            content: "测试一下，哈哈",
+            width: "400px",
+            height: "200px",
+            dbClickHide: false,
+            top: "1%",
+            left: "5%",
+//            icon: "question",
+//            skin: "confirmDialog",
+            cancel: function() {alert(1)}
+        });
+        dialog.render();
+        window.dialog = dialog;
+
+//        dialog.removeButton("点击试试");
+    });
+    function openD(){
+//        dialog.render();
+
+        Page.dialog.confirm('你确定要删除这掉消息吗？', function () {
+            Page.dialog.confirm('子确认框1', function () {
+                Page.dialog.confirm('子确认框2', function () {
+                    Page.dialog.tips('执行确定操作');
+                });
+            });
+        });
+    }
+
+    function topFunc() {
+        alert("我是父页面的方法")
+    }
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

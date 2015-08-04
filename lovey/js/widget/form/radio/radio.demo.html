@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12" id="radioContainer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<script>
+    $.noConflict();
+</script>
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+    require(["../../../page/src/Bootstrap"], function () {
+        var ds = Page.create("dataSet", {
+            $id: 'radioDS',
+            fetchUrl: 'radio.data.json'
+        });
+
+        var radio = Page.create('radio', {
+            $parentId: 'radioContainer',
+            $id: "radio",
+            parentTpl: "inline",
+            label: '性别',
+//            cols: 4,
+            value: "2",
+            display: "台球",
+            required:true,
+            valueField: "id",
+            textField: "name",
+            showErrorMessage:true,
+//            dataSetId: "radioDS",
+            url: "radio.data.json",
+            onValueChange: function(value, oldValue) {
+//                alert(value);
+            },
+            beforeSelectEvent: function(value, display, el) {
+                alert(value+" "+display);
+//                return false;     //这样可以阻止选中事件， 默认不需要
+            },
+            selectedEvent: function(value, display, el) {
+                alert(value+" "+display);
+            }
+        });
+        radio.render();
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

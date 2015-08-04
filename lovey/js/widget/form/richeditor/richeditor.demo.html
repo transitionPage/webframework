@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/Page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/Page2/src/css/page.css" rel="stylesheet">
+    <link href="/Page2/lib/kindeditor-4.1.10/themes/default/default.css" rel="stylesheet" />
+    <link href="/Page2/lib/kindeditor-4.1.10/plugins/code/prettify.css" rel="stylesheet" />
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="switchCon"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="switchCon2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Page2/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+<script src="/Page2/lib/kindeditor-4.1.10/kindeditor-all.js"></script>
+<script>
+    $.noConflict();
+</script>
+<script src="/Page2/bower_components/avalon/avalon.js"></script>
+<script>
+    tip1 = null;
+    tip2 = null;
+    require(["../../src/Bootstrap"], function () {
+        switchObj = Page.create("richeditor", {
+            $parentId: 'switchCon',
+            $id:"demo1",
+            value:"<b>heihei</b>",
+            simple:true,
+            status:"readonly"
+        });
+        switchObj.render();
+        switchObj2 = Page.create("richeditor", {
+            $parentId: 'switchCon2',
+            value:"<b>oo</b>",
+            simple:true
+        });
+        switchObj2.render();
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

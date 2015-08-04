@@ -1,0 +1,142 @@
+.clearBtn {
+    position: absolute;
+    top: 12px;
+    right: 28px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url('chosen-sprite.png') -42px 1px no-repeat;
+    font-size: 1px;
+}
+.chosen-results .itemselected {
+    background-color: #ffa545;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    color: #ffffff;
+}
+
+.itemover{
+    color: #636363;
+    background-color: #ffe7a2;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+}
+.div-focus {
+    border-color: #1ab394 !important;
+}
+
+.chosen-drop {
+    position: absolute;
+    z-index: 1010;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #aaa;
+    /*border-top: 0;*/
+    background: #fff;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+}
+
+.chosen-results {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0px;
+    padding: 0px;
+    max-height: 240px;
+    -webkit-overflow-scrolling: touch;
+}
+.chosen-results li {
+    display: none;
+    margin: 0;
+    padding: 5px 6px;
+    list-style: none;
+    line-height: 15px;
+    -webkit-touch-callout: none;
+}
+.chosen-results li.active-result {
+    display: list-item;
+    cursor: pointer;
+}
+.chosen-container.chosen-with-drop .chosen-up{
+    left: 0;
+}
+.matchsearch {
+    text-decoration: underline;
+}
+
+.page-search-expand {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #999999;
+    font-size: 14px;
+    cursor: pointer;
+}
+.chosen-container {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+    zoom: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.chosen-container-multi .chosen-choices {
+    -moz-box-sizing: border-box;
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5DD;
+    border-radius: 2px;
+    cursor: text;
+    height: auto !important;
+    margin: 0;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 2px;
+    position: relative;
+    width: 100%;
+}
+.chosen-container-multi .chosen-choices li.search-field {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+.chosen-container-multi .chosen-choices li {
+    float: left;
+    list-style: none;
+}
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
+    position: absolute;
+    top: 4px;
+    right: 3px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url('chosen-sprite.png') -42px 1px no-repeat;
+    font-size: 1px;
+}
+.chosen-container a {
+    cursor: pointer;
+}
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    margin: 1px 0;
+    padding: 5px;
+    height: 25px;
+    outline: 0;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none;
+    color: #666;
+    font-size: 100%;
+    font-family: sans-serif;
+    line-height: normal;
+    border-radius: 0;
+}

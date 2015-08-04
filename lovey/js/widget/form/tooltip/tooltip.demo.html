@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/Page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/Page2/src/css/page.css" rel="stylesheet">
+
+   <!--<link href="../../../../lib/kendoui/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="../../../../lib/kendoui/styles/kendo.default.min.css" rel="stylesheet">-->
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Horizontal form</h5>
+
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-4" id="nameContainer">
+                        <input type="" id="btn1" value="测试按钮" title="从左边出来tip"/>
+                    </div>
+                    <div class="col-md-4" id="widgetContainer1">
+                        <input type="button" id="btn2" value="测试按钮" title="从右边出来tip"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/Page2/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<!--依赖的外部组件kendoui-->
+<script src="/Page2/lib/kendoui/js/kendo.core.js"></script>
+<script src="/Page2/lib/kendoui/js/kendo.popup.js"></script>
+<script src="/Page2/lib/kendoui/js/kendo.tooltip.js"></script>
+
+<script>
+    $.noConflict();
+</script>
+<script src="/Page2/bower_components/avalon/avalon.js"></script>
+<script>
+    tip1 = null;
+    tip2 = null;
+    require(["../../src/Bootstrap"], function () {
+        tip1 = Page.create("tooltip", {
+            $id: 'tip1',
+            content: '从左边出提示信息内容<br />111111',
+            $opts:{
+                position:'left',
+                autoHide:true
+            },
+            $target:'btn1',
+            $className:"whitetip"
+        });
+        tip1.render();
+        tip2 = Page.create("tooltip", {
+            $id: 'tip2',
+            $target:'btn2',
+            content: '从右边出提示信息内容',
+            $opts:{
+                position:'right',
+                autoHide:false
+            }
+        });
+
+        tip2.render();
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

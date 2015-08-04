@@ -1,0 +1,8 @@
+<div ms-visible="show">
+    <div ms-if="showDetail&&!detailTemplate">
+        当前已完成：{{value}} {{type=='percent'?'%':''}}{{type=='chunk'?'/ '+max:''}}
+    </div>
+    <div ms-if="showDetail&&detailTemplate" ms-html="detailTemplate"></div>
+    <div class="e-progress" ms-css-height="isVertical?verticalBarHeight:barHeight" ms-css-width="isVertical?barHeight:'100%'"
+         style="background-color: #f5f5f5;border-width: 0px;"></div>
+</div>

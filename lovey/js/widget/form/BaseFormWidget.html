@@ -1,0 +1,23 @@
+<table class="form-horizontal-table" ms-visible="show">
+    <tr>
+        <td class="form-label" ms-class="col-md-{{labelSpan}}" ms-if="showLabel" >
+            <span class="form-required" ms-visible="required && showRequired">*</span>
+            {{label}}
+        </td>
+        <td class="has-feedback" ms-class="has-error:showErrorMessage&&errorMessage" ms-css-padding="controlPadding">
+            <!--调用组件模板-->
+            {{TEMPLATEVALUE}}
+        </td>
+        <td class="form-icon-container">
+            <span ms-class="glyphicon {{glyphicon}}" ms-visible="showGlyphicon"></span>
+        </td>
+    </tr>
+    <tr class="form-horizontal-message" ms-visible="hasMessageBar">
+        <td ms-if="showLabel"></td>
+        <td class="text-muted" ms-class="form-error-message:showErrorMessage&&errorMessage" colspan="2"
+            ms-css-padding="controlPadding">
+            <span ms-visible="showMessage"> {{message}} </span>
+            <span ms-visible="showErrorMessage">{{errorMessage}}</span>
+        </td>
+    </tr>
+</table>

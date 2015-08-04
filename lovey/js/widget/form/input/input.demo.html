@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet">
+
+    <style type="text/css">
+        body{
+            margin:0px;
+            padding:0px;
+        }
+        .base_content{
+            background-color: #fcfcfc;
+            margin: 0px 54px;
+        }
+        .red{
+            color: red;
+        }
+        .txt_left{
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body ms-skip>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Horizontal form</h5>
+
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-4" >
+                        <input id="1" class="form-control form-widget-to-focus-class">
+                    </div>
+
+                    <div class="col-md-4" >
+                        <input id="2" class="form-control form-widget-to-focus-class">
+                    </div>
+                    <div class="col-md-4" id="btnContainer">
+                        <button onclick="valForm();">校验表单</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="base_content">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <h5 class="base_s_title">个人基本信息</h5>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-4 control-label"><span class="red">*</span>学院</label>
+                    <div class="col-md-8">
+                        <div>
+                            <input class="form-control pageSelect" name="ComboBoxWidget_1" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/webframework/lovey/style/css/head.js"></script>
+<script>
+
+    function valForm(){
+        var validateTool = PageMgr.create("validation",{onlyError:true});//后续由系统统一创建，只需调用即可
+
+        //获取数据
+        var comps = PageMgr.manager.components;
+        var formValues = {};
+        formValues.begintime = comps.begintime.getValue();
+        formValues.phone = comps.phone.getValue();
+
+        //获取校验规则
+        var formRules = {};
+        formRules.begintime =  comps.begintime.getAttr("validationRules");
+        formRules.phone =  comps.phone.getAttr("validationRules");
+        formRules._global = [//_global 为固定
+            {
+                "ruleId": "notEqualField",
+                "field1": "begintime",
+                "field2": "phone"
+            }
+//            ,
+//            {
+//                "ruleId": "greaterThan",
+//                "field1": "username",
+//                "field2": "phone"
+//            }
+        ];
+        //进行校验
+        var valRes = validateTool.validateObject(formValues,formRules);
+        if(valRes.result){
+            alert("校验通过");
+        }else{
+            alert("校验结果："+JSON.stringify(valRes.errorMsg));
+        }
+    }
+    require([Bootstrap], function () {
+        var allComps = arguments;
+for(var i=0; i<1;i++) {
+        var inq = PageMgr.create("input", {
+            $parentId: '2',
+            value: '',
+            required: false,
+            glyphicon: 'glyphicon-ok',
+            message: '请输入手机号',
+            label: '联系方式',
+            placeholder: '联系方式',
+            valueChange:function(val){
+                alert("value:"+val);
+            },
+            validationRules: {
+                limit: {
+                    max: 11,
+                    min:1
+                },
+                required:true,//设置为false可关闭校验
+                onlyInteger:true,
+                mobilePhone:false
+            },
+            showErrorMessage:true,
+            onValueChange: function(value) {
+                alert(value)
+            },
+            $id: 'phone'//
+        });
+        inq.render();
+
+        var time = PageMgr.create("datepicker", {
+            $parentId: '1',
+            $id: 'begintime',
+            value: '2015-09-08',
+            required: false,
+            glyphicon: 'glyphicon-ok',
+            message: '请选择开始日期',
+            label: '开始日期',
+            required: true,
+
+            onValueChange: function(value) {
+                alert(value)
+            },
+            dateFmt:'yyyy-MM-dd'          //yyyy-MM
+        });
+    time.render();
+}
+        //console.log(inq);
+    });
+</script>
+</body>
+</html>

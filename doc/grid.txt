@@ -1,0 +1,35 @@
+options:
+id : 表格id
+url : 获取表格列元信息,数据信息,分页信息
+{
+	meta : [
+		{ENAME : 'ZGH',CNAME : '职工号'},
+		{ENAME : 'XM',CNAME : '姓名'}
+	],
+	datas : [
+		{'ZGH' : '01113200','XM' : '张三','XBM' : '1','XBM_DISP' : '男'},...
+	],
+	pagination : {
+		pageIndex : 2, // 当前页,从1开始
+		pageSize : 10, // 页大小
+		total : 100, // 总记录数
+		pages : 10 // 总页数
+	}
+}
+param : 查询参数,支持name=1&sex=2形式和{name : 1,sex : 2}形式
+orderBy : 排序信息 类似 +name : name字段升序, -age : 年龄字段降序
+checkbox : 是否多选 true/false
+pagination : 是否显示分页信息 true/false
+pageSize : 分页大小 默认 10
+allowSort : 是否允许拖拽排序 true/false
+loadOnInit : 是否初始化后加载 true/false
+sortUrl : 排序请求路径. 自动传递当前页记录的WID和排序索引,参数类似w232394jffhdd,1|rffewewewwd,2|...
+
+methods:
+reload(options) : 重新异步加载表格信息
+getChecked() : 获取所有选中记录,返回对象数组
+setChecked(pos) : 选中某行
+getData(pos) : 返回指定索引行数据
+
+events: 
+onCheck(checked,data,index) : 行数据被选中事件

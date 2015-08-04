@@ -1,0 +1,22 @@
+{
+  "result": {
+    "datas": {
+      "treeData": {
+        "rows": [
+          {"id":1, "pId":0, "name":"[core] 基本功能 演示", "open":true},
+          {"id":101, "pId":1, "name":"最简单的树 --  标准 JSON 数据", "file":"core/standardData", "isParent": true},
+          {"id":102, "pId":1, "name":"最简单的树 --  简单 JSON 数据", "file":"core/simpleData"},
+          {"id":103, "pId":1, "name":"不显示 连接线", "file":"core/noline"},
+          {"id":104, "pId":1, "name":"不显示 节点 图标", "file":"core/noicon"},
+          {"id":2, "pId":0, "name":"222", "file":"core/standardData"},
+          {"id":3, "pId":0, "name":"333", "file":"core/simpleData"},
+          {"id":4, "pId":0, "name":"444", "file":"core/noline"},
+          {"id":5, "pId":0, "name":"555", "file":"core/noicon"}
+        ],
+        "pageSize": 5,
+        "pageNo": 1,
+        "totalSize": 7
+      }
+    }
+  }
+}

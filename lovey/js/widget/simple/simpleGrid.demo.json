@@ -1,0 +1,116 @@
+{
+  "result": {
+    "datas": {
+      "ds1":{
+        "rows":[
+          {
+            "wid":"001",
+            "name": "李肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1989-11-03",
+            "rxDate": "2007-09-02",
+              "isParty": 1,
+              "isParty_DISPLAY":"是",
+            "className": "信息0701班",
+            "checked":"false",
+            "notes": ""
+          },
+          {
+            "wid":"002",
+            "name": "李肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1987-03-19",
+            "rxDate": "2007-09-02",
+              "isParty": 1,
+              "isParty_DISPLAY":"是",
+            "className": "信息0701班",
+            "checked":"true",
+            "notes": ""
+          },
+          {
+            "wid":"003",
+            "name": "李肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1990-10-22",
+            "rxDate": "2007-09-02",
+            "isParty": 0,
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"004",
+            "name": "丁肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty":0,
+            "className": "信息0701班",
+            "notes": "单亲"
+          },
+          {
+            "wid":"005",
+            "name": "曾肉肉",
+            "sex": "002",
+            "sexDisplay": "女",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": 0,
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"006",
+            "name": "毕肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": 0,
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"007",
+            "name": "毕肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": 0,
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"008",
+            "name": "吴肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty":0,
+            "className": "信息0701班",
+            "notes": ""
+          },
+          {
+            "wid":"009",
+            "name": "吴肉肉",
+            "sex": "001",
+            "sexDisplay": "男",
+            "birthDate": "1988-09-20",
+            "rxDate": "2007-09-02",
+            "isParty": 0,
+            "className": "信息0701班",
+            "notes": ""
+          }
+        ],
+        "pageSize": 15,
+        "pageNumber": 2,
+        "totalSize": 91
+      }
+    }
+  }
+}

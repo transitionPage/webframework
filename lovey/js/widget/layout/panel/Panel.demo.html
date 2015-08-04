@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row" id="r">
+
+
+    </div>
+    <div>
+        <button class="btn " id="abc">clickme</button>
+    </div>
+</div>
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+
+    require(["../../../page/src/Bootstrap"], function () {
+        //console.log(inq);
+
+        var panel = Page.create("panel", {
+            $parentId: 'r',
+            title: "基本信息",
+            items: [{
+                $id:'p',
+                $xtype: 'row',
+                items: [{
+                    $xtype: 'col',
+                    md: 4,
+                    items: [{$xtype: 'combobox', label: '1111'}]
+                }, {
+                    $xtype: 'col',
+                    md: 4,
+                    items: [{$xtype: 'input', label: '2'}]
+                }, {
+                    $xtype: 'col',
+                    md: 4,
+                    items: [{$xtype: 'input', label: '3'}]
+                }, {
+                    $xtype: 'col',
+                    md: 4,
+                    items: [{$xtype: 'input', label: '1'}]
+                }, {
+                    $xtype: 'col',
+                    md: 8,
+                    items: [{$xtype: 'input', label: '2'}]
+                }, {
+                    $xtype: 'col',
+                    md: 4,
+                    items: [{$xtype: 'input', label: '3'}]
+                }]
+            }]
+        });
+
+        panel.render();
+
+        $("#abc").click(function(){
+            panel.addItem({$xtype:'row', md:4,items:[{$xtype: 'input', label: '2'}]});
+        });
+
+
+    });
+</script>
+</body>
+</html>

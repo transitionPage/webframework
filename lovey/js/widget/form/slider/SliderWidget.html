@@ -1,0 +1,8 @@
+<div  ms-if="status!='readonly'">
+    <div ms-if="$multi" class="sliderWidget">
+        <input type="text" ms-attr-disabled="status=='disabled'" />
+        <input type="text" ms-attr-disabled="status=='disabled'" />
+    </div>
+    <input type="text" ms-if="!$multi" class="sliderWidget" ms-duplex="value" ms-attr-disabled="status=='disabled'" />
+</div>
+<input ms-if="status=='readonly'" class="form-control form-text" ms-duplex="value"  readonly/>

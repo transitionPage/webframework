@@ -1,0 +1,820 @@
+<html class="k-webkit k-webkit43">
+<head lang="en">
+    <script class="$1433399778872" src="/page/lib/kendoui/js/kendo.userevents.js"></script>
+    <script class="$1433399778872" src="/page/lib/kendoui/js/kendo.draganddrop.js"></script>
+    <script class="$1433399778872" src="/page/lib/kendoui/js/kendo.popup.js"></script>
+    <script class="$1433399778872" src="/page/lib/artdialog/iframeTools.source.js"></script>
+    <script class="$1433399778872" src="/page/lib/kendoui/js/kendo.core.js"></script>
+    <script class="$1433399778872" src="/../page/lib/My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" href="/page/src/widget/form/tooltip/TooltipWidget.css">
+    <script class="$1433399778872" src="/page/lib/kendoui/js/kendo.tooltip.js"></script>
+    <link rel="stylesheet" href="/page/src/widget/customSearcher/CustomSearcherWidget.css">
+    <link rel="stylesheet"
+          href="/page/src/widget/dialog/../../../lib/artdialog/css/ui-dialog.css">
+    <link rel="stylesheet" href="/page/src/widget/dialog/../../../lib/artdialog/skins/blue.css">
+    <link rel="stylesheet" href="/page/src/widget/dialog/DialogWidget.css">
+    <script class="$1433399778872" src="/../page/lib/artdialog/artDialog.source.js"></script>
+    <script class="$1433399778872" src="/page/lib/artdialog/artDialog.source.js"></script>
+    <link rel="stylesheet" href="/page/src/widget/form/checkbox/CheckboxWidget.css">
+    <link rel="stylesheet" href="/page/src/widget/form/radio/RadioWidget.css">
+    <link rel="stylesheet" href="/page/src/widget/form/slider/SliderWidget.css">
+    <script class="$1433399778872" src="/page/lib/kendoui/js/kendo.slider.js"></script>
+    <link rel="stylesheet" href="/page/src/widget/form/textarea/TextareaWidget.css">
+    <link rel="stylesheet" href="/page/src/widget/simple/SimpleGridWidget.css">
+    <link rel="stylesheet" href="/page/src/widget/simple/expandGrid/ExpandGridWidget.css">
+    <link rel="stylesheet" href="/page/src/widget/composite/FormWidget.css">
+    <link rel="stylesheet" href="/page/src/widget/dataTable/DataTableWidget.css">
+    <link rel="stylesheet" href="/page/src/widget/pagination/PaginationWidget.css">
+    <link rel="stylesheet" href="/page/lib/bootstrap/css/plugins/chosen/chosen.css">
+    <link rel="stylesheet" href="/page/src/widget/form/combobox/ComboboxWidget.css">
+    <script class="$1433399778872" src="/page/lib/kendoui/js/kendo.maskedtextbox.js"></script>
+    <link rel="stylesheet" href="/page/src/widget/form/input/InputWidget.css">
+    <script class="$1433399778872" src="/page/src/data/DataSource.js"></script>
+    <script class="$1433399778872" src="/page/src/data/DataConstant.js"></script>
+    <script class="$1433399778872"
+            src="/page/src/widget/form/my97date/My97DateWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/form/tooltip/TooltipWidget.js"></script>
+    <script class="$1433399778872"
+            src="/page/src/widget/customSearcher/CustomSearcherWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/dialog/DialogWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/form/slider/SliderWidget.js"></script>
+    <script class="$1433399778872"
+            src="/page/src/widget/form/textarea/TextareaWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/form/radio/RadioWidget.js"></script>
+    <script class="$1433399778872"
+            src="/page/src/widget/form/checkbox/CheckboxWidget.js"></script>
+    <script class="$1433399778872"
+            src="/page/src/widget/simple/expandGrid/ExpandGrid.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/simple/SimpleGrid.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/dataTable/DataTableWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/composite/FormWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/layout/fragment/Fragment.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/layout/col/Col.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/layout/row/Row.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/layout/panel/Panel.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/layout/BaseLayout.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/pagination/PaginationWidget.js"></script>
+    <script class="$1433399778872"
+            src="/page/src/widget/form/combobox/ComboboxWidget.js"></script>
+    <script class="$1433399778872"
+            src="/page/src/widget/form/maskedtextbox/MaskedtextboxWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/form/input/InputWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/form/BaseFormWidget.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/WidgetContainer.js"></script>
+    <script class="$1433399778872" src="/page/src/widget/Base.js"></script>
+    <script class="$1433399778872" src="/page/src/data/DataBinder.js"></script>
+    <script class="$1433399778872" src="/page/src/data/DataSet.js"></script>
+    <script class="$1433399778872" src="/page/src/data/DataValue.js"></script>
+    <script class="$1433399778872" src="/page/src/Utils.js"></script>
+    <script class="$1433399778872" src="/page/src/Validation.js"></script>
+    <script class="$1433399778872" src="/page/src/Manager.js"></script>
+    <script class="$1433399778872" src="/page/src/Factory.js"></script>
+    <script class="$1433399778872" src="/page/src/Bootstrap.js"></script>
+    <avalon ms-skip="1" class="avalonHide">X
+        <style id="avalonStyle">.avalonHide {
+            display: none !important
+        }</style>
+        <div ms-if="multi" ms-class="div-focus: focused" style="border: 1px solid #CBD5DD;  border-radius: 2px;"
+             title="" ms-click="comboBoxFocus(vid, this)">
+            <ul class="chosen-choices" style="border: 0px;" ms-css-background-color="status=='disabled'?'#eee':''">
+                <li ms-repeat-item="selectedItems" class="search-choice"
+                    ms-css-background-color="status=='disabled'?'#eee':''">
+                    <span ms-text="item[$textField]"></span>
+                    <a ms-click="removeItem(vid, item, $index, $event)" class="search-choice-close"
+                       data-option-array-index="105"></a>
+                </li>
+
+                <li class="search-field">
+                    <input type="text" ms-duplex="searchValue" ms-attr-disabled="status=='disabled'"
+                           ms-css-background-color="status=='disabled'?'#eee':''" autocomplete="off" tabindex="4"
+                           ms-css-width="multi ? inputWidth : -1" ms-on-keydown="keyDown(vid, $event)">
+                </li>
+            </ul>
+        </div>
+        <div ms-if="!multi &amp;&amp; !searchable" ms-class="div-focus: showPanel"
+             ms-css-background-color="status=='disabled'?'#eee':''" class="form-control" style="cursor: pointer;"
+             ms-on-click="changePanelShow(vid, $event)">
+            <span ms-repeat-item="selectedItems" ms-text="item[$textField]"></span>
+            <a ms-visible="showClear &amp;&amp; clearShow" ms-click="removeAll(vid, $event)" class="clearBtn"
+               data-option-array-index="105"></a>
+
+            <div class="page-search-expand">
+                <i class="fa" ms-class-fa-caret-down="!showPanel" ms-class-fa-caret-up="showPanel"
+                   style=" line-height: 35px;"></i>
+            </div>
+        </div>
+        <input ms-if="status=='readonly'" class="form-control form-widget-to-focus-class form-text" ms-duplex="display"
+               readonly=""></avalon>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.bootstrap.css"
+          rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.responsive.css"
+          rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.tableTools.min.css"
+          rel="stylesheet">
+    <link href="/../page/lib/My97DatePicker/skin/WdatePicker.css" rel="stylesheet"
+          type="text/css">
+</head>
+<body>
+<div style="display: none; position: absolute;" class="">
+    <div class="aui_outer">
+        <table class="aui_border">
+            <tbody>
+            <tr>
+                <td class="aui_nw"></td>
+                <td class="aui_n"></td>
+                <td class="aui_ne"></td>
+            </tr>
+            <tr>
+                <td class="aui_w"></td>
+                <td class="aui_c">
+                    <div class="aui_inner">
+                        <table class="aui_dialog">
+                            <tbody>
+                            <tr>
+                                <td colspan="2" class="aui_header">
+                                    <div class="aui_titleBar">
+                                        <div class="aui_title" style="cursor: move; display: block;"></div>
+                                        <a class="aui_close" href="javascript:/*artDialog*/;"
+                                           style="display: block;">��</a></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="aui_icon" style="display: none;">
+                                    <div class="aui_iconBg" style="background: none;"></div>
+                                </td>
+                                <td class="aui_main" style="width: auto; height: auto;">
+                                    <div class="aui_content" style="padding: 20px 25px 20px 0px;"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="aui_footer">
+                                    <div class="aui_buttons" style="display: none;"></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td class="aui_e"></td>
+            </tr>
+            <tr>
+                <td class="aui_sw"></td>
+                <td class="aui_s"></td>
+                <td class="aui_se" style="cursor: se-resize;"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="display: none; position: absolute;" class="">
+    <div class="aui_outer">
+        <table class="aui_border">
+            <tbody>
+            <tr>
+                <td class="aui_nw"></td>
+                <td class="aui_n"></td>
+                <td class="aui_ne"></td>
+            </tr>
+            <tr>
+                <td class="aui_w"></td>
+                <td class="aui_c">
+                    <div class="aui_inner">
+                        <table class="aui_dialog">
+                            <tbody>
+                            <tr>
+                                <td colspan="2" class="aui_header">
+                                    <div class="aui_titleBar">
+                                        <div class="aui_title" style="cursor: move; display: block;"></div>
+                                        <a class="aui_close" href="javascript:/*artDialog*/;"
+                                           style="display: block;">��</a></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="aui_icon" style="display: none;">
+                                    <div class="aui_iconBg" style="background: none;"></div>
+                                </td>
+                                <td class="aui_main" style="width: auto; height: auto;">
+                                    <div class="aui_content" style="padding: 20px 25px 20px 0px;"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="aui_footer">
+                                    <div class="aui_buttons" style="display: none;"></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+                <td class="aui_e"></td>
+            </tr>
+            <tr>
+                <td class="aui_sw"></td>
+                <td class="aui_s"></td>
+                <td class="aui_se" style="cursor: se-resize;"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+
+<div id="container">
+
+<div class="page_base" avalonctrl="f1">
+
+<div class="page_fragment" avalonctrl="fragmentiaht7vsu" style="display: block;">
+
+<div class="ibox float-e-margins page_base" style="margin-bottom: 0px; display: block;" avalonctrl="baseiaht7vsx">
+<div class="ibox-title" style="border-top-width: 0px; padding-left: 19px; padding-top: 0px; display: block;">
+    <h5 style="margin-top: 10px;margin-bottom: 0px; border-bottom: 5px solid #1ab394;padding-left: 10px;padding-right: 10px;padding-bottom: 5px;">
+        aaa
+    </h5>
+
+    <div class="ibox-tools" style="margin-top: 9px;">
+        <a class="collapse-link">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+        <!--            <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>-->
+    </div>
+    <div class="hr-line-solid"
+         style=" margin-top: 0px;  margin-bottom: 0px;  border: 0px;  border-bottom: 1px solid #e5e6e7;height: 34px;"></div>
+</div>
+<div class="ibox-content" style=" padding-top: 10px;border-top-width: 0px;padding-bottom: 0px;">
+
+<div class="row page_base" avalonctrl="baseiaht7vsz" style="display: block;">
+
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vt1" style="display: block;">
+
+    <div class="page_input" avalonctrl="name">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�������</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vt6"
+     style="float: right; display: block;">
+
+    <div class="page_input" avalonctrl="interest">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: none;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">��Ȥ</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class" style="height: 136px;">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vta" style="display: block;">
+
+    <div class="page_input" avalonctrl="sex">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: none;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�Ա�</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vte" style="display: block;">
+
+    <div class="page_input" avalonctrl="phone">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: none;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�绰</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vti" style="display: block;">
+
+    <div class="page_input" avalonctrl="name1">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�������1</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vtn" style="display: block;">
+
+    <div class="page_input" avalonctrl="name2">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�������2</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vts" style="display: block;">
+
+    <div class="page_input" avalonctrl="name3">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�������3</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-8 col-xs-8 col-sm-8 col-lg-8" avalonctrl="baseiaht7vtx" style="display: block;">
+
+    <div class="page_input" avalonctrl="name4">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 16.666666665%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�������4</label>
+                    </td>
+                    <td class="col-md-7" style="width: 79.16666667%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 4.166666665%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vu2" style="display: block;">
+
+    <div class="page_input" avalonctrl="name5">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�������5</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-12 col-xs-12 col-sm-12 col-lg-12" avalonctrl="baseiaht7vu7" style="display: block;">
+
+    <div class="page_textarea" avalonctrl="name6">
+        <div style="display: block;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 11.11111111%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">�������6</label>
+                    </td>
+                    <td class="col-md-7" style="width: 86.1111111133333%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <textarea class="form-control form-widget-to-focus-class" rows="3"
+                                  style="height: 85px;"></textarea>
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 2.77777777666667%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vuc" style="display: none;">
+
+    <div class="page_input" avalonctrl="grjj">
+        <div style="display: none;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: none;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">���˼��</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <input class="form-control form-widget-to-focus-class">
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vug" style="display: none;">
+
+    <div class="page_combobox" avalonctrl="xy">
+        <div style="display: none;">
+            <table class="form-horizontal-table">
+                <tbody>
+                <tr>
+                    <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: none;">
+                    <!--*-->
+                </span>
+
+                        <label class="control-label">ѧԺ</label>
+                    </td>
+                    <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                        <!--�������ģ��-->
+                        <div class="form-group" style=" margin-bottom: 0px;" name="ComboBoxWidget_xy">
+                            <div class="input-group chosen-container chosen-with-drop chosen-container-multi"
+                                 style="width: 100%;">
+                                <!--��ѡ����-->
+                                <!--ms-if-->
+                                <!--��ѡ������-->
+                                <div class="form-control">
+                                    <input style="outline: none;border: none;width: 100%">
+                                    <a class="clearBtn" data-option-array-index="105" style="display: none;"></a>
+
+                                    <div class="page-search-expand">
+                                        <i class="fa fa-caret-down" style=" line-height: 35px;"></i>
+                                    </div>
+                                    <!--<span class="glyphicon form-control-feedback" ms-class-glyphicon-menu-down="!showPanel" ms-class-glyphicon-menu-up="showPanel" aria-hidden="true"
+                                          style="pointer-events:auto; cursor: pointer;border-left: 1px solid #d1d1d1;height: 32px;background-color: white" ms-on-click="changePanelShow(vid, $event)"></span>-->
+                                </div>
+                                <!--��ѡ��������-->
+                                <!--ms-if-->
+
+                                <!--�����������-->
+
+                            </div>
+                        </div>
+                        <!--ms-if-->
+
+                    </td>
+                    <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                        <span class="glyphicon" style="display: none;"></span>
+                    </td>
+                </tr>
+                <tr class="form-horizontal-message" style="display: table-row;">
+                    <td></td>
+                    <td class="text-muted" colspan="2" style="padding: 0px;">
+                        <span style="display: inline;">  </span>
+                        <span style="display: none;"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibox float-e-margins page_base" style="margin-bottom: 0px; display: block;" avalonctrl="baseiaht7vul">
+    <div class="ibox-title" style="border-top-width: 0px; padding-left: 19px; padding-top: 0px; display: block;">
+        <h5 style="margin-top: 10px;margin-bottom: 0px; border-bottom: 5px solid #1ab394;padding-left: 10px;padding-right: 10px;padding-bottom: 5px;">
+            bbb
+        </h5>
+
+        <div class="ibox-tools" style="margin-top: 9px;">
+            <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+            <!--            <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>-->
+        </div>
+        <div class="hr-line-solid"
+             style=" margin-top: 0px;  margin-bottom: 0px;  border: 0px;  border-bottom: 1px solid #e5e6e7;height: 34px;"></div>
+    </div>
+    <div class="ibox-content" style=" padding-top: 10px;border-top-width: 0px;padding-bottom: 0px;">
+
+        <div class="row page_base" avalonctrl="baseiaht7vun" style="display: block;">
+
+            <div class="col page_base col-md-4 col-xs-4 col-sm-4 col-lg-4" avalonctrl="baseiaht7vup"
+                 style="display: block;">
+
+                <div class="page_input" avalonctrl="name">
+                    <div style="display: block;">
+                        <table class="form-horizontal-table">
+                            <tbody>
+                            <tr>
+                                <td class="form-label col-md-4 col-xs-4 col-sm-4 col-lg-4" style="width: 33.33333333%;">
+
+                <span class="form-required" style="display: block;">
+                    <!--*-->
+                </span>
+
+                                    <label class="control-label">�������</label>
+                                </td>
+                                <td class="col-md-7" style="width: 58.33333334%; padding: 0px;">
+                                    <!--�������ģ��-->
+                                    <input class="form-control form-widget-to-focus-class">
+
+                                </td>
+                                <td class="form-icon-container  col-md-1" style="width: 8.33333333%;">
+                                    <span class="glyphicon" style="display: none;"></span>
+                                </td>
+                            </tr>
+                            <tr class="form-horizontal-message" style="display: table-row;">
+                                <td></td>
+                                <td class="text-muted" colspan="2" style="padding: 0px;">
+                                    <span style="display: inline;">  </span>
+                                    <span style="display: none;"></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div id="container2">
+
+</div>
+
+<div>
+    <button id="loadData">�������</button>
+    <button id="submitData">�ύ���</button>
+</div>
+
+<div id="valArea">
+
+</div>
+
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+
+<div class="chosen-drop" id="comboBox_panel_xy" style="display: none;">
+    <div>
+        <ul class="chosen-results" style="height: 150px;"><!--each56460387445986278321847033221275:end--></ul>
+        <div id="page_xy" style="display: block;"></div>
+    </div>
+</div>
+<div style="display: none; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; cursor: move; opacity: 0; background: rgb(255, 255, 255);"></div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row" id="r">
+
+
+    </div>
+    <div id="valueDiv">
+###
+    </div>
+</div>
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+
+    require(["../../../page/src/Bootstrap"], function () {
+        //console.log(inq);
+        var fragment = Page.create("fragment", {
+            $id:'f',
+            $parentId: 'r',
+            dataSources: {
+                ds1: {
+                    type: 'dataValue', options: {
+                        data: {
+//                            xb: 1
+                        }
+                    }
+                }
+            },
+            dataBinders: {
+                db1: {
+                    dataValueId: 'ds1',fieldId: 'xb', widgetId: 'xb'
+                }
+            },
+            items: [
+                {$id: 'xb', $xtype: 'input', label: '性别'}
+            ]
+        });
+        fragment.render();
+
+        Page.manager.components['ds1'].addEvent("recordUpdated", function(v){
+            $("#valueDiv").html(v.xb);
+        })
+
+    });
+</script>
+</body>
+</html>

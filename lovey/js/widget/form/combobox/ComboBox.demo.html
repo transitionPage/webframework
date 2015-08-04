@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet">
+
+    <style type="text/css">
+        body{
+            margin:0px;
+            padding:0px;
+        }
+        .base_content{
+            background-color: #fcfcfc;
+            margin: 0px 54px;
+        }
+        .red{
+            color: red;
+        }
+        .txt_left{
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body>
+<br>
+
+<div class="base_content">
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9">
+            <h5 class="base_s_title">个人基本信息</h5>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-4 control-label"><span class="red">*</span>学院</label>
+                    <div class="col-md-8">
+                        <div>
+                            <input class="form-control pageSelect" id="multi0"/>
+                            <!--<input class="form-control pageSelect" id="multi1"/>
+                            <input class="form-control pageSelect" id="multi2"/>
+                            <input class="form-control pageSelect" id="multi3"/>
+                            <input class="form-control pageSelect" id="multi4"/>
+                            <input class="form-control pageSelect" id="multi5"/>
+                            <input class="form-control pageSelect" id="multi6"/>
+                            <input class="form-control pageSelect" id="multi7"/>
+                            <input class="form-control pageSelect" id="multi8"/>
+                            <input class="form-control pageSelect" id="multi9"/>
+                            <input class="form-control pageSelect" id="multi10"/>
+                            <input class="form-control pageSelect" id="multi11"/>
+                            <input class="form-control pageSelect" id="multi13"/>
+                            <input class="form-control pageSelect" id="multi14"/>
+                            <input class="form-control pageSelect" id="multi15"/>
+                            <input class="form-control pageSelect" id="multi16"/>
+                            <input class="form-control pageSelect" id="multi17"/>
+                            <input class="form-control pageSelect" id="multi18"/>
+                            <input class="form-control pageSelect" id="multi19"/>
+                            <input class="form-control pageSelect" id="multi20"/>
+                            <input class="form-control pageSelect" id="multi21"/>
+                            <input class="form-control pageSelect" id="multi22"/>
+                            <input class="form-control pageSelect" id="multi23"/>
+                            <input class="form-control pageSelect" id="multi24"/>
+                            <input class="form-control pageSelect" id="multi25"/>
+                            <input class="form-control pageSelect" id="multi26"/>
+                            <input class="form-control pageSelect" id="multi27"/>
+                            <input class="form-control pageSelect" id="multi28"/>
+                            <input class="form-control pageSelect" id="multi29"/>
+                            <input class="form-control pageSelect" id="multi30"/>
+                            <input class="form-control pageSelect" id="multi31"/>
+                            <input class="form-control pageSelect" id="multi32"/>
+                            <input class="form-control pageSelect" id="multi33"/>
+                            <input class="form-control pageSelect" id="multi34"/>
+                            <input class="form-control pageSelect" id="multi35"/>
+                            <input class="form-control pageSelect" id="multi36"/>
+                            <input class="form-control pageSelect" id="multi37"/>
+                            <input class="form-control pageSelect" id="multi38"/>
+                            <input class="form-control pageSelect" id="multi39"/>
+                            <input class="form-control pageSelect" id="multi40"/>-->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"><span class="red">*</span>单选可搜索</label>
+                    <div class="col-md-8">
+                        <div>
+                            <input class="form-control pageSelect" id="singleSearch"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"><span class="red">*</span>单选不可搜索</label>
+                    <div class="col-md-8">
+                        <div>
+                            <input class="form-control pageSelect" id="single"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"><span class="red">*</span>树</label>
+                    <div class="col-md-8">
+                        <div>
+                            <input class="form-control pageSelect" id="tree"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/webframework/lovey/style/css/head.js"></script>
+<script>
+    require([Bootstrap], function () {
+
+        var ds = PageMgr.create("dataSet", {
+            $id: 'comboBoxDS',
+            fetchUrl: 'Data.demo.json'
+//            data: [
+//                {value:"1", display: "计算机学院qqqq"}
+//            ]
+        });
+        for(var i=0; i<1; i++) {
+            PageMgr.create('combobox', {
+                $parentId: 'multi'+i,
+                $id: 'sex'+i,
+                label: '学院（多选）',
+                multi: true,
+                value: "1,3",
+                display: "计算机学院,经管学院",
+                $pageSize: 5,
+                searchable: false,
+                dataSetId: "comboBoxDS",
+//            url: "Data.demo.json",
+                showErrorMessage:true,
+                validationRules: {
+                    required:true,//options中为false时，此处可重开启校验
+                    length: {
+                        maxLen: 4,
+                        minLen: 2,
+                        customErrMsg:"请选择2-4个学院"
+                    }
+                },
+                beforeSelectEvent: function(value, display, obj, el) {
+//                alert("已选中值为："+obj.getValue()+"\n已选中文本为："+obj.getDisplay()+"\n选择前事件："+value + " " +  display);
+                }
+//            selectedEvent: function(value, display, obj, el) {
+//                alert("已选中值为："+obj.getValue()+"\n已选中文本为："+obj.getDisplay()+"\n选择后事件："+value + " " +  display);
+//            }
+            }).render();
+        }
+
+//        combo1._getCompVM().selectedEvent= function(value, display, obj, el) {
+////            alert("已选中值为："+obj.getValue()+"\n已选中文本为："+obj.getDisplay()+"\n选择后事件："+value + " " +  display);
+//        }
+        var combo2 = PageMgr.create('combobox', {
+            $parentId: 'singleSearch',
+            $id: 'sex2',
+            label: '学院（单选可搜索）',
+            multi: false,
+            searchable: true,
+//            status: "readonly",
+            searchKey: "aaa",
+//            showClear: false,
+//            panelCancel: false,
+            showDropIcon: false,
+            url: "Data1.demo.json",
+            valueField: "id",
+            textField: "name",
+            value: "1",
+            display: "计算机学院"
+
+        })
+        combo2.render();
+
+        var combo3 = PageMgr.create('combobox', {
+            $parentId: 'single',
+            $id: 'sex3',
+            label: '学院（单选）',
+            multi: false,
+//            parentTpl: "inline",
+            searchable: false,
+//            value: "1",
+//            display: "计算机学院",
+            $pageSize: 5,
+            dataSetId: "comboBoxDS",
+            beforeOpenEvent: function(a,b,c,d) {
+//                alert("让你打不开下拉面板，哈哈");
+//                return false;
+            }
+        })
+        combo3.render();
+
+        var combo4 = PageMgr.create('combobox', {
+            $parentId: 'tree',
+            $id: 'sex4',
+            label: '下拉树',
+            multi: true,
+//            searchable: false,
+            value: "102",
+            display: "最简单的树 --  简单 JSON 数据",
+            model: "tree",
+            mainAlias: "treeData",  //数据源主实体别名
+            url: "treeData.demo.json",
+            valueField: "id",
+            textField: "name",
+//            panelCancel: false,
+//            value: "1",
+//            display: "计算机学院",
+            beforeOpenEvent: function(a,b,c,d) {
+//                alert("让你打不开下拉面板，哈哈");
+//                return false;
+            }
+        })
+        combo4.render();
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

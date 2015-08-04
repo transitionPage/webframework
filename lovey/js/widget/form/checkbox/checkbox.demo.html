@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page2/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page2/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page2/src/css/page.css" rel="stylesheet">
+    <link href="/page2/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page2/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page2/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+</head>
+<body ms-skip>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+
+            <div class="ibox-content">
+                <div class="row">
+                    <button class="btn btn-primary" onclick="changeStatus('edit')">编辑状态</button>
+                    <button class="btn btn-primary" onclick="changeStatus('readonly')">只读状态</button>
+                    <button class="btn btn-primary" onclick="changeStatus('disabled')">禁用状态</button>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" id="comboboxContainer">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/page2/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page2/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page2/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page2/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page2/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page2/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page2/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+<script src="./template.js"></script>
+
+<script src="/page2/bower_components/avalon/avalon.js"></script>
+<script>
+    require(["../../../page2/src/Bootstrap"], function () {
+        var ds = Page.create("dataSet", {
+            $id: 'checkboxDS',
+//            fetchUrl: 'checkbox.data.json'
+            data: [
+                {
+                    "id": "1",
+                    "name": "足球"
+                },{
+                    "id": "11",
+                    "name": "足球1"
+                },{
+                    "id": "12",
+                    "name": "足球2"
+                },{
+                    "id": "13",
+                    "name": "足球3"
+                },{
+                    "id": "2",
+                    "name": "台球"
+                }, {
+                    "id": "21",
+                    "name": "台球1"
+                },{
+                    "id": "22",
+                    "name": "台球2"
+                },{
+                    "id": "23",
+                    "name": "台球3"
+                },{
+                    "id": "24",
+                    "name": "台球4"
+                } ,{
+                    "id": "25",
+                    "name": "台球5"
+                }
+            ]
+        });
+for(var i=0; i<1; i++) {
+
+
+        checkbox = Page.create('checkbox', {
+            $parentId: 'comboboxContainer',
+            label: '兴趣',
+            value: "1,2",
+            display: "足球, 台球",
+            cols: 4,
+            valueField: "id",
+            textField: "name",
+//            status: "readonly",
+            required:true,
+            showErrorMessage:true,
+//            cols: 3,
+            dataSetId: "checkboxDS",
+//            url: "checkbox.data.json",
+            validationRules: {
+                required:true,//options中为false时，此处可重开启校验
+                length: {
+                    maxLen: 5,
+                    minLen: 2,
+                    customErrMsg:"请选择2-5个兴趣"
+                }
+            },
+            onValueChange: function(value, oldValue, vm) {
+
+                alert("值改变事件： "+value)
+            },
+            beforeSelectEvent: function(value, display, el) {
+                alert("选中前事件： "+value+" "+display);
+//                return false;     //这样可以阻止选中事件， 默认不需要
+            },
+            selectedEvent: function(value, display, el) {
+                alert("选中事件： "+value+" "+display);
+            }
+        });
+        checkbox.render();
+}
+    });
+
+    function changeStatus(status) {
+        checkbox.switchStatus(status);
+    }
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

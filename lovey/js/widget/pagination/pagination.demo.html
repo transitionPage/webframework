@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12" id="simplePager">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/page/bower_components/mootools/dist/mootools-core.js"></script>
+<script src="/page/bower_components/jquery/dist/jquery.js"></script>
+<script>
+    $.noConflict();
+</script>
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+
+    require(["../../../page/src/Bootstrap"], function () {
+        var pagination = Page.create("pagination", {
+            $parentId: 'simplePager',
+            totalNum:20,
+            pageIndex:1,
+            pageSize:10,
+            showTipWhenNull:true,//无数据时显示提示信息
+            noDataTip:"没有找到数据2！",
+            pageChangeEvent:function(pager){
+                pager.setAttr("totalNum",0);
+            }
+        });
+        pagination.render();
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "datas": {
+      "rows": [
+        {
+          "value": "1",
+          "display": "是"
+        },
+        {
+          "value": "2",
+          "display": "否"
+        }
+      ],
+      "pageSize": 5,
+      "pageNo": 1,
+      "totalSize": 2
+    }
+  }
+}

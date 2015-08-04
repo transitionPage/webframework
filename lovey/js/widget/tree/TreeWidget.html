@@ -1,0 +1,11 @@
+<div ms-visible="show" ms-css-padding-top="$searchable ? '40': ''" style="height: 100%;box-sizing: border-box;">
+    <div ms-if="$searchable" class="input-group" style="margin: -34px 30px 0px 7px;">
+        <input type="text" ms-duplex="searchValue"  class="form-control">
+        <span class="input-group-btn" ms-click="searchTreeData(null, true, vid, $event)">
+            <button type="button" class="btn btn-primary">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+    <ul ms-attr-id="tree_{{vid}}" class="ztree" style="height: 100%; overflow: auto;"></ul>
+</div>

@@ -1,0 +1,55 @@
+.aui_content{
+    padding:0px;
+}
+.divbordertop{
+    border-top: 1px solid #e7eaec;
+}
+.divborderleft{
+    border-left: 1px solid #e7eaec;
+}
+.divborderright{
+    border-right: 1px solid #e7eaec;
+}
+.divborderbottom{
+    border-bottom: 1px solid #e7eaec;
+}
+.oddback{
+    background-color:#f9f9f9;
+}
+.customCol_row{
+    width:600px !important;
+    height:300px !important;
+    overflow: auto !important;
+}
+.customCol_font{
+    font-family: 'Microsoft YaHei', 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    font-size: 12px !important;
+    color: #676a6c !important;
+    font-weight: 400 !important;
+}
+.customCol_con{
+    padding:7px !important;
+}
+.customCol_noMargin{
+    margin-bottom:0 !important;
+}
+.customCol_noPadding{
+    padding-bottom:0 !important;
+}
+.customCol_allCheckCon{
+    width:600px !important;
+    height:25px !important;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f9f9f9;
+}
+.customCol_fixCol{
+    padding:7px !important;
+    height:34px !important;
+}
+.custom_topPadding{
+    /*margin-top:-20px;*/
+    margin-left:20px;
+}
+.padding7{
+    padding-left:7px;
+}

@@ -1,0 +1,148 @@
+<div   ms-attr-name="CustomSearcherWidget_{{vid}}" class="form-group" style=" margin-bottom: 0px;">
+    <div ms-on-mouseover="showClearIcon(vid, $event)" ms-on-mouseout="displayClearIcon(vid, $event)" class="input-group chosen-container chosen-with-drop chosen-container-multi"  style="width: 100%;" >
+        <div ms-class="div-focus: focused" class="searcherContainer" ms-click="searcherFocus(vid, this)">
+            <div ms-click="sendSearch(vid, $event)" class="page-search-icon"><i class="fa fa-search" style=" line-height: 30px;"></i></div>
+
+            <ul class="chosen-choices itemContainer">
+                <!--视图查询项-->
+                <li ms-repeat-item="viewSearchArr" ms-name="item.bindField" type="view" class="selectedItem"
+                    ms-mouseover="showRemoveIcon(vid, $index, $event, 'view')" ms-mouseover-1="showTipsPanel(vid, 'viewSearch', $event)" ms-mouseout="displayRemoveIcon(vid, $event, 'view')">
+                    <a href="#" style="color: white;"><i class="fa fa-star-o"></i></a>
+                    <span style="color: white;">查询方案</span>
+
+                    <div name="valueSpan" style="background-color: whitesmoke;display: inline-block">
+                        <span style="padding: 0px 5px;display: inline-block;">{{item.viewName}}</span>
+                    </div>
+                    <a ms-click="removeItem(vid, 'viewSearch', $event, item)" href="#" style="position: absolute; top: -9px; right: -6px;">
+                        <i ms-class="fa fa-times-circle: viewIconShowIndex==$index"></i>
+                    </a>
+                </li>
+                <!--快速查询项-->
+                <li ms-repeat-item="quickSearchArr" ms-name="item.bindField" type="quick" class="selectedItem"
+                    ms-mouseover="showRemoveIcon(vid, $index, $event)" ms-mouseout="displayRemoveIcon(vid, $event)">
+                    <span style="color: white;margin: 0px 5px;">{{item.label}}</span>
+
+                    <div ms-each="item.value" name="valueSpan" style="background-color: whitesmoke;display: inline-block">
+                        <span ms-if="$index == 0" style="padding: 0px 5px;display: inline-block;">{{el}}</span>
+                        <span ms-if="$index != 0" style="border-left: 1px solid #AFAFB6; padding: 0px 5px 0px 5px;display: inline-block;">{{el}}</span>
+                    </div>
+                    <a ms-click="removeItem(vid, 'quickSearch', $event, item, $index)" href="#" style="position: absolute; top: -9px; right: -6px;">
+                        <i ms-class="fa fa-times-circle: iconShowIndex==$index"></i>
+                    </a>
+                </li>
+                <!--自定义查询项-->
+                <li ms-if="customSearchArr.length>0" class="selectedItem"
+                    ms-mouseover="showRemoveIcon(vid, 0, $event)" ms-mouseover-1="showTipsPanel(vid, 'customSearch', $event)" ms-mouseout="displayRemoveIcon(vid, $event)">
+                    <a href="#" style="color: white;"><i class="fa fa-slack"></i></a>
+                    <span style="color: white;">自定义查询</span>
+
+                    <div ms-repeat-item="customSearchArr" name="valueSpan" style="background-color: whitesmoke;display: inline-block">
+                        <span ms-if="$index == 0" style="padding: 0px 5px;display: inline-block;">{{item.nameDisplay}}</span>
+                        <span ms-if="$index != 0 && item.show!=false" style="border-left: 1px solid #AFAFB6; padding: 0px 5px 0px 5px;display: inline-block;">{{item.nameDisplay}}</span>
+                    </div>
+                    <a ms-click="removeItem(vid, 'customSearch', $event)" href="#" style="position: absolute; top: -9px; right: -6px;">
+                        <i ms-class="fa fa-times-circle: iconShowIndex!=null"></i>
+                    </a>
+                </li>
+
+                <!--输入框-->
+                <li class="search-field">
+                    <input type="text" ms-duplex="searchValue" ms-attr-readonly="customSearchArr.length>0" autocomplete="off" tabindex="4" ms-css-width="inputWidth" ms-on-keydown="keyDown(vid, $event)" ms-on-focus="inputFocus(vid, $event)">
+                </li>
+            </ul>
+            <div ms-if="$showDropIcon" ms-click="toggleViewPanel(vid, $event)" class="page-search-expand"><i class="fa" ms-class-1="fa-caret-down: showPanel!='viewPanel'" ms-class-2="fa-caret-up: showPanel=='viewPanel'" style=" line-height: 30px;"></i></div>
+        </div>
+
+        <!--快速查询面板区域-->
+        <div class="page-seach-mh animated fadeIn" ms-visible="showPanel=='quickPanel'" style="top: 100%;">
+            <ul ms-each-el="controls">
+                <li ms-if="el.quickSearch" ms-click="selectQuickItem(vid, el, $event)">
+                    <span>搜索</span>&nbsp;
+                    <span>{{el.label}}：</span>
+                    <a href="#"><strong>{{searchValue}}&nbsp;</strong></a>
+                </li>
+            </ul>
+        </div>
+        <!--查询条件详情-->
+        <div ms-if="showTips" class="well well-sm" style="width: 250px; position: absolute; z-index: 999; top: 100%; left: 0px;">
+            <div style="margin: 5px 5px 5px 0px"><strong name="tipTiltle">条件详情：{{tipsArr.length==0 ? "无":""}}</strong></div>
+            <div ms-each-el="tipsArr">
+                <div ms-if="$index == 0" style="margin: 5px 5px 5px 25px"><strong>{{el.nameDisplay}}</strong> {{el.builderDisplay}} {{el.valueDisplay}}</div>
+                <div ms-if="$index != 0" style="margin: 5px">
+                    <div style="display: inline;margin-right: 5px">{{groupOper=='or' ? "或":"和"}}</div>
+                    <div style="display: inline;"><strong>{{el.nameDisplay}}</strong> {{el.builderDisplay}} {{el.valueDisplay}}</div>
+                </div>
+            </div>
+        </div>
+        <!--视图查询面板区域-->
+        <div ms-if="showPanel=='viewPanel'"class="page-seach-jx animated fadeIn" style="display: block;">
+            <!--查询方案区域-->
+            <div ms-if="viewsArr.length>0" style="margin-top: 15px;">
+                <div class="view-plan-title">查询方案</a></div>
+                <div style="margin-top: 5px;">
+                    <div class="view-plan-item" ms-class-1="view-plan-item-selected: viewSelectedIndex==$index"
+                         ms-repeat-item="viewsArr" ms-click="selectView(vid, item, $index, $event)">
+                        {{item.viewName}}
+                        <i class="fa fa-times removeView"  ms-click="deleteView(vid, item, $index, $event)"></i>
+                    </div>
+                </div>
+            </div>
+            <!--自定义查询区域-->
+            <div  class="ibox" ms-class-1="ibox-border-bottom: !customSearchPanel">
+                <div class="ibox-title">
+                    <div class="group-ibox-title">自定义查询</div>
+                    <div class="ibox-tools">
+                        <a class="collapse-link" ms-click="toggleCustomPanel(vid, 'customPanel', $event)">
+                            <i class="fa" ms-class-1="fa-chevron-up: customSearchPanel" ms-class-2="fa-chevron-down: !customSearchPanel"></i>
+                        </a>
+                    </div>
+                </div>
+                <div ms-if="customSearchPanel" class="ibox-content">
+                    <div>
+                        <div ms-repeat-fragment="fragmentArr" class="row" style="margin-left: -3px">
+                            <!--<div ms-if="$showGroupOper" class="col-md-1 col-sm-1 col-xs-1 col-lg-1" style=" width: 5.333333%;margin-top: 15px;padding:0px">
+                                <span >
+                                    {{$index==0 ? " ":(groupOper=='or' ? "或":"和")}}
+                                </span>
+                            </div>-->
+                            <div class="form-group col-md-11 col-sm-11 col-xs-11 col-lg-11" style=" margin: 0px;">
+                                <div class="row" ms-attr-id="fragment" ></div>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1 col-lg-1" style=" margin-top: 12px;">
+                                <span ms-click="removeCustomFilter(vid, fragment, $index, $event)" class="page-option-minus">
+                                    <i class="fa fa-minus"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <span ms-click="addCustomFilter(vid)" class="page-search-addoptions">
+                            <i class="fa fa-plus"></i>&nbsp;添加条件
+                        </span>
+                        <a ms-click="addCustomSearch(vid, $event)" class="btn btn-primary page-search-btn" style="display: block;" type="button">查询</a>
+                        <!--<br style="clear:both;" />-->
+                    </div>
+
+                </div>
+            </div>
+            <!--自保存为查询方案区域-->
+            <div class="ibox" ms-class-1="ibox-border-bottom: !saveViewPanel">
+                <div class="ibox-title" >
+                    <div class="group-ibox-title">保存为查询方案</div>
+                    <div class="ibox-tools">
+                        <a  class="collapse-link" ms-click="toggleCustomPanel(vid, 'saveViewPanel', $event)">
+                            <i class="fa"  ms-class-1="fa-chevron-up: saveViewPanel" ms-class-2="fa-chevron-down: !saveViewPanel"></i>
+                        </a>
+                    </div>
+                </div>
+                <div  ms-if="saveViewPanel" class="ibox-content">
+                    <div class="row" style=" margin: 0px 0px 0px -18px;">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ms-attr-id="viewName_{{vid}}"></div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ms-attr-id="defaultView_{{vid}}" style="min-width: 120px;margin-top: 3px"></div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-top: 3px;float: right;">
+                            <a class="btn btn-primary" type="button" ms-click="saveView(vid, $event)">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

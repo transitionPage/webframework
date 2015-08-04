@@ -1,0 +1,15 @@
+<script type="text/template">
+<div class="form-widget-container">
+    {{each items as el index}}
+    <label value="{{el[$valueField]}}" display="{{el[$textField]}}" style="margin-bottom:0">
+        <div class="icheckbox_square-green{{if el.checked==true}} checked{{/if}}{{if status=='disabled'}} disabled{{/if}}"
+             style="position: relative;">
+        </div>
+        {{el[$textField]}}&nbsp;&nbsp;&nbsp;
+    </label>
+    {{if ($cols!=0 && (index+1)%$cols==0)}}
+    <div style="margin-bottom: 10px;"></div>
+    {{/if}}
+    {{/each}}
+</div>
+</script>

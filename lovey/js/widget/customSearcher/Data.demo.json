@@ -1,0 +1,12 @@
+{
+  "result": {
+    "datas": {
+      "rows": [
+        {"viewId": "testView1", "viewName": "查询方案（默认）", "defaultView": "0", "viewValue": [{"name":"stuName","nameDisplay":"姓名","builder":"notequal","builderDisplay":"不等于","value":"2015-06-09","valueDisplay":"2015-06-09"},{"name":"stuSex","nameDisplay":"性别","builder":"contain","builderDisplay":"包含","value":"1","valueDisplay":"男","linkOpt":"and"}]}
+      ],
+      "pageSize": 5,
+      "pageNo": 1,
+      "totalSize": 7
+    }
+  }
+}

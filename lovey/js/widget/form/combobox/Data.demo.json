@@ -1,0 +1,40 @@
+{
+  "result": {
+    "datas": {
+      "rows": [
+        {
+          "value": "1",
+          "display": "计算机学院ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "other": "aaaaa"
+        },
+        {
+          "value": "2",
+          "display": "人文学院"
+        },
+        {
+          "value": "3",
+          "display": "经管学院"
+        },
+        {
+          "value": "4",
+          "display": "外国语学院"
+        },
+        {
+          "value": "5",
+          "display": "电气学院"
+        },
+        {
+          "value": "6",
+          "display": "机电学院"
+        },
+        {
+          "value": "7",
+          "display": "通信学院"
+        }
+      ],
+      "pageSize": 5,
+      "pageNo": 1,
+      "totalSize": 7
+    }
+  }
+}

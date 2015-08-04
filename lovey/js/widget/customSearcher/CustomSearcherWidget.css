@@ -1,0 +1,207 @@
+.searcherContainer {
+    width: 100%;
+    border: 1px solid #CBD5DD;
+    border-radius: 2px;
+}
+.form-group .searcherContainer .itemContainer {
+    border: 0px;
+    margin-left: 25px;
+    width:88%
+}
+.selectedItem {
+    background-color: #1ab394;
+    border: 1px solid #AFAFB6;
+    border-radius: 3px;
+    height: 100%;
+    margin: 4px 0px 0px 5px;
+    position: relative;
+    cursor: pointer;
+}
+.div-focus {
+    border-color: #1ab394 !important;
+}
+.menu_close {
+    display: block;
+    height: 13px;
+    width: 13px;
+    position: absolute;
+    top: -2px;
+    right: -6px;
+    cursor: pointer;
+    z-index: 999;
+    url(../widget/emap/images/taskbar/taskbar_menu_close.png) no-repeat;
+}
+
+.page-search-icon {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #999999;
+    cursor: pointer;
+}
+.page-search-expand {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #999999;
+    font-size: 14px;
+    cursor: pointer;
+}
+.page-seach-mh {
+    width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    position: absolute;
+    left: 0;
+    top: 35px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 0 3px rgba(86, 96, 117, 0.7);
+    padding: 0;
+    text-shadow: none;
+    z-index: 1000;
+    color: #999999;
+}
+.page-seach-mh ul {
+    padding: 0;
+}
+.page-seach-mh ul li{
+    width: 100%;
+    padding: 0 5px 0 30px;
+    height: 30px;
+    line-height: 30px;
+    list-style: none;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.page-seach-mh ul li span:last-child{
+    font-weight: bold;
+}
+.page-seach-mh ul li:hover{
+    background-color: #1ab394;
+    color: white;
+}
+
+.page-seach-jx {
+    padding: 0px 20px 20px 20px;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 0 3px rgba(86, 96, 117, 0.7);
+    text-shadow: none;
+    z-index: 1000;
+    color: #999999;
+    min-width: 400px;
+}
+
+.page-seach-jx .fgroup {
+    position: relative;
+}
+.page-option-minus {
+    cursor: pointer;
+    color: #1ab394;
+}
+
+.view-plan-title {
+    box-sizing: border-box;
+    color: rgb(153, 153, 153);
+    font-family: 'Microsoft YaHei', 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    text-shadow: none;
+}
+
+.view-plan-item {
+    background-color: #F2F2F2;
+    float: left;
+    border: 1px solid #e7eaec;
+    padding: 3px 8px;
+    margin: 5px 5px 0 0;
+    cursor: pointer;
+    font-family: 'Microsoft YaHei', 'open sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 17.142858505249px;
+}
+.view-plan-item:hover {
+    background-color: #dbdbdb;
+    color: #999999;
+}
+.view-plan-item.view-plan-item-selected {
+    background-color: #1ab394;
+    color: #ffffff;
+}
+.view-plan-item-selected .removeView {
+    color: #ffffff;
+}
+.removeView {
+    margin-left: 10px;
+    color: #1ab394;
+}
+
+.group-ibox-title {
+    float: left;
+    margin-left: -15px;
+    font-size: 14px;
+    border-bottom: 4px solid #1ab394;
+    padding: 2px 1px;
+}
+
+.page-seach-jx .ibox {
+    margin-bottom: 0;
+}
+.page-seach-jx .ibox-title {
+    border: none;
+    padding-bottom: 0;
+    padding-top: 24px;
+}
+.page-seach-jx .ibox-tools {
+    margin-top: 7px;
+}
+.page-seach-jx .ibox-content {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
+.page-search-addoptions {
+    color: #1ab394;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.page-search-btn {
+    width: 90px;
+    height: 34px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.page-seach-jx label {
+    font-weight: normal;
+}
+
+.ibox-border-bottom {
+    border-bottom: 1px solid rgb(231, 234, 236);
+}
+
+.page_fragment .col-md-4{
+    padding: 0px 5px 0px 0px;
+}

@@ -1,0 +1,20 @@
+<div class="ibox float-e-margins" ms-if="show" style="margin-bottom: 0px;">
+    <div ms-if="title!=''" class="ibox-title" ms-if="showTitle" style="border-top: 0px;padding-left: 5px;padding-top: 0px;">
+        <h5 ms-if="title!=''" style="margin-top: 10px;margin-bottom: 0px; border-bottom: 5px solid #1ab394;padding-left: 10px;padding-right: 10px;padding-bottom: 5px;">
+            {{title}}
+        </h5>
+        <div class="ibox-tools" style="margin-top: 9px;">
+            <a class="collapse-link" ms-click="togglePanel(vid)">
+                <i class="fa" ms-class-1="fa-chevron-up: showPanel" ms-class-2="fa-chevron-down:!showPanel"></i>
+            </a>
+<!--            <a class="close-link">
+                <i class="fa fa-times"></i>
+            </a>-->
+        </div>
+        <div class="hr-line-solid" style=" margin-top: 0px;  margin-bottom: 0px;  border: 0px;  border-bottom: 1px solid #e5e6e7;height: 34px;"></div>
+        <div ms-if="showProgress" class="ibox-progress"></div>
+    </div>
+    <div ms-if="showPanel" class="ibox-content" style=" padding-top: 10px;border-top-width: 0px;padding-bottom: 0px;">
+
+    </div>
+</div>

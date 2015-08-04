@@ -1,0 +1,57 @@
+.simpleGrid_noDataTip{
+    text-align: center;
+    font-size: 12px;
+    color: #999999;
+    background-color: #f9f9f9;
+}
+.simpleGrid_customSettingIcon{
+    display: inline-block;
+    float:right;
+}
+.simpleGrid_customSettingIcon_margin{
+    margin-top:-15px;
+}
+.simplegrid_datachange{
+    background-color:#FAC1C3 !important;
+}
+.simpleGrid_tableCon{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.simpleGrid_tdStyle{
+    vertical-align:middle;
+}
+.simpleGrid_fullCon{
+    width:100%;
+    height:100%;
+    padding:0px;
+}
+.simpleGrid_checkboxCon{
+    width:20px !important;
+}
+.simpleGrid_vertivalAlign{
+    vertical-align:middle;
+}
+.simpleGrid_customColCon{
+    background-color: transparent !important;
+    width:20px !important;
+}
+.simplegrid_nowrap{
+    word-break: keep-all;white-space:nowrap;
+}
+.simpleGrid_displayInline{
+    display: inline-block !important;
+}
+.simpleGrid_noPadding{
+    padding:0px !important;
+    margin:0px !important;
+}
+.simpleGrid_moveBtn{
+    padding:5px !important;
+}
+.simpleGrid_pagerCon{
+    margin-top:-10px !important;
+}
+.fa-caret-down, .fa-caret-up, .fa-unsorted {
+    cursor: pointer;
+}

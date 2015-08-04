@@ -1,0 +1,59 @@
+.cus-lab-3 {
+    width: 11%;
+}
+
+.cus-div-3 {
+    width: 89%;
+}
+
+.form-box {
+    margin: 15px 0;
+}
+
+.box-title {
+    padding: 0 15px;
+    position: relative;
+}
+
+.box-title h5 {
+    display: block;
+    font-size: 14px;
+    border-bottom: 2px solid #e9eaef;
+    padding-bottom: 8px;
+    margin-bottom: 0;
+}
+
+.box-title h5 span {
+    border-bottom: 4px solid #1ab394;
+    padding: 5px 15px;
+}
+
+.box-tools {
+    display: inline-block;
+    float: right;
+    margin-top: 0;
+    position: relative;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.box-content {
+    clear: both;
+    padding: 15px 15px 0;
+    width: 98%;
+    margin: 0 auto;
+}
+
+.box-tools .collapse-link {
+    color: #68696b;
+    text-decoration: none;
+}
+
+.container {
+    background-color: #ffffff;
+}
+
+.form-control-static{
+    background-color: rgb(249,249,249);
+    padding-left: 6px;
+}

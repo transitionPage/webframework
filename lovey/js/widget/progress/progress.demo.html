@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+</head>
+<body>
+<br>
+<div class="col-md-12" id="simContainer">
+    </div>
+<!--
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    我只是一个div：<br/>
+                    <div class="col-md-12" id="gridContainer">
+
+                    </div>
+                </div>
+                <div class="row">
+                    我是已经存在的table<br/>
+                    <div class="col-md-12" id="simContainer">
+                        <ol class="dd-list">
+                            <li class="dd-item" data-id="1">
+                                <div class="dd-handle">
+                                    <span class="label label-info"><i class="fa fa-users"></i></span> Cras ornare tristique.
+                                </div>
+                                <ol class="dd-list">
+                                    <li class="dd-item" data-id="2">
+                                        <div class="dd-handle">
+                                            <span class="pull-right"> 12:00 pm </span>
+                                            <span class="label label-info"><i class="fa fa-cog"></i></span> Vivamus vestibulum nulla nec ante.
+                                        </div>
+                                    </li>
+                                    <li class="dd-item" data-id="3">
+                                        <div class="dd-handle">
+                                            <span class="pull-right"> 11:00 pm </span>
+                                            <span class="label label-info"><i class="fa fa-bolt"></i></span> Nunc dignissim risus id metus.
+                                        </div>
+                                    </li>
+                                    <li class="dd-item" data-id="4">
+                                        <div class="dd-handle">
+                                            <span class="pull-right"> 11:00 pm </span>
+                                            <span class="label label-info"><i class="fa fa-laptop"></i></span> Vestibulum commodo
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <li class="dd-item" data-id="5">
+                                <div class="dd-handle">
+                                    <span class="label label-warning"><i class="fa fa-users"></i></span> Integer vitae libero.
+                                </div>
+                                <ol class="dd-list">
+                                    <li class="dd-item" data-id="6">
+                                        <div class="dd-handle">
+                                            <span class="pull-right"> 15:00 pm </span>
+                                            <span class="label label-warning"><i class="fa fa-users"></i></span> Nam convallis pellentesque nisl.
+                                        </div>
+                                    </li>
+                                    <li class="dd-item" data-id="7">
+                                        <div class="dd-handle">
+                                            <span class="pull-right"> 16:00 pm </span>
+                                            <span class="label label-warning"><i class="fa fa-bomb"></i></span> Vivamus molestie gravida turpis
+                                        </div>
+                                    </li>
+                                    <li class="dd-item" data-id="8">
+                                        <div class="dd-handle">
+                                            <span class="pull-right"> 21:00 pm </span>
+                                            <span class="label label-warning"><i class="fa fa-child"></i></span> Ut aliquam sollicitudin leo.
+                                        </div>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                    <textarea id="simContainer-output" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+    require(["../../../page/src/Bootstrap"], function () {
+        var progress = Page.create('progress', {
+            $parentId: 'simContainer',
+            $id: "ss2"
+        });
+        progress.render();
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,203 @@
+.bluetip .k-widget.k-tooltip{
+    background-color: rgba(41,56,70,0.9);
+    border-color: rgba(41,56,70,0.9);
+    color:white;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(41,56,70, 0.3);
+    box-shadow: 0 2px 2px 0 rgba(41,56,70, 0.3);
+}
+.bluetip .k-icon{
+    background-image: url("sprite.png");
+}
+.bluetip .k-callout-w{
+    border-right-color: rgba(41,56,70,0.9);
+}
+.bluetip .k-callout-n {
+    border-bottom-color: rgba(41,56,70,0.9);
+}
+.bluetip .k-callout-s {
+    border-top-color: rgba(41,56,70,0.9);
+}
+.bluetip .k-callout-e {
+    border-left-color: rgba(41,56,70,0.9);
+}
+.whitetip .k-widget.k-tooltip{
+    background-color: #fff;
+    border-color: rgba(0,0,0,0.2);
+    color:#676a6c;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.whitetip .k-callout,.whitetip .k-callout:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.whitetip .k-callout-w:after{
+    bottom: -5px;
+    margin-left: 2px;
+    content: " ";
+    border-width: 5px 5px 5px 0px;
+    border-right-color: #fff;
+}
+.whitetip .k-callout-w {
+    left: -7px;
+    border-width: 6px 6px 6px 0px;
+    border-right-color: rgba(0,0,0,0.2);
+}
+.whitetip .k-callout-n:after{
+    right: -5px;
+    margin-top: 2px;
+    content: " ";
+    border-width: 0px 5px 5px 5px;
+    border-bottom-color: #fff;
+}
+.whitetip .k-callout-n {
+    top: -7px;
+    border-width: 0px 6px 6px 6px;
+    border-bottom-color: rgba(0,0,0,0.2);
+}
+.whitetip .k-callout-s:after{
+    left: -5px;
+    bottom: 2px;
+    content: " ";
+    border-width: 5px 5px 0px 5px;
+    border-top-color: #fff;
+}
+.whitetip .k-callout-s {
+    bottom: -7px;
+    border-width: 6px 6px 0px 6px;
+    border-top-color: rgba(0,0,0,0.2);
+}
+.whitetip .k-callout-e:after{
+    top: -5px;
+    right: 2px;
+    content: " ";
+    border-width: 5px 0px 5px 5px;
+    border-left-color: #fff;
+}
+.whitetip .k-callout-e {
+    right: -7px;
+    border-width: 6px 0px 6px 6px;
+    border-left-color: rgba(0,0,0,0.2);
+}
+.k-widget.k-popup {
+    background-color: #ebebeb;
+}
+.k-widget,
+.k-popup,
+.k-content {
+    color: #2e2e2e;
+}
+.k-popup,
+.k-tooltip {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.k-popup {
+    border-style: solid;
+    border-width: 1px;
+}
+.k-popup .k-animation-container .k-popup {
+    margin-left: -1px;
+}
+.k-popup .k-animation-container {
+    margin-top: -1px;
+    padding-left: 1px;
+}
+.k-ie .k-popup .k-animation-container {
+    margin-top: -2px;
+}
+/* Tooltip */
+.k-widget.k-tooltip {
+    border-color: #c5c5c5;
+    background-color: #c6c6c6;
+    color: #282828;
+}
+.k-widget.k-tooltip-validation {
+    border-color: #ffe79e;
+    background-color: #fff4c9;
+    color: #635145;
+}
+/* Tooltip */
+.k-tooltip {
+    position: absolute;
+    z-index: 12000;
+    border-style: solid;
+    border-width: 1px;
+    padding: 4px 5px 4px 6px;
+    background-repeat: repeat-x;
+    min-width: 20px;
+    /*slider tooltip only*/
+    text-align: center;
+    /*slider tooltip only*/
+    white-space: nowrap;
+}
+.k-tooltip-button {
+    text-align: right;
+    height: 0;
+}
+.k-tooltip-content {
+    height: 100%;
+}
+.k-tooltip-closable .k-tooltip-content {
+    padding-right: 20px;
+}
+span.k-tooltip {
+    position: static;
+    display: inline-block;
+    border-width: 1px;
+    padding: 2px 5px 1px 6px;
+}
+.k-invalid-msg {
+    display: none;
+}
+
+.k-slider-tooltip .k-callout-n,
+.k-slider-tooltip .k-callout-s {
+    margin-left: -6px;
+}
+.k-slider-tooltip .k-callout-w,
+.k-slider-tooltip .k-callout-e {
+    margin-top: -6px;
+}
+.k-tooltip-validation .k-warning {
+    vertical-align: text-top;
+    margin-right: 3px;
+}
+.k-tooltip-validation {
+    z-index: 9999;
+}
+.k-reset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    text-decoration: none;
+    font-size: 100%;
+    list-style: none;
+}
+.k-calendar-container.k-state-border-up,
+.k-list-container.k-state-border-up,
+.k-autocomplete.k-state-border-up,
+.k-multiselect.k-state-border-up,
+.k-dropdown-wrap.k-state-border-up,
+.k-picker-wrap.k-state-border-up,
+.k-numeric-wrap.k-state-border-up,
+.k-window-content,
+.k-filter-menu {
+    border-radius: 0 0 4px 4px;
+}
+.k-autocomplete.k-state-border-up .k-input,
+.k-dropdown-wrap.k-state-border-up .k-input,
+.k-picker-wrap.k-state-border-up .k-input,
+.k-picker-wrap.k-state-border-up .k-selected-color,
+.k-numeric-wrap.k-state-border-up .k-input {
+    border-radius: 0 0 0 4px;
+}
+.k-multiselect.k-state-border-up .k-multiselect-wrap {
+    border-radius: 0 0 4px 4px;
+}

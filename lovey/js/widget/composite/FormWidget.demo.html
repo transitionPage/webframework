@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link href="/page/src/css/base.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.dataviz.default.min.css" />
+    <style>
+        @media (min-width: 992px)
+        {
+            .label-2-4 {
+                width: 16.666666665%;
+            }
+        }
+        @media (min-width: 992px)
+        {
+            .labelFloatRigth {
+                float: right;
+            }
+        }
+        @media (min-width: 768px)
+        {
+            .labelFloatRigth {
+                float: left;
+            }
+        }
+
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: alpha(opacity=80);
+            opacity: 0.8;
+            background-color: #ddd;
+            z-index: 1000000;
+            /* display: none; */
+        }
+        #loaderCon {
+            position: absolute;
+            top: 38%;
+            left: 42%;
+            width: 200px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body style="height:800px;" ms-skip>
+<br>
+<div >test first show</div>
+
+<div id="container1"></div>
+
+<div id="container2"></div>
+
+<div id="loader">
+    <div id="loaderCon">
+        <div class="m-t-md">
+            <div class="sk-spinner sk-spinner-three-bounce">
+                <div class="sk-bounce1"></div>
+                <div class="sk-bounce2"></div>
+                <div class="sk-bounce3"></div>
+                <div class="sk-bounce4"></div>
+                <div class="sk-bounce5"></div>
+            </div>
+        </div>
+        <span id="loaderTip">正在加载...</span>
+    </div>
+</div>
+
+</body>
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<script src="/page/bower_components/avalon/avalon.js" ></script>
+<script src="/page/dist/page-build.js"></script>
+<script>
+//    require(["../../../page/src/Bootstrap"], function () {
+        //console.log(inq);
+        var ds = Page.create("dataValue", {
+            $id: 'ds1',
+            fetchUrl: 'demo.json',
+            syncUrl: 'demo.json',
+            data: {
+                xm: ''
+            }
+        });
+        var form = Page.create("form", {
+            $id: 'f1',
+            title: '',
+            $parentId: 'container1',
+            cols: 4,
+            isLazyLoad: false,
+            initData: false,
+            dataSourcesIds: ['ds1'],
+            groupWidgets: {
+                "aaa":[
+                    {$id: 'name', $xtype: 'input', label: '您的姓名', bind: 'ds1.xm', show: true, required: true,
+                     validationRules: {
+                            required:true,//options中为false时，此处可重开启校验
+                            length: {
+                                maxLen: 5,
+                                minLen: 2
+                            },
+                            regex: {
+                                regexStr: "/^[\u4e00-\u9fa5]+$/",
+                                customErrMsg:"只能输入汉字"
+                            }
+                        }},
+                    {$id: 'sex', $xtype: 'combobox', label: '性别', labelSpan: 2, bind: 'ds1.xb',value:"ss"},
+                    {$id: 'interest', $xtype: 'combobox', label: '兴趣', rowNum: 3, floatDirection: "right", bind: 'ds1.xq',value:"qq"},
+                    {$id: 'phone', $xtype: 'combobox', colNum: 1, label: '电话', bind: 'ds1.dh'},
+                    {$id: 'name1', $xtype: 'combobox', label: '您的姓名1', rowNum: 1, colNum: 1,floatDirection: "right",bind: 'ds1.xm', required: true},
+                    {$id: 'name2', $xtype: 'combobox', label: '您的姓名2', rowNum: 1, bind: 'ds1.xm', required: true},
+                    {$id: 'name3', $xtype: 'combobox', label: '您的姓名3', bind: 'ds1.xm', required: true},
+                    {$id: 'name4', $xtype: 'combobox', label: '您的姓名4', colNum: 1,bind: 'ds1.xm', required: true},
+                    {$id: 'name5', $xtype: 'combobox', label: '您的姓名5', colNum: 2, bind: 'ds1.xm', required: true},
+                    {$id: 'grjj', $xtype: 'combobox', label: '个人简介', bind: "ds1.grjj", show: false},
+                ],
+                "bbb":[
+                    {$id: 'grjj', $xtype: 'combobox', label: '个人简介', bind: "ds1.grjj", show: false},
+                    {$id: 'aa1', $xtype: 'combobox', label: '您的姓名1', bind: 'ds1.xm', required: true},
+                    {$id: 'aa2', $xtype: 'combobox', label: '您的姓名1', bind: 'ds1.xm', required: true},
+                    {$id: 'aa3', $xtype: 'combobox', label: '您的姓名1', bind: 'ds1.xm', required: true},
+                    {$id: 'aa4', $xtype: 'combobox', label: '您的姓名1', bind: 'ds1.xm', required: true},
+                    {$id: 'aa5', $xtype: 'combobox', label: '您的姓名1', bind: 'ds1.xm', required: true},
+                    {$id: 'aa6', $xtype: 'combobox', label: '您的姓名1', bind: 'ds1.xm', required: true},
+                ]
+            }
+        });
+        form.render();
+
+        /*var form2 = Page.create("form", {
+            $id: 'f',
+            $parentId: 'container2',
+            cols: 2,
+            initData: true,
+            dataSourcesIds: ['ds1'],
+            isLazyLoad:true,
+            widgets: [
+                {$id: 'sex', $xtype: 'input', label: '性别', bind: 'ds1.xb'},
+                {$id: 'phone', $xtype: 'input', label: '电话', bind: 'ds1.dh'},
+                {$id: 'grjj', $xtype: 'input', label: '个人简介', bind: "ds1.grjj", show: false},
+                {$id: 'xy', $xtype: 'combobox', url: "../form/combobox/Data.demo.json", label: '学院', bind: "ds1.xy"}
+            ]
+        });
+        form2.render();*/
+
+        Page.manager.components["ds1"].addEvent("recordUpdated", function (v) {
+            $("#valArea").html(JSON.stringify(v));
+        });
+
+
+        var ds1 = Page.manager.components["ds1"];
+//        ds1.sync();
+        $("#loadData").click(function () {
+            Promise.all([ds1.fetch()]).then(function () {
+                ds1.updateRecord(ds1.getValue());
+            });
+        });
+        $("#submitData").click(function () {
+            form.submitForm();
+        });
+        jQuery(document).ready(function() {
+            jQuery("#loader").hide();
+        });
+//    });
+
+</script>
+</html>

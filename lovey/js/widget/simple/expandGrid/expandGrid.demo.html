@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+
+            <div class="ibox-content">
+                <div class="row" style="" width="200px">
+                    <div class="col-md-12" id="expandGrid">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<script>
+    $.noConflict();
+</script>
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+    var inp = null;
+    require(["../../../page/src/Bootstrap"], function () {
+        var ds = Page.create("dataSet", {
+            $id: 'sampleGridDataSet',
+            fetchUrl: 'expandGrid.demo.json',
+            syncUrl: '',
+            model:{mainAlias:'ds1'}
+        });
+        inp = Page.create("expandGrid", {
+            $parentId: 'expandGrid',
+            idField:"wid",
+            $id:"simpleGrid",
+            canExpand:true,
+            //tableClass:"table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline",
+            totalNum:200,
+            showCheckbox:true,
+            usePager:true,
+            canSort:true,
+            allChecked:false,
+            editMultiRow:false, //同时编辑多行
+            dataSetId: ds.getId(),
+            showPageDetail:true,
+            editComps:[],
+            columns:[
+                {title:"姓名",dataField:"name",width:"10%",orderType:"asc",disabledEdit:true},
+                {title:"性别",dataField:"sex",width:"18%",showDisplay:true,disabledEdit:true,
+                    sortDisabled:true,xtype:"combobox",isOpColumn:true,
+                    templateGenerator:"sexTemp"},
+                    //template:"<div style='color:#F0F;' ms-if='1==1' ms-click='showSex(rowdata,rowdata.sexDisplay,this)'><B>美{{rowdata.sexDisplay}},点击展开或关闭详情</B></div>"},//showDisplay：显示Display字段，isOpColumn，自定义显示，template：自定义显示的内容
+                {title:"出生年月",dataField:"birthDate",width:"15%",orderType:"desc",xtype:"datepicker"},
+                {title:"入学时间",dataField:"rxDate",width:"15%",xtype:"datepicker"},
+                {title:"是否党员",dataField:"isParty",xtype:"combobox",showDisplay:true},
+                {title:"所在班级",dataField:"className",editParams:{url:"",labelName:""},
+                    validationRules: {
+                        required:true,//options中为false时，此处可重开启校验
+                        length: {
+                            maxLen: 5,
+                            minLen: 2
+                        },
+                        regex: {
+                            regexStr: "/^[\u4e00-\u9fa5]+$/",
+                            customErrMsg:"只能输入汉字"
+                        }
+                    }},
+                {title:"备注",dataField:"notes",hidden:true,sortDisabled:true}
+            ],
+            sexTemp:function(rowdata,col){
+                return "<div style='color:#F0F;' ms-if='1==1' ms-click='showSex(rowdata,rowdata.sexDisplay,this)'><B>美{{rowdata.sexDisplay}},点击展开或关闭详情</B></div>";
+            }
+        });
+        inp.render();
+    });
+    function showSex(rowdata,disSex,tdDom){
+        //alert("hi,美"+disSex+",即将展开详情");
+        if(rowdata._customDetailShow){
+            rowdata._customDetailShow = false;
+        }else if(inp.getAttr("canExpand")){
+            rowdata._customDetailShow = true;
+        }else{
+            alert("表格未设置展开！");
+        }
+    }
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

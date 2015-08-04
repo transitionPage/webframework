@@ -1,0 +1,547 @@
+/*
+ *
+ *   遵循应用管理平台交互规范的基础css
+ *   Copyright 2015 pywmm@qq.com
+ *
+*/
+body {
+    font-family: "Microsoft YaHei",Helvetica, Arial,"宋体";
+    font-size: 12px;
+    color: #676a6c;
+    line-height: 1.4285;
+    overflow-x: hidden;
+}
+/******* 文字 *******/
+/* 文字--标题文字 */
+.amp-h1 {
+    font-size: 24px;
+}
+.amp-h2 {
+    font-size: 20px;
+}
+.amp-h3 {
+    font-size: 16px;
+}
+.amp-h4 {
+    font-size: 14px;
+}
+.amp-h1, .amp-h2, .amp-h3, .amp-h4 {
+    margin: 10px 0;
+    line-height: 1.1;
+}
+
+/* 文字--颜色 */
+.amp-cl-danger {
+    color: #ed5565;
+}
+.amp-cl-warning {
+    color: #f8ac59;
+}
+.amp-cl-info {
+    color: #23c6c8;
+}
+.amp-cl-success {
+    color: #1c84c6;
+}
+.amp-c-primary {
+    color: #333333;
+}
+.amp-cl-default {
+    color: #676a6c;
+}
+.amp-cl-muted {
+    color: #999999;
+}
+.amp-cl-danger-h {
+    color: #dc0032;
+}
+.amp-cl-warning-h {
+    color: #ed7800;
+}
+.amp-cl-info-h {
+    color: #008996;
+}
+.amp-cl-success-h {
+    color: #006098;
+}
+.amp-c-primary-h {
+    color: #111111;
+}
+
+
+/******* 通用样式 *******/
+/* 字号 */
+.f24 {
+    font-size: 24px;
+}
+.f20 {
+    font-size: 20px;
+}
+.f18 {
+    font-size: 18px;
+}
+.f16 {
+    font-size: 16px;
+}
+.f14 {
+    font-size: 14px;
+}
+.f13 {
+    font-size: 13px;
+}
+.f12 {
+    font-size: 12px;
+}
+.f10 {
+    font-size: 10px;
+}
+/* 内边距 */
+.amp-p-0{
+    padding: 0;
+}
+.amp-p-5 {
+    padding: 5px;
+}
+.amp-p-10 {
+    padding: 10px;
+}
+.amp-p-15 {
+    padding: 15px;
+}
+.amp-p-20 {
+    padding: 20px;
+}
+.amp-p-25 {
+    padding: 25px;
+}
+.amp-p-30 {
+    padding: 30px;
+}
+/* 外边距 */
+.amp-mb-25 {
+    margin-bottom: 25px;
+}
+.amp-mb-20 {
+    margin-bottom: 20px;
+}
+.amp-mb-15 {
+    margin-bottom: 15px;
+}
+.amp-mb-10 {
+    margin-bottom: 10px;
+}
+.amp-mb-5 {
+    margin-bottom: 5px;
+}
+
+.lightgray-bg {
+    background-color: #f3f3f4;
+}
+.example-title{
+    font-family: "黑体";
+    margin-left: 25px;
+    color: #333333;
+    font-weight: bold;
+}
+
+.amp-img {
+    padding-top: 25px;
+    text-align: center;
+}
+
+/* 表格部分样式 */
+.btn-w70-h30{
+    width: 70px;
+    padding: 0;
+    line-height: 28px;
+}
+.btn-w80-h30{
+    width: 80px;
+    height: 30px;
+    padding: 0;
+    line-height: 27px;
+}
+.btn-w90-h30{
+    width: 90px;
+    height: 30px;
+    padding: 0;
+    line-height: 28px;
+ }
+.amp-table-top {
+    margin-bottom: 14px;
+}
+.amp-table-top .btn {
+    margin-right: 5px;
+}
+.amp-table-search .search-input {
+    float: right;
+    position: relative;
+}
+.amp-table-search input {
+    width: 390px;
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    padding: 6px 30px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    font-size: 14px;
+    height: 30px;
+}
+.amp-table-search input:focus {
+    border-color: #1ab394;
+    outline: none;
+}
+.amp-search-icon {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #999999;
+    cursor: pointer;
+}
+.amp-search-expand {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #999999;
+    font-size: 14px;
+    cursor: pointer;
+}
+.amp-seach-mh {
+    width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    position: absolute;
+    left: 0;
+    top: 35px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 0 3px rgba(86, 96, 117, 0.7);
+    padding: 0;
+    text-shadow: none;
+    z-index: 1000;
+    color: #999999;
+}
+.amp-seach-mh ul {
+    padding: 0;
+}
+.amp-seach-mh ul li{
+    width: 100%;
+    padding: 0 5px 0 30px;
+    height: 30px;
+    line-height: 30px;
+    list-style: none;
+    cursor: pointer;
+}
+.amp-seach-mh ul li span:last-child{
+    font-weight: bold;
+}
+.amp-seach-mh ul li:hover{
+    background-color: #1ab394;
+    color: white;
+}
+/* 精细查询面板 */
+.amp-seach-jx {
+    padding: 20px;
+    width: 390px;
+    overflow-y: auto;
+    position: absolute;
+    left: 0;
+    top: 35px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 0 3px rgba(86, 96, 117, 0.7);
+    text-shadow: none;
+    z-index: 1000;
+    color: #999999;
+}
+.amp-seach-jx .form-control{
+    width: 113px;
+    height: 30px;
+    padding: 0 12px;
+    line-height: 27px;
+    margin-bottom: 15px;
+}
+.amp-search-addoptions {
+    color: #1ab394;
+    margin-bottom: 15px;
+    cursor: pointer;
+    display: inline-block;
+}
+.jx-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.dataTables_wrapper {
+    padding-bottom: 0;
+}
+.amp-table-pagepart{
+    display: inline-block;
+    vertical-align: 12px;
+    padding-left: 5px;
+}
+.amp-table-page {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background-color: #FFFFFF;
+    background-image: none;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+.amp-table-page:focus{
+    border-color: #1ab394;
+    outline: none;
+}
+.amp-table-pagepart .btn {
+    width: 40px;
+    height: 25px;
+    font-size: 12px;
+    padding: 3px 5px;
+    margin-left: 5px;
+}
+.div.dataTables_info {
+    padding-top: 0;
+}
+.amp-table-bottom {
+    margin-top: 14px;
+}
+.amp-tb-button {
+    width: 54px;
+    height: 24px;
+    padding: 2px 3px;
+    font-size: 13px;
+}
+.amp-table-style1 tbody tr>td:last-child {
+    padding: 5px 8px;
+}
+.amp-seach-jx .fgroup {
+    position: relative;
+}
+.amp-option-minus {
+    position: absolute;
+    right: -12px;
+    top: 7px;
+    cursor: pointer;
+    color: #1ab394;
+}
+/* 表格部分样式 end  */
+/* app6.css start  */
+.amp-ibox-top{
+    background-color: #ffffff;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 4px 0px 0;
+}
+.amp-pl-20{
+    padding-left: 20px;
+}
+ul.nav-tabs li >a{
+    font-size: 14px;
+}
+.amp-timeline{
+    width: 800px;
+    margin: 0 auto;
+}
+.amp-timeline > .amp-timeline-circle,.amp-timeline > .amp-timeline-lines{
+    float: left;
+}
+.amp-timeline-lines{
+    width: 200px;
+    height: 5px;
+    margin-top: 13px;
+    margin-left: -40px;
+    margin-right: -40px;
+}
+.amp-timeline-circle{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 30px;
+    margin:0 auto;
+}
+.amp-green{
+    background: #1ab394;
+}
+.amp-green-font{
+    color:#1ab394 ;
+}
+.amp-grey{
+    background: #cccccc;
+}
+.amp-timeline-descript{
+    height: 80px;
+    width: 110px;
+    float: left;
+}
+.amp-timeline-text {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 10px;
+}
+.amp-title{
+    border-width: 0px;
+    padding-left: 0px;
+    height: 40px;
+}
+.amp-content-border{
+    border-width: 2px 0px;
+}
+.amp-green-line{
+    background-color: #1ab394;
+    height: 4px;
+    width: 80px;
+    position: relative;
+    top: 24px;
+}
+.amp-collapse-link i{
+    color:#676A6C;
+}
+.amp-form-style2 .form-group label {
+    padding-top: 7px;
+    height: 30px;
+    background-color: #f6f6f6;
+}
+.amp-pl-5{
+    padding-left: 5px;
+}
+.amp-pr-5{
+    padding-right: 5px;
+}
+.amp-form-input{
+    font-size: 12px;
+    height: 30px;
+    padding-left: 10px;
+}
+.amp-pl-30{
+    padding-left: 30px;
+}
+.amp-pr-30{
+    padding-right: 30px;
+}
+.amp-date-icon{
+    position: absolute;
+    right: 27px;
+    top: 7px;
+    font-size: 14px;
+}
+.fa.amp-date-icon{
+    font-size: 14px;
+    font-weight: bold;
+}
+select.amp-form-input{
+    padding-left: 7px;
+}
+.amp-form-buttons{
+    border-top: 1px dashed #B3B3B3;
+    padding-top: 15px;
+    padding-left: 160px;
+}
+.triangle-topleft{
+    z-index: 99999;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid rgb(240, 75, 75);
+    border-right: 10px solid transparent;
+}
+.amp-explain{
+    font-size: 14px;
+    display: inline-flex;
+}
+.triangle-topleft-desc{
+    width: 0;
+    height: 0;
+    border-top: 10px solid rgb(240, 75, 75);
+    border-right: 10px solid transparent;
+    margin: 4px;
+}
+/* app6.css end  */
+/******对话框样式 start*******/
+.amp-standard-dialogBox{
+    width: 350px;
+    margin: 0 auto;
+}
+.amp-standard-dialogBox .modal-header{
+    padding: 10px 20px;
+    text-align: left;
+    height: 40px;
+    font-size: 14px;
+    background: #1ab394;
+    border-radius: 4px 4px 0 0;
+    color:#fff;
+}
+.amp-standard-dialogBox .modal-body{
+    padding: 25px 20px;
+    background: #ffffff;
+}
+.amp-standard-dialogBox .amp-standard-dialogBox-circle{
+    float: left;
+    margin-right: 15px;
+}
+/***成功颜色***/
+.amp-standard-dialogBox .fa-check{
+    color: #1ab394;
+    margin: 6px;
+}
+/**提示颜色***/
+.amp-standard-dialogBox .fa-info{
+    color: #1ab394;
+    margin: 6px 13px;
+}
+/***警告颜色***/
+.amp-standard-dialogBox .fa-exclamation{
+    color: #D38D5A;
+    margin: 6px 13px;
+}
+/***错误颜色***/
+.amp-standard-dialogBox .fa-times{
+    color: red;
+    margin: 4px 8px;
+}
+/***confirm颜色***/
+.amp-standard-dialogBox .fa-question{
+    color: #23c6c8;
+    margin: 5px 10px;
+}
+.amp-standard-dialogBox .amp-modal-body-text{
+    margin-top: 10px;
+    font-size: 14px;
+    width: 250px;
+}
+.amp-standard-dialogBox .modal-footer{
+    padding: 5px 20px 10px 0px;
+}
+.amp-standard-dialogBox-circle {
+    width: 36px;
+    height: 36px;
+    background: #EFEFEF;
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border-radius: 18px;
+    border: 1px solid #E0E0E0;
+}
+.amp-standard-dialogBox .amp-standard-dialogBox-fa{
+    font-size: 1.8em;
+}
+.amp-standard-dialogBox .amp-standard-dialogBox-btn{
+    padding: 5px 27px;
+    font-size: 14px;
+}
+/******对话框样式 end*******/

@@ -1,0 +1,38 @@
+.emap_pagination_noDataTip{
+    text-align:left;
+}
+.emap_pagination_pageIndexInput{
+    width:25px;
+    height:25px;
+    text-align:center;
+    border-color: #DDDDDD;
+    color: inherit;
+    border: 1px solid #DDDDDD;
+}
+.emap_pagination_pageNoLink{
+    display:initial;
+}
+.emap_pagination_pageDetailTD{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.emap_pagination_displayInline{
+    display: inline-block !important;
+}
+.emap_pagination_verticalAlign{
+    vertical-align: middle !important;
+}
+.emap_pagination_pageSizeInput{
+    width:50px !important;
+    height:25px !important;
+    padding:0px !important;
+}
+.emap_pagination_floatRight{
+    float:right !important;
+}
+.emap_pagination_pageNoCon{
+    display: inline-block !important;
+    padding-left:5px !important;
+}
+
+

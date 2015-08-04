@@ -1,0 +1,30 @@
+<div ms-if="show">
+    <table class="form-horizontal-table">
+        <tr>
+            <td class="form-label" ms-css-width="$colNum>1 ? 33.33333333/$colNum+'%' : ''" ms-class="col-md-{{labelSpan}} col-xs-{{labelSpan}} col-sm-{{labelSpan}} col-lg-{{labelSpan}}" ms-if="showLabel">
+
+                <span class="ampS-required-asterisk" ms-if="required && showRequired" >
+                    *
+                </span>
+
+                <label class="control-label">{{label}}</label>
+            </td>
+            <td ms-class="col-xs-{{11-labelSpan}} col-sm-{{11-labelSpan}} col-md-{{11-labelSpan}} col-lg-{{11-labelSpan}}" ms-css-width="$colNum>1 ? 100-8.33333333/$colNum-33.33333333/$colNum+'%' : ''" ms-class="has-error:showErrorMessage&&errorMessage"
+                ms-css-padding="controlPadding">
+                <!--调用组件模板-->
+                {{TEMPLATEVALUE}}
+            </td>
+            <td class="form-icon-container  col-xs-1 col-sm-1 col-md-1 col-lg-1" ms-css-width="$colNum>1 ? 8.33333333/$colNum+'%':''">
+                <span ms-class="glyphicon {{glyphicon}}" ms-if="showGlyphicon"></span>
+            </td>
+        </tr>
+        <tr class="form-horizontal-message" ms-if="(showMessage && message) || (showErrorMessage && errorMessage)">
+            <td ms-if="showLabel"></td>
+            <td class="text-muted" ms-class="form-error-message:showErrorMessage&&errorMessage" colspan="2"
+                ms-css-padding="controlPadding">
+                <span ms-if="showMessage"> {{message}} </span>
+                <span ms-if="showErrorMessage">{{errorMessage}}</span>
+            </td>
+        </tr>
+    </table>
+</div>

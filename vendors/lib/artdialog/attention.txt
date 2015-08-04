@@ -1,0 +1,91 @@
+artDialog.source.js 源码有改动：解决对话框自定义按钮传参数问题
+1612行
+改动前：
+_click: function (name) {
+		var that = this,
+			fn = that._listeners[name] && that._listeners[name].callback;
+		return typeof fn !== 'function' || fn.call(that, window) !== false ?
+			that.close() : that;
+	},
+
+改动后：
+_click: function (name) {
+		var that = this,
+			fn = that._listeners[name] && that._listeners[name].callback;
+		return typeof fn !== 'function' || fn.call(that, window, getParams()) !== false ?
+			that.close() : that;
+
+		function getParams(){
+			var buttons = that.config.button;
+			for(var i = 0; i < buttons.length; i++){
+				if(buttons[i].name == name){
+					return buttons[i].params;
+				}
+			}
+		}
+	},
+
+artDialog.source.js 源码有改动：解决对话框拖动时，鼠标释放后，还能拖动的问题
+1953行
+改动前：
+end: function (event) {
+		_$document
+		.bind('mousemove', this.move)
+		.bind('mouseup', this.end);
+
+		this.onend(event.clientX, event.clientY);
+		return false;
+	}
+改动后：
+end: function (event) {
+		_$document.unbind('mousemove').unbind('mouseup');
+
+		this.onend(event.clientX, event.clientY);
+		return false;
+	}
+
+artDialog.source.js 源码有改动：	解决对话框按钮focus都设置为true时，都应该变成绿色
+1236行被注释掉
+
+artDialog.source.js 源码有改动：解决confirm, tips, alert, prompt可以创建多次
+id：类别+zIndex值，如 id: 'Alert'+_zIndex(),
+321行 343 372 409
+
+artDialog.source.js 源码有改动：解决对话框在应用管理平台中使用时，没弹到最顶层的问题，因为平台中的menu的z-index:2001，对话框z-index:1987
+1882行，zIndex: 2002
+解决，对话框弹出后，还能滚滚动条的问题
+1263行，改动前：
+    show: function () {
+		this.DOM.wrap.show();
+		!arguments[0] && this._lockMaskWrap && this._lockMaskWrap.show();
+		return this;
+	}
+改动后：
+	show: function () {
+        $(top.document.body).css("overflow","hidden");
+        this.DOM.wrap.show();
+        !arguments[0] && this._lockMaskWrap && this._lockMaskWrap.show();
+        return this;
+    }
+关闭弹出框后，要重置overflow的设置
+1278行，改动前：
+    close: function () {
+		if (this.closed) return this;
+
+		...
+	}
+改动后：
+    close: function () {
+        $(top.document.body).css("overflow","");
+        if (this.closed) return this;
+
+        ...
+    }
+
+1777行，解决弹出框，滚动条会被禁用9s的问题，把时间改成0.1ms
+_$window.bind('load', function () {
+	setTimeout(function () {
+		if (_count) return;
+		artDialog({left: '-9999em',time: 0.0001,fixed: false,lock: false,focus: false});
+	}, 150);
+});

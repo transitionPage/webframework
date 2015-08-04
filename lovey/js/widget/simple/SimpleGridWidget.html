@@ -1,0 +1,137 @@
+<div ms-visible="show">
+    <div class="simpleGrid_tableCon">
+        <table ms-attr-class="$tableClass" ms-css-width="width" ms-css-text-align="defaultAlign">
+            <thead>
+            <tr ms-if="grouping && hasGroupTitle" ms-css-text-align="defaultTitleAlign">
+                <th ms-if="$showIndex" class="simpleGrid_checkboxCon" ms-class-simplegrid_nowrap="titleNoWrap"
+                    ms-attr-rowspan="2" ms-css-text-align="defaultTitleAlign">
+                    #
+                </th>
+                <th ms-if="$showCheckbox" class="simpleGrid_checkboxCon" ms-class-simplegrid_nowrap="titleNoWrap" ms-attr-rowspan="2">
+                    <div class="icheckbox_square-green" ms-class-checked="allChecked" ms-click="allClick(vid, this)">
+                    </div>
+                </th>
+                <th ms-repeat-grouptitle="groupTitleSpans" ms-attr-colspan="grouptitle.tdSpan"
+                    ms-css-text-align="defaultTitleAlign">
+                    {{grouptitle.title}}
+                </th>
+                <th ms-if="$canCustomCols" class="simpleGrid_customColCon" ms-class-simplegrid_nowrap="titleNoWrap" ms-attr-rowspan="2">
+                    <i class="fa fa-cogs fa-spin" ms-click="customColFunc(vid)"></i>
+                </th>
+            </tr>
+            <tr>
+                <th ms-if="$showIndex&&!hasGroupTitle" class="simpleGrid_checkboxCon" ms-class-simplegrid_nowrap="titleNoWrap"
+                    ms-css-text-align="defaultTitleAlign">
+                    #
+                </th>
+                <th ms-if="$showCheckbox&&!hasGroupTitle" class="simpleGrid_checkboxCon" ms-class-simplegrid_nowrap="titleNoWrap">
+                    <div class="icheckbox_square-green" ms-class-checked="allChecked" ms-click="allClick(vid, this)">
+                    </div>
+                </th>
+                <th ms-if="opColumnMap['op_front']" ms-repeat-opcolumn="opColumnMap['op_front']"
+                    ms-css-width="opcolumn.width" ms-css-text-align="opcolumn.titleAlign||defaultTitleAlign">
+                    {{opcolumn.title}}
+                </th>
+                <th ms-repeat-col="allColumns" ms-css-width="col.width" ms-class-simplegrid_nowrap="titleNoWrap"
+                    ms-css-text-align="col.titleAlign||defaultTitleAlign">
+                    <div ms-if="(col.isOpColumn&&(!$canSortOpColumn||!col.dataField))||!$canSort">
+                        {{col.title}}
+                    </div>
+                    <div ms-if="(!col.isOpColumn||($canSortOpColumn&&col.dataField))&&$canSort">
+                        <div ms-if="!col.sortDisabled&&col.orderType=='asc'" ms-click="sortByCol(vid,col,'desc',allColumns)">
+                            <i ms-if="$canEdit&&!col.disabledEdit" class="fa fa-pencil"></i>{{col.title}} <div class="fa fa-caret-down"></div></div>
+                        <div ms-if="!col.sortDisabled&&col.orderType=='desc'" ms-click="sortByCol(vid,col,'unsort',allColumns)">
+                            <i ms-if="$canEdit&&!col.disabledEdit" class="fa fa-pencil"></i>{{col.title}} <div class="fa fa-caret-up"></div></div>
+                        <div ms-if="!col.sortDisabled&&!col.orderType" ms-click="sortByCol(vid,col,'asc',allColumns)">
+                            <i ms-if="$canEdit&&!col.disabledEdit" class="fa fa-pencil"></i>{{col.title}}<div class="fa fa-unsorted"></div></div>
+                        <div ms-if="col.sortDisabled">
+                            <i ms-if="$canEdit&&!col.disabledEdit" class="fa fa-pencil"></i>{{col.title}}</div>
+                    </div>
+                </th>
+                <th ms-if="opColumnMap['op_end']" ms-repeat-opcolumn="opColumnMap['op_end']" ms-css-width="opcolumn.width"
+                    ms-class-simplegrid_nowrap="titleNoWrap" ms-css-text-align="opcolumn.titleAlign||defaultTitleAlign">
+                    {{opcolumn.title}}
+                </th>
+                <th ms-if="$canCustomCols&&!hasGroupTitle" class="simpleGrid_customColCon" ms-class-simplegrid_nowrap="titleNoWrap">
+                    <i class="fa fa-cogs fa-spin" ms-click="customColFunc(vid)"></i>
+                </th>
+            </tr>
+            </thead>
+            <tr ms-repeat-rowdata="data" ms-attr-id="rowdata._uuid"
+                ms-mouseover="$mouseoverToActive?activeRow(vid,rowdata,this):''"
+                ms-click="clickRow(vid,rowdata,this)" ms-css-height="lineHeight"
+                ms-on-dblclick="dbClickRow(vid,rowdata,this)">
+                <td ms-if="$showIndex" ms-class-simplegrid_nowrap="contentNoWrap">
+                    {{$index+1}}
+                </td>
+                <td ms-if="$showCheckbox" ms-class-simplegrid_nowrap="contentNoWrap">
+                    <div class="icheckbox_square-green"
+                         ms-class-checked="rowdata['checked']" ms-click="checkRow(vid,rowdata)">
+                    </div>
+                </td>
+                <td ms-attr-rowIndex="$index" ms-if="opColumnMap['op_front']"
+                    ms-repeat-opcolumn="opColumnMap['op_front']" ms-html="getColTemplate(vid,rowdata,opcolumn)"
+                    class="simpleGrid_vertivalAlign" ms-class-simplegrid_nowrap="contentNoWrap"
+                    ms-css-text-align="opcolumn.textAlign">
+                </td>
+                <td ms-visible="!$isMerge||col.isOpColumn||tdSpans[rowdata._uuid+col.dataField]>0"
+                    ms-attr-rowspan="$isMerge&&!col.isOpColumn?tdSpans[rowdata._uuid+col.dataField]:1"
+                    ms-repeat-col="allColumns" ms-attr-xtype="col.xtype"
+                    ms-click="clickField(vid,rowdata,col,this)"
+                    class="simpleGrid_tdStyle" ms-class-simplegrid_nowrap="contentNoWrap"
+                    ms-class-simplegrid_datachange="dataChangedField.contains(rowdata._uuid+col.dataField)"
+                    ms-css-text-align="col.textAlign">
+                    <div ms-if="col.isOpColumn" ms-html="getColTemplate(vid,rowdata,col)"></div>
+                    <div ms-if="!col.isOpColumn" class="simpleGrid_fullCon">
+                        <div ms-if="$canEdit" class="simpleGrid_fullCon">
+                            <div ms-attr-bindField="col.dataField" class="simpleGrid_fullCon">
+                                <div ms-attr-id="'con_'+col.dataField+'_'+rowdata._uuid">
+                                    <div ms-if="rowdata.state==undefined||rowdata.state=='readonly'||(!$dbClickToEditRow&&$clickToEditField&&col.dataField!=editFieldNow)">
+                                        <div ms-if="col.showDisplay">
+                                            {{rowdata[col.dataField+'_DISPLAY']}}
+                                        </div>
+                                        <div ms-if="!col.showDisplay">
+                                            {{rowdata[col.dataField]}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ms-if="!$canEdit">
+                            <div ms-if="col.showDisplay">
+                                {{rowdata[col.dataField+'_DISPLAY']}}
+                            </div>
+                            <div ms-if="!col.showDisplay">
+                                {{rowdata[col.dataField]}}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td ms-attr-rowIndex="$index" ms-if="opColumnMap['op_end']"
+                    ms-repeat-opcolumn="opColumnMap['op_end']"
+                    ms-html="getColTemplate(vid,rowdata,opcolumn)"
+                    ms-class-simplegrid_nowrap="contentNoWrap"
+                    ms-css-text-align="opcolumn.textAlign"
+                    class="simpleGrid_vertivalAlign">
+                </td>
+            </tr>
+            <tr ms-if="(!totalNum||totalNum<1)&&(!data||data.length<1)">
+                <td colspan="100"><div class="simpleGrid_noDataTip">{{$noDataTip}}</div></td>
+            </tr>
+        </table>
+    </div>
+    <div ms-if="$canMoveDataUpandDown" class="simpleGrid_displayInline simpleGrid_vertivalAlign">
+        <button class="btn btn-primary btn-outline simpleGrid_moveBtn" type="button"
+                ms-click="moveDataUpAndDown(vid,true);">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+        <button class="btn btn-primary btn-outline simpleGrid_moveBtn" type="button"
+                ms-click="moveDataUpAndDown(vid,false);">
+            <i class="fa fa-arrow-down"></i>
+        </button>
+    </div>
+    <div ms-if="$usePager" class="simpleGrid_pagerCon" ms-css-max-width="width">
+        <div ms-attr-id="'pager_'+vid"
+                 ms-click="$canEdit&&$clickToEditField?resetEditState(vid):resetEditState(vid)"></div>
+    </div>
+</div>

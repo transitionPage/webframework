@@ -1,0 +1,11 @@
+<div ms-if="status!='readonly'" class="form-widget-container" ms-each="items">
+    <label ms-click="itemCheck(vid,el)" style="margin-bottom:0">
+        <div class="iradio_square-green" ms-class-checked="el.checked" ms-class-disabled="status=='disabled'"
+             style="position: relative;">
+        </div>
+        {{el[$textField]}} &nbsp;&nbsp;&nbsp;
+    </label>
+    <div ms-if="/^\d+$/.test(cols) && (cols!=0) && ($index+1)%cols==0" style="margin-bottom: 10px;"></div>
+</div>
+
+ <input ms-if="status=='readonly'" class="form-control form-widget-to-focus-class form-text" ms-duplex="display"  readonly/>

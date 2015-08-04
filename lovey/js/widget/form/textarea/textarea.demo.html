@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/Page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/Page2/src/css/page.css" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Horizontal form</h5>
+
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <textarea id="nameContainer" class="form-control form-widget-to-focus-class"></textarea>
+                </div>
+
+                    <div class="col-md-4">
+                        <textarea id="phoneContainer" class="form-control form-widget-to-focus-class"></textarea>
+                    </div>
+                    <div class="col-md-4" id="btnContainer">
+                        <button onclick="valForm();">校验表单</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/Page2/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<script>
+    $.noConflict();
+</script>
+<script src="/Page2/bower_components/avalon/avalon.js"></script>
+<script>
+    function valForm(){
+        var validateTool = Page.create("validation",{onlyError:true});//后续由系统统一创建，只需调用即可
+
+        //获取数据
+        var comps = Page.manager.components;
+        var formValues = {};
+        formValues.username = comps.username.getValue();
+        formValues.phone = comps.phone.getValue();
+
+        //获取校验规则
+        var formRules = {};
+        formRules.username =  comps.username.getAttr("$validationRules");
+        formRules.phone =  comps.phone.getAttr("$validationRules");
+        formRules._global = [//_global 为固定
+            {
+                "ruleId": "notEqualField",
+                "field1": "username",
+                "field2": "phone"
+            }
+        ];
+        //进行校验
+        var valRes = validateTool.validateObject(formValues,formRules);
+        if(valRes.result){
+            alert("校验通过");
+        }else{
+            alert("校验结果："+JSON.stringify(valRes.errorMsg));
+        }
+    }
+    require(["../../../Page2/src/Bootstrap"], function () {
+        var inp = Page.create("textarea", {
+            $parentId: 'nameContainer',
+            value: '',
+            required: false,
+            rows:1,
+            glyphicon: 'glyphicon-ok',
+            message: '请输入2-5个汉字',
+            label: '您的姓名',
+            placeholder:'您的姓名',
+            validationRules: {
+                required:true,//options中为false时，此处可重开启校验
+                length: {
+                    maxLen: 5,
+                    minLen: 2
+                },
+                regex: {
+                    regexStr: "/^[\u4e00-\u9fa5]+$/",
+                    customErrMsg:"只能输入汉字"
+                }
+            },
+            showErrorMessage:true,
+            $id: 'username'//,
+        });
+        inp.render();
+        var inq = Page.create("textarea", {
+            $parentId: 'phoneContainer',
+            value: '',
+            required: false,
+            glyphicon: 'glyphicon-ok',
+            message: '请输入文字介绍',
+            label: '个人简介',
+            validationRules: {
+                length: {
+                    maxLen: 15,
+                    minLen: 0
+                },
+                required:true,//设置为false可关闭校验
+                mobilePhone:false
+            },
+            showErrorMessage:true,
+            $id: 'phone'//
+        });
+        inq.render();
+        //console.log(inq);
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

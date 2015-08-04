@@ -1,0 +1,38 @@
+<div ms-if="show" class="custom_topPadding">
+    <div ms-if="showAllCheck" class="row customCol_allCheckCon">
+        <!--<div class="col-md-1" style="padding:7px;">-->
+            <!--<button class="btn btn-info btn-circle" type="button" ms-click="allCheck(vid, true)"><i class="fa fa-check"></i>-->
+            <!--</button>-->
+        <!--</div>-->
+        <!--<div class="col-md-1" style="padding:7px;">-->
+            <!--<button class="btn btn-warning btn-circle" type="button" ms-click="allCheck(vid, false)"><i class="fa fa-times"></i>-->
+            <!--</button>-->
+        <!--</div>-->
+        <label ms-click="allCheck(vid, this)" class="customCol_noMargin customCol_noPadding padding7">
+            <div class="form-horizontal ampS-form-xs">
+                <div class="icheckbox_square-green" ms-class-checked="allChecked" style="float: left;">
+                </div>
+                <div style="float: left; margin-left: 5px;">全选</div>
+            </div>
+        </label>
+    </div>
+    <div class="row" class="customCol_row">
+        <div class="form-widget-container col-md-6 divbordertop divborderleft customCol_con" ms-repeat-col="items"
+                ms-class-divborderright="$index%2==1" ms-class-oddback="$index%4==0||$index%4==1"
+                ms-class-divborderbottom="$index>(items.length-3)">
+            <label ms-click="itemCheck(vid,col)" class="customCol_noMargin">
+                <div class="form-horizontal ampS-form-xs">
+                    <div class="ampS-line-b customCol_font">
+                        <div class="icheckbox_square-green" ms-class-checked="col.checked" ms-class-disabled="status=='disabled'"
+                             style="position: relative;">
+                        </div>
+                        {{col[$textField]}} &nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </label>
+        </div>
+        <div ms-if="items.length%2>0" class="form-widget-container col-md-6 divborderleft divborderright divborderbottom customCol_fixCol"
+             ms-class-oddback="items.length%4==1">
+        </div>
+    </div>
+</div>

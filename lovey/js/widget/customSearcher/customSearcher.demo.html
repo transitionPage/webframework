@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    我是一个自定义查询组件1：<br/>
+                    <div class="col-md-5" id="container">
+
+                    </div>
+                </div>
+                <div class="row">
+                    我是一个自定义查询组件2：<br/>
+                    <div class="col-md-5 col-md-push-7" id="container2">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<!-- Dialog -->
+<!--<script src="/page/lib/artdialog/artDialog.source.js"></script>-->
+<!--<script src="/page/lib/artdialog/iframeTools.source.js"></script>-->
+<!--<link href="/page/lib/artdialog/skins/blue.css" rel="stylesheet">-->
+<!--<link href="/page/lib/artdialog/css/ui-dialog.css" rel="stylesheet">-->
+<!-- Dialog End -->
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/inspinia.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/plugins/pace/pace.min.js"></script>
+<script>
+    require(["../../../page/src/Bootstrap"], function () {
+
+//        var ds = Page.create("dataSet", {
+//            $id: 'customSearchDS',
+//            fetchUrl: 'Data.demo.json',
+//            syncUrl: "Update.demo.json",
+//            model: {
+//                id: 'viewId'
+//            }
+//        });
+
+        var customSearcher = Page.create('customSearcher', {
+            $id: "customSearcher",
+            $parentId: "container",
+            fetchUrl: 'Data.demo.json',
+//            showDropIcon: false,
+//            value: [{
+//                "linkOpt":"and",
+//                "name":"stuSex",
+//                "nameDisplay":"性别",
+//                "value":"1",
+//                "valueDisplay":"男   ",
+//                "builder":"m_value_include",
+//                "builderDisplay":"多值包含"
+//            }],
+            controls: [{
+                id: "stuName",
+                $xtype: "datepicker",
+                label: "姓名",
+                parentTpl: "inline",
+                requier: true,
+                initShow: true,
+                filterName: "stuName",
+                bindField: "stuName",
+                builderList: "nameOpers"
+            },{
+                id: "stuSex",
+                $xtype: "combobox",
+                label: "性别",
+                parentTpl: "inline",
+                filterName: "stuSex",
+                bindField: "stuSex",
+                url:'SexData.demo.json',
+                builderList: "sexOpers",
+                quickSearch: true
+            }],
+            builderLists: {
+                nameOpers: [{name: "equal", caption: "等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "qual", caption: "等于"}, {name: "equal", caption: "等于"}],
+                sexOpers: [{name: "contain", caption: "包含"}]
+            },
+            searchSubmit: function(searchValue) {
+                console.log(JSON.stringify(searchValue));
+            }
+
+
+        });
+        customSearcher.render();
+
+        /*var customSearcher2 = Page.create('customSearcher', {
+            $id: "customSearcher2",
+            $parentId: "container2",
+            controls: [{
+                id: "stuName",
+                $xtype: "datepicker",
+                label: "姓名",
+                parentTpl: "inline",
+                requier: true,
+                filterName: "stuName",
+                bindField: "stuName",
+                builderList: "nameOpers"
+            },{
+                id: "stuSex",
+                $xtype: "combobox",
+                label: "性别",
+                parentTpl: "inline",
+                filterName: "stuSex",
+                bindField: "stuSex",
+                url:'SexData.demo.json',
+                builderList: "sexOpers",
+                quickSearch: true
+            }],
+            builderLists: {
+                nameOpers: [{name: "equal", caption: "等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "notequal", caption: "不等于"}, {name: "qual", caption: "等于"}, {name: "equal", caption: "等于"}],
+                sexOpers: [{name: "contain", caption: "包含"}]
+            },
+            searchSubmit: function(searchValue) {
+                console.log(JSON.stringify(searchValue));
+            }
+
+
+        });
+        customSearcher2.render();*/
+
+
+       /* {viewId: "testView1", viewName: "查询方案（默认）", defaultView: "0", viewValue: [
+        {"name": "stuName", "nameDisplay": "姓名", "value": "234", "valueDisplay": "234", "builder": "notequal", "builderDisplay": "不等于", "group": "1"},
+        {"show": false, "name": "stuName", "nameDisplay": "姓名", "value": "234", "valueDisplay": "234", "builder": "notequal", "builderDisplay": "不等于", "group": "1"},
+        {"name": "stuSex", "nameDisplay": "性别", "value": "1", "valueDisplay": "男", "builder": "equal", "builderDisplay": "不、等于", "group": "1"}
+        ]}*/
+
+        /*
+        {"name": "stuName", "nameDisplay": "姓名", "value": "234", "valueDisplay": "234", "builder": "notequal", "builderDisplay": "不等于", "group": "1"},
+        {"show": false, "name": "stuName", "nameDisplay": "姓名", "value": "234", "valueDisplay": "234", "builder": "notequal", "builderDisplay": "不等于", "group": "1"},
+        {"name": "stuSex", "nameDisplay": "性别", "value": "1", "valueDisplay": "男", "builder": "equal", "builderDisplay": "不、等于", "group": "1"}
+
+*/
+
+    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

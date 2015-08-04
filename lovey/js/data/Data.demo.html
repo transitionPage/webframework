@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+</head>
+<body>
+
+
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+
+<!--<script src="bower_components/avalon/avalon.js"></script>-->
+<!--<script src="dist/page-build-min.js"></script>-->
+
+<script>
+    //    window.console.log(Page);
+    require(["../../../page/src/Bootstrap"], function () {
+        var ds = Page.create("dataSet", {
+            fetchUrl: 'Data.demo.json',
+
+            syncUrl: 'Result.demo.json',
+            model:{
+                mainAlias:''
+            }
+        });
+//        var a = {}
+        window.console.log(ds);
+
+        function log(msg) {
+            window.console.log(msg);
+        }
+
+        function a() {
+            log('ss');
+        }
+
+        var aa = function () {
+            log('ss');
+        }
+
+        ds.sync();
+
+        var callback = function () {
+            window.console.log(ds.readRecord());
+            var a = ds.readRecord("1");
+            log(a.getValue());
+            a.updateRecord({name: 'balabala'});
+            log(ds.getValue());
+            a.deleteRecord("1");
+            log(ds.getValue());
+            ds.setAttr("pageNo", "2");
+        };
+//        log(ds.fetch());
+        Promise.all([ds.fetch()]).then(callback).then(function(){
+            ds.sync();
+        });;
+
+//        Promise.all([ds.fetch()]).then(callback);
+//        Promise.then(ds.fetch()).then(ds.fetch());
+
+//
+//        ds.sync(function(){
+//            log("aa");
+//        });
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+</head>
+<body>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    我是子页面：<br/>
+                    <button onclick="openD()" id="abc">取父页面参数</button>
+                    <button onclick="openCon()" id="bbb">测试confirm嵌套</button>
+                    <div class="col-md-12" id="dialogContainer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<!-- Dialog -->
+<!--<script src="/page/lib/artdialog/artDialog.source.js"></script>-->
+<!--<script src="/page/lib/artdialog/iframeTools.source.js"></script>-->
+<!--<link href="/page/lib/artdialog/skins/blue.css" rel="stylesheet">-->
+<!--<link href="/page/lib/artdialog/css/ui-dialog.css" rel="stylesheet">-->
+<!-- Dialog End -->
+
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+
+    var childParam = "child";
+    require(["../../../page/src/Bootstrap"], function () {
+        Page.dialog.data("childFunc", childFunc);
+
+        function childFunc() {
+            alert("我是子页面方法");
+        }
+    });
+    function openD(){
+        alert("父页面全局变量："+(window.parent.topParam));
+        alert("父页面对话框传参："+Page.dialog.data("topParam"));
+        Page.dialog.data("topFunc")();
+    }
+    function openCon(){
+        Page.dialog.confirm('你确定要删除这掉消息吗？', function () {
+            Page.dialog.confirm('子确认框', function () {
+                Page.dialog.tips('执行确定操作');
+            }, function() {});
+
+            return false;
+        },function() {});
+//        Page.create('dialog', {
+//            $id: "dialog1",
+//            content: "你确定要删除这掉消息吗？",
+//            button: [{
+//                name: "是",
+//                callback: function(dialog, window, param) {
+//                    Page.dialog.confirm('子确认框', function () {
+//                        Page.dialog.tips('执行确定操作');
+//                    });
+//                },
+//                focus:true
+//            },{
+//                name: "否",
+//                callback: function() {
+//                },
+//                focus:false
+//            }]
+//        })
+    }
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/Page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/Page2/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/Page2/src/css/page.css" rel="stylesheet">
+    <link href="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+</head>
+<body ms-skip>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row" id="row1">
+                    <!--<div class="col-md-4">
+                        <div id="switchCon"></div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Page2/bower_components/mootools/Source/Core/Core.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Array.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/String.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Object.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Number.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Types/Function.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.js"></script>
+<script src="/Page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+
+<!-- Switchery -->
+<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/plugins/switchery/switchery.js"></script>
+<script>
+    $.noConflict();
+</script>
+<script src="/Page2/bower_components/avalon/avalon.js"></script>
+<script>
+    for(var i=0;i<100;i++){
+        var temp = jQuery('<div class="col-md-4"><input type="checkbox" id="switchCon'+i+'" /></div>');
+//        temp.attr("checked", "checked");
+        jQuery("#row1").append(temp);
+        var tmp = new Switchery(jQuery("#switchCon"+i)[0],{
+            color: '#1AB394'
+        });
+        tmp.setPosition(true);
+    }
+//    require(["../../src/Bootstrap"], function () {
+
+        /*var switchObj = Page.create("switch", {
+            $parentId: 'switchCon',
+            $id:"demo",
+            value:true,
+            //status:"disabled",
+            $checkValue:true,// 默认为1,
+            $unCheckValue:false// 默认为0
+        });
+        switchObj.render();*/
+//    });
+</script>
+<!--<script src="bower_components/avalon/avalon.js" ></script>-->
+<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
+</body>
+</html>

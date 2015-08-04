@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
+    <link href="/page/src/css/page.css" rel="stylesheet">
+    <link href="/page/src/css/base.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
+    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+    <link href="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+    <!-- Switchery -->
+    <script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/plugins/switchery/switchery.js"></script>
+    <style>
+        .form-horizontal-table .form-text {
+            text-align: left;
+        }
+    </style>
+</head>
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12" id="ops" style="padding-bottom: 30px;">
+                        <a class="btn btn-primary" href="javascript:addRow();">新增行</a>
+                        <a class="btn btn-primary" href="javascript:delCheckedRow();">删除勾选的行</a>
+                        <a class="btn btn-primary" href="javascript:simpleGrid.deleteActiveRow();">删除激活的行</a>
+                        <a class="btn btn-primary" href="javascript:simpleGrid.checkRowsByDataId(['001','002'],true);">勾选前两行</a>
+                        <a class="btn btn-primary" href="javascript:simpleGrid.checkRowsByDataId(['001','002'],false);">取消勾选前两行</a>
+                        <a class="btn btn-primary" href="javascript:cancelAllChecked();">取消全部勾选</a>
+                        <a class="btn btn-primary" href="javascript:customColumns();">自定义显示列</a>
+                    </div>
+                </div>
+
+                <div class="row" style="" width="200px">
+                <div class="col-md-12" id="simpleGrid">
+
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/page/bower_components/mootools/dist/mootools-core.js"></script>
+<script src="/page/bower_components/jquery/dist/jquery.js"></script>
+<script>
+    $.noConflict();
+</script>
+<script src="/page/bower_components/avalon/avalon.js"></script>
+<script>
+    var simpleGrid = null;
+    require(["../../../page/src/Bootstrap"], function () {
+        ds = Page.create("dataSet", {
+            $id: 'sampleGridDataSet',
+            fetchUrl: 'simpleGrid.demo.json',
+            syncUrl: '',
+            model:{mainAlias:'ds1'}
+        });
+        var metaData = metaData;
+        simpleGrid = Page.create("simpleGrid", {
+            $parentId: 'simpleGrid',
+            idField:"wid",
+            $id:"simpleGrid",
+            showCheckbox:true,
+            showIndex:false,
+            usePager:true,
+            width:"1000px",
+            showPageBeforeAfterCount:4,
+            defaultAlign:"center",
+            //defaultTitleAlign:"center",
+            canSort:true,
+            canSortOpColumn:true,
+            multiSort:true,//复合排序
+            canMoveDataUpandDown:true,
+            //multiCheck:false,
+            //allChecked:false,
+            dataSetId: ds.getId(),
+            mouseoverToActive:true,
+            canCustomCols:true,
+            //metaDataObj:metaData,
+            fixedCols:['name','birthDate'],
+            //isMerge:true,
+            editComps:[],
+            grouping: false,
+            columns:[
+                {title:"出生年月",dataField:"birthDate",orderType:"desc",xtype:"input",hidden:false,width:"380px",
+                    titleAlign:"center",textAlign:"center", groupName: "基本信息"},
+                {title:"入学时间",dataField:"rxDate",xtype:"datepicker",width:"380px",
+                    titleAlign:"center",textAlign:"center"},
+                {title:"是否党员",dataField:"isParty",xtype:"switch",showDisplay:true,width:"380px",
+                    titleAlign:"center",textAlign:"center"},
+                {title:"备注",dataField:"notes",hidden:true,sortDisabled:true,width:"380px",
+                    titleAlign:"center"},
+                {title:"姓名",dataField:"name",orderType:"asc",disabledEdit:false,width:"380px",
+                    titleAlign:"center"}
+            ],
+           /* data: [
+                {
+                    "wid":"001",
+                    "name": "李肉肉",
+                    "sex": "002",
+                    "sexDisplay": "女",
+                    "birthDate": "1989-11-03",
+                    "rxDate": "2007-09-02",
+                    "isParty": 0,
+                    "isParty_DISPLAY":"no",
+                    "className": "信息0701班",
+                    "checked":"false",
+                    "notes": "",
+                    "state":"edit"
+                },
+                {
+                    "wid":"002",
+                    "name": "李肉肉",
+                    "sex": "002",
+                    "sexDisplay": "女",
+                    "birthDate": "1987-03-19",
+                    "rxDate": "2007-09-02",
+                    "isParty": 1,
+                    "isParty_DISPLAY":"是",
+                    "className": "信息0701班",
+                    "checked":"true",
+                    "state":"edit",
+                    "notes": ""
+                }],*/
+            opColumns:[{title:"自定义操作A",
+                    width:'300px',
+                    position:2,
+                    textAlign:"center",
+                    titleAlign:"center",
+                    template:"<a href='javascript:alert(1)'>位置随意</a> | " +
+                    "<a href='javascript:deleteActive();'>Delete</a>"},
+                     {title:"自定义列B",
+                    width:'300px',
+                    position:'end',
+                    textAlign:"center",
+                    titleAlign:"center",
+                    template:"<a ms-click='editMyRow(vid,rowdata,this);'>编辑／完成</a>"}],
+            //行编辑
+            canEdit:true,
+            dbClickToEditRow:true,
+            //clickToEditField:true,
+            editMultiRow:false, //同时编辑多行
+            genTest:function(rowData,col){
+                if(rowData) {
+                    if (rowData.sex ==2) {
+                        return "<div style='color:#F0F;' ms-if='1==1' ms-attr-onload='mm(rowdata)' ms-click='showSex(rowdata.sexDisplay,this)'><B>hi,美{{rowdata.sexDisplay}}</B></div>";
+                    } else {
+                        return "<div style='color:#F0F;' ms-if='1==1' ms-attr-onload='mm(rowdata)' ms-click='showSex(rowdata.sexDisplay,this)'><B>hi,帅{{rowdata.sexDisplay}}</B></div>";
+                    }
+                }
+            }
+            /*beforeChangePageNo:function(pager,grid){
+                //alert("要改页码了： "+pager.getAttr("pageIndex"));
+            },
+            beforeChangeOrder:function(){
+               //alert("change order!");
+            },
+            beforeSetData:function(datas){
+//                if(datas&&datas.length>0){
+//                    for(var s=0;s<datas.length;s++){
+//                        if(s==0&&datas[s]){
+//                            datas[s].name = "被篡改";
+//                        }
+//                    }
+//                }
+            }*/
+            //编辑单属性事件
+        });
+        simpleGrid.render();
+
+    });
+    function showSex(sexDisplay,tdDom){
+        alert("hi,"+sexDisplay);
+
+    }
+    function mm(rowData){
+        if(rowData.sexDisplay&&rowData.sexDisplay.length<2){
+            rowData.sexDisplay = rowData.sexDisplay+"~";
+        }
+    }
+    function addRow(){
+        simpleGrid.addRow({"name":"南农保安","sex":0,"sexDisplay":"未知"},1);
+    }
+    function delCheckedRow(){
+        simpleGrid.deleteCheckedRows();
+    }
+    function delCustomRow(aid){
+        simpleGrid.deleteRowByDataId(aid);
+    }
+    function deleteActive(){
+        simpleGrid.deleteActiveRow();
+    }
+
+    function CheckSomeRowsByIds(ids){
+        simpleGrid.checkRowsByDataId(ids);
+    }
+    function cancelAllChecked(){
+        var checkedRows = simpleGrid.getCheckedRows();
+        simpleGrid.checkRows(checkedRows,false);
+    }
+    function myEditPro(vm,row,rowDom){
+        if(row){
+            var dt = null;
+            var datas = vm.data?vm.data:vm.getAttr("data");
+
+            var dataArr = [];
+            for(var t=0;t<datas.length;t++){
+                if(datas[t]==row){
+                    datas[t].state = "edit";
+                }
+                dataArr.push(datas[t]);
+            }
+            if(vm.data){
+                vm.data = dataArr;
+            }else{
+                vm.setAttr("data",dataArr);
+            }
+            var cols = vm.columns?vm.columns:vm.getAttr("columns");
+            var editComps = vm.editComps?vm.columns:vm.getAttr("editComps");
+            for(var s=0;s<cols.length;s++){
+                var coli = cols[s];
+                if(coli&&coli.dataField) {
+                var fieldName = coli.dataField;
+                var xtype = coli.xtype || "input";
+                var editField = Page.create(xtype, {
+                    $parentId: '__currentEditField_'+fieldName,
+                    parentTpl:"inline",
+                    value: row[fieldName],
+                    showLabel: false,
+                    bindField:fieldName,
+                    validationRules:coli.validationRules,
+                    showErrorMessage:true,
+
+                    valueChange:function(){
+                        row[fieldName] = editField.getValue();
+                    },
+                    status:"readonly"
+                });
+                editComps.push(editField);
+                editField.render();
+            }
+        }
+            if(vm.editComps){
+                vm.editComps = editComps;
+            }else{
+                vm.setAttr("editComps",editComps);
+            }
+        }
+    }
+    function customColumns(){
+        simpleGrid.options.customColFunc(simpleGrid);
+    }
+</script>
+</body>
+</html>
