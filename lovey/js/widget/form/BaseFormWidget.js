@@ -1,7 +1,7 @@
 /**
  * Created by qianqianyi on 15/4/23.
  */
-define(['../Base'], function (Base, formTpl, inlineTpl) {
+define(['../Base','../../data/DataBinder'], function (Base,DataBinder) {
     var xtype = "baseFormWidget";
     var BaseFormWidget = new Class({
         Extends: Base,
@@ -92,31 +92,6 @@ define(['../Base'], function (Base, formTpl, inlineTpl) {
             $this.$element = e;
             $this.element = e[0];
 
-            if ("inline" == $this.options
-                .$parentTpl && (this.getAttr("$showMessage") || this.getAttr("$showErrorMessage"))) {
-                var msgs = "";
-                if (this.getAttr("$showMessage")) {
-                    msgs += this.getAttr("$message");
-                }
-                if (this.getAttr("$showErrorMessage") && this.getAttr("$errorMessage")) {
-                    msgs += this.getAttr("$errorMessage") + " ";
-                }
-                if (msgs) {
-                    this.toolTip = PageMgr.create("tooltip", {
-                        $target: this.options.$parentId,
-                        $parentDom:this.getParentElement()||this.getElement(),
-                        content: msgs,
-                        $opts:{
-                            position: this.options.$tipPosition,
-                            autoHide: false
-                        }
-                    });
-                    this.toolTip.render();
-                    this.toolTip.show();
-                }
-            }
-
-
             avalon.scan($this.element);
 
             $this.fireEvent("afterRender", [$this.vmodel]);
@@ -137,7 +112,7 @@ define(['../Base'], function (Base, formTpl, inlineTpl) {
                         fieldId: dsField,
                         widgetId: $this.getId()
                     };
-                    var dbinder = PageMgr.create('dataBinder', ds);
+                    var dbinder = new DataBinder(ds);
                     $this.dataBind = dbinder;
                 }
             }
@@ -225,7 +200,7 @@ define(['../Base'], function (Base, formTpl, inlineTpl) {
         },
         validate: function () {
             //var valRes = PageMgr.validation.validateValue(this.getValue(),this.getAttr("$validationRules"));
-            var validateTool = PageMgr.create("validation", {onlyError: true});//后续由系统统一创建，只需调用即可
+            var validateTool = PageMgr.validation;//PageMgr.create("validation", {onlyError: true});//后续由系统统一创建，只需调用即可
 
             var valRes = null;
             if (this.getAttr("$required")) {//先判断是否必填
@@ -243,7 +218,7 @@ define(['../Base'], function (Base, formTpl, inlineTpl) {
             }
         },
         isValid: function (notShowMessage) {
-            var validateTool = PageMgr.create("validation", {onlyError: true});//后续由系统统一创建，只需调用即可
+            var validateTool = PageMgr.validation;//PageMgr.create("validation", {onlyError: true});//后续由系统统一创建，只需调用即可
 
             var valRes = null;
             if (this.getAttr("$required")) {//先判断是否必填
@@ -294,31 +269,6 @@ define(['../Base'], function (Base, formTpl, inlineTpl) {
             }else if(this.getAttr("$showMessage")) {
                 msgs = this.getAttr("$message");
             }
-            if (msgs === "") {
-                if (this.toolTip) {
-                    this.toolTip.destroy();
-                    this.toolTip = null;
-                }
-            } else if ("inline" == this.options.$parentTpl && (this.getAttr("$showMessage") || this.getAttr("$showErrorMessage"))) {
-                if(this.toolTip) {
-                    this.toolTip.setAttr("content", msgs||"");
-                }else{
-                    this.toolTip = PageMgr.create("tooltip", {
-                        $target: this.options.$parentId,
-                        $parentDom:this.getElement(),
-                        content: msgs,
-                        $opts:{
-                            position:this.options.$tipPosition,
-                            autoHide: false
-                        }
-                    });
-                    this.toolTip.render();
-                    this.toolTip.show();
-                }
-            } else if (this.toolTip) {
-                this.toolTip.destroy();
-            }
-
         }
     });
     BaseFormWidget.xtype = xtype;

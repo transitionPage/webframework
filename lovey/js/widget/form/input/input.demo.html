@@ -86,11 +86,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/webframework/vendors/lib/My97DatePicker/WdatePicker.js"></script>
 <script src="/webframework/lovey/style/css/head.js"></script>
 <script>
 
     function valForm(){
-        var validateTool = PageMgr.create("validation",{onlyError:true});//后续由系统统一创建，只需调用即可
+        var validateTool = PageMgr.validation;//后续由系统统一创建，只需调用即可
 
         //获取数据
         var comps = PageMgr.manager.components;
@@ -100,8 +101,8 @@
 
         //获取校验规则
         var formRules = {};
-        formRules.begintime =  comps.begintime.getAttr("validationRules");
-        formRules.phone =  comps.phone.getAttr("validationRules");
+        formRules.begintime =  comps.begintime.getAttr("$validationRules");
+        formRules.phone =  comps.phone.getAttr("$validationRules");
         formRules._global = [//_global 为固定
             {
                 "ruleId": "notEqualField",
@@ -123,54 +124,53 @@
             alert("校验结果："+JSON.stringify(valRes.errorMsg));
         }
     }
-    require([Bootstrap], function () {
-        var allComps = arguments;
-for(var i=0; i<1;i++) {
-        var inq = PageMgr.create("input", {
-            $parentId: '2',
-            value: '',
-            required: false,
-            glyphicon: 'glyphicon-ok',
-            message: '请输入手机号',
-            label: '联系方式',
-            placeholder: '联系方式',
-            valueChange:function(val){
-                alert("value:"+val);
-            },
-            validationRules: {
-                limit: {
-                    max: 11,
-                    min:1
+    require(["page","input","datepicker"], function () {
+        var Page = new PageMgr(arguments);
+        for(var i=0; i<1;i++) {
+            var inq = Page.create("input", {
+                $parentId: '2',
+                value: '',
+                glyphicon: 'glyphicon-ok',
+                message: '请输入手机号',
+                label: '联系方式',
+                placeholder: '联系方式',
+                valueChange:function(val){
+                    alert("value:"+val);
                 },
-                required:true,//设置为false可关闭校验
-                onlyInteger:true,
-                mobilePhone:false
-            },
-            showErrorMessage:true,
-            onValueChange: function(value) {
-                alert(value)
-            },
-            $id: 'phone'//
-        });
-        inq.render();
+                validationRules: {
+                    limit: {
+                        max: 11,
+                        min:1
+                    },
+                    required:true,//设置为false可关闭校验
+                    onlyInteger:true,
+                    mobilePhone:false
+                },
+                showErrorMessage:true,
+                /*onValueChange: function(value) {
+                    alert(value)
+                },*/
+                $id: 'phone'//
+            });
+            inq.render();
 
-        var time = PageMgr.create("datepicker", {
-            $parentId: '1',
-            $id: 'begintime',
-            value: '2015-09-08',
-            required: false,
-            glyphicon: 'glyphicon-ok',
-            message: '请选择开始日期',
-            label: '开始日期',
-            required: true,
-
-            onValueChange: function(value) {
-                alert(value)
-            },
-            dateFmt:'yyyy-MM-dd'          //yyyy-MM
-        });
-    time.render();
-}
+            var time = Page.create("datepicker", {
+                $parentId: '1',
+                $id: 'begintime',
+                value: '2015-09-08',
+                glyphicon: 'glyphicon-ok',
+                message: '请选择开始日期',
+                label: '开始日期',
+                validationRules: {
+                    required:true
+                },
+                /*onValueChange: function(value) {
+                    alert(value)
+                },*/
+                dateFmt:'yyyy-MM-dd'          //yyyy-MM
+            });
+        time.render();
+    }
         //console.log(inq);
     });
 </script>

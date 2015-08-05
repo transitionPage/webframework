@@ -34,9 +34,9 @@ define(['../BaseFormWidget'], function (BaseFormWidget) {
         },
         initialize: function (opts) {
             var $opts = {};
-            var formOpt = PageMgr.create("baseFormWidget", {}).options;
+            var formOpt = new BaseFormWidget({}).options;
             for(var key in opts) {
-                if(!(key in formOpt) && key!="$id" && !this._startsWith(key,"on") && key!="showIcon") {
+                if(!((key in formOpt) || ("$"+key in formOpt)) && key!="$id" && !this._startsWith(key,"on") && key!="showIcon") {
                     $opts[key] = opts[key];
                     if("formatDate" == key) {
                         $opts["dateFmt"] = opts[key];
