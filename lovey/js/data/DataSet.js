@@ -17,7 +17,7 @@
  *  哪些组件会用DataSource 例如：grid, form, charts, combobox, tree etc..
  *  可以被扩展
  */
-define(["./DataConstant", "./DataSource"], function (Constant, DataSource) {
+define(["./DataConstant", "./DataSource", "./DataValue"], function (Constant, DataSource, DataValue) {
 
     var xtype = "dataSet";
     var DataSet = new Class({
@@ -103,7 +103,7 @@ define(["./DataConstant", "./DataSource"], function (Constant, DataSource) {
             if (this.options.data && this.options.data.length > 0) {
                 for (var i = 0; i < this.options.data.length; i++) {
                     var d = this.options.data[i];
-                    var dv = PageMgr.create("dataValue", {
+                    var dv = new DataValue({
                         data: d,
                         model: $this.options.model
                     });
@@ -236,7 +236,7 @@ define(["./DataConstant", "./DataSource"], function (Constant, DataSource) {
             }else {
                 record[this.options.model.status] = this.options.model.add;
             }
-            var dv = PageMgr.create("dataValue", {
+            var dv = new DataValue({
                 data: record
             });
             this.options._dataMap[rid] = dv;

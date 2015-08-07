@@ -23,7 +23,7 @@ define(["./DataConstant"], function (Constant) {
 
         getFetchParam: function () {
             var other = this._otherFetchParam();
-            var fp = this.options.fetchParam
+            var fp = this.options.fetchParam;
             if (other) {
                 Object.merge(fp, other);
             }

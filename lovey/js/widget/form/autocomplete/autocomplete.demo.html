@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet">
+    <link href="/webframework/vendors/lib/jqueryui/themes/base/jquery-ui.css" rel="stylesheet">
+    <link href="/webframework/vendors/lib/jqueryui/themes/base/autocomplete.css" rel="stylesheet">
+
+    <style type="text/css">
+        body{
+            margin:0px;
+            padding:0px;
+        }
+        .base_content{
+            background-color: #fcfcfc;
+            margin: 0px 54px;
+        }
+        .red{
+            color: red;
+        }
+        .txt_left{
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body ms-skip>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Horizontal form</h5>
+
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#">Config option 1</a>
+                        </li>
+                        <li><a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-4" >
+                        <input id="1" class="form-control">
+                    </div>
+                    <div class="col-md-4" id="btnContainer">
+                        <input id="2" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/webframework/lovey/style/css/head.js"></script>
+<script type="text/javascript">
+    require(["page","autocomplete"], function () {
+        var treeData = {
+            "result": {
+            "datas": {
+                "treeData": {
+                    "rows": [
+                        {"id":1, "pId":0, "name":"[core] 基本功能 演示", "open":true},
+                        {"id":101, "pId":1, "name":"最简单的树 --  标准 JSON 数据", "file":"core/standardData", "isParent": true},
+                        {"id":102, "pId":1, "name":"最简单的树 --  简单 JSON 数据", "file":"core/simpleData"},
+                        {"id":103, "pId":1, "name":"不显示 连接线", "file":"core/noline"},
+                        {"id":104, "pId":1, "name":"不显示 节点 图标", "file":"core/noicon"},
+                        {"id":2, "pId":0, "name":"222", "file":"core/standardData"},
+                        {"id":3, "pId":0, "name":"333", "file":"core/simpleData"},
+                        {"id":4, "pId":0, "name":"444", "file":"core/noline"},
+                        {"id":5, "pId":0, "name":"555", "file":"core/noicon"}
+                    ],
+                            "pageSize": 5,
+                            "pageNo": 1,
+                            "totalSize": 7
+                }
+            }
+        }
+        };
+        var Page = new PageMgr(arguments);
+        var inq = Page.create("autocomplete", {
+            $parentId: '1',
+            minLength:1,
+            data:treeData,
+            $id: 'test',
+            processData:function(data){
+                var _data = data.result.datas.treeData.rows;
+                var newData = $.map(_data, function(item) {
+                    return {
+                        label: item.name+" _ " + item.id,
+                        value: item.name
+                    }
+                });
+                return newData;
+            }
+        });
+        inq.render();
+        var inq2 = Page.create("autocomplete", {
+            $parentId: '2',
+            minLength:1,
+            searchKey:"name",
+            url:"treeData.demo.json",
+            mainAlias:"treeData",
+            textField:"name",
+            valueField:"id",
+            processData:function(data){
+                var newData = $.map(data, function(item) {
+                    return {
+                        label: item.name+" _ " + item.pId,
+                        value: item.id
+                    }
+                });
+                return newData;
+            },
+            $id: 'phone'
+        });
+        inq2.render();
+    });
+</script>
+</body>
+</html>
