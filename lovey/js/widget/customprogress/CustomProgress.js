@@ -2,8 +2,8 @@
  * Created by hhxu on 15/6/28.
  *
  */
-define(['../Base','text!./CustomProgressWidget.html', 'css!./CustomProgressWidget.css'
-    ,'../../../lib/kendoui/js/kendo.progressbar'], function (Base,template,cssObj,progress) {
+define(['../Base','text!./CustomProgressWidget.html', 'css!./CustomProgressWidget.css',
+    '../../../../vendors/lib/kendoui/js/kendo.progressbar'], function (Base,template,cssObj) {
     var xtype = "customProgress";
     var CustomProgressWidget = new Class({
         Extends: Base,

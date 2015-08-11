@@ -20,7 +20,7 @@ define(["./Manager","./Validation","./Utils"],function(Manager,Validation,Utils)
             return PageMgr.classMap;
         },
         create: function (xtype, config) {
-            if (this.classMap[xtype] === undefined) {
+            if (PageMgr.classMap[xtype] === undefined) {
                 return;
             }
             var instance = new PageMgr.classMap[xtype](config);

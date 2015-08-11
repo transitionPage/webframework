@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
-    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
-    <link href="/page/src/css/page.css" rel="stylesheet">
-    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.common.min.css" />
-    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.default.min.css" />
-    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.dataviz.min.css" />
-    <link rel="stylesheet" href="/page/lib/kendoui/styles/kendo.dataviz.default.min.css" />
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet">
+    <link rel="stylesheet" href="/webframework/vendors/lib/kendoui/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/webframework/vendors/lib/kendoui/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="/webframework/vendors/lib/kendoui/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="/webframework/vendors/lib/kendoui/styles/kendo.dataviz.default.min.css" />
     <style>
         .k-state-selected,
         .k-state-selected:link,
@@ -97,16 +93,12 @@
     </div>
 
 </div>
-<script src="/page/bower_components/mootools/dist/mootools-core.js"></script>
-<script src="/page/bower_components/jquery/dist/jquery.js"></script>
-<script src="/page/lib/bootstrap/js/bootstrap.min.js"></script>
-<script>
-    $.noConflict();
-</script>
-<script src="/page/bower_components/avalon/avalon.js"></script>
+
+<script src="/webframework/lovey/style/css/head.js"></script>
 <script>
     var simpleProgress = null;
-    require(["../../../page/src/Bootstrap"], function () {
+    require(["page","customProgress"], function () {
+        var Page = new PageMgr(arguments);
         simpleProgress = Page.create("customProgress", {
             $parentId: 'simpleProgress',
             value:50,//默认

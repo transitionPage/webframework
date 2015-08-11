@@ -1,4 +1,4 @@
-define(['../Base', '../../../lib/pace/pace','text!./ProgressWidget.html', 'css!./ProgressWidget.css'], function (Base, pace, template) {
+define(['../Base','text!./ProgressWidget.html', 'css!./ProgressWidget.css'], function (Base, pace, template) {
     var xtype = "progress";
     var ProgressWidget = new Class({
         Extends: Base,
