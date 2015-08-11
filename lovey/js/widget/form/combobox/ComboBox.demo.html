@@ -111,17 +111,18 @@
 
 <script src="/webframework/lovey/style/css/head.js"></script>
 <script>
-    require([Bootstrap], function () {
+    require(["page", "combobox", "dataSet"], function () {
+        var Page = new PageMgr(arguments);
 
-        var ds = PageMgr.create("dataSet", {
+/*        var ds = Page.create("dataSet", {
             $id: 'comboBoxDS',
             fetchUrl: 'Data.demo.json'
 //            data: [
 //                {value:"1", display: "计算机学院qqqq"}
 //            ]
-        });
+        });*/
         for(var i=0; i<1; i++) {
-            PageMgr.create('combobox', {
+            Page.create('combobox', {
                 $parentId: 'multi'+i,
                 $id: 'sex'+i,
                 label: '学院（多选）',
@@ -130,8 +131,8 @@
                 display: "计算机学院,经管学院",
                 $pageSize: 5,
                 searchable: false,
-                dataSetId: "comboBoxDS",
-//            url: "Data.demo.json",
+//                dataSetId: "comboBoxDS",
+            url: "Data.demo.json",
                 showErrorMessage:true,
                 validationRules: {
                     required:true,//options中为false时，此处可重开启校验
@@ -153,7 +154,7 @@
 //        combo1._getCompVM().selectedEvent= function(value, display, obj, el) {
 ////            alert("已选中值为："+obj.getValue()+"\n已选中文本为："+obj.getDisplay()+"\n选择后事件："+value + " " +  display);
 //        }
-        var combo2 = PageMgr.create('combobox', {
+        var combo2 = Page.create('combobox', {
             $parentId: 'singleSearch',
             $id: 'sex2',
             label: '学院（单选可搜索）',
@@ -173,7 +174,7 @@
         })
         combo2.render();
 
-        var combo3 = PageMgr.create('combobox', {
+        var combo3 = Page.create('combobox', {
             $parentId: 'single',
             $id: 'sex3',
             label: '学院（单选）',
@@ -183,7 +184,7 @@
 //            value: "1",
 //            display: "计算机学院",
             $pageSize: 5,
-            dataSetId: "comboBoxDS",
+            url: "Data.demo.json",
             beforeOpenEvent: function(a,b,c,d) {
 //                alert("让你打不开下拉面板，哈哈");
 //                return false;
@@ -191,7 +192,7 @@
         })
         combo3.render();
 
-        var combo4 = PageMgr.create('combobox', {
+        var combo4 = Page.create('combobox', {
             $parentId: 'tree',
             $id: 'sex4',
             label: '下拉树',

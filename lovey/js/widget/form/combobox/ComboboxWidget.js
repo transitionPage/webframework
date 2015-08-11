@@ -1,7 +1,7 @@
 /**
  * Created by BIKUI on 15/4/23.
  */
-define(['../BaseFormWidget', 'text!./ComboboxWidget.html', 'css!./ComboboxWidget.css'], function (BaseFormWidget, template) {
+define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data/DataSet', '../../tree/TreeWidget', 'text!./ComboboxWidget.html', 'css!./ComboboxWidget.css'], function (BaseFormWidget, Pagination, DataSet, Tree, template) {
     var xtype = "combobox";
     var ComboBoxWidget = new Class({
         Extends: BaseFormWidget,
@@ -564,7 +564,7 @@ define(['../BaseFormWidget', 'text!./ComboboxWidget.html', 'css!./ComboboxWidget
                 var that = this;
                 var vm = that._getCompVM();
                 var options = that.options;
-                that.tree = PageMgr.create("tree", {
+                that.tree = new Tree({
                     $parentId: "comboBox_panel_tree_"+options.$vid,
                     idKey: options.$valueField,  //节点id Key
                     nodeName: options.$textField,  //节点文本key
@@ -712,7 +712,7 @@ define(['../BaseFormWidget', 'text!./ComboboxWidget.html', 'css!./ComboboxWidget
                 if(!vm.$usePager || !vm.showPager) return;
                 var that = this;
                 if(!this.options.pagination) {
-                    this.options.pagination = PageMgr.create("pagination", {
+                    this.options.pagination = new Pagination({
                         $parentId: 'page_'+vm.$vid,
                         $id: 'page_'+vm.$vid,
                         totalNum: totalSize,
@@ -744,7 +744,7 @@ define(['../BaseFormWidget', 'text!./ComboboxWidget.html', 'css!./ComboboxWidget
             }
             else if(this.options.$url) {
                 if(!this.dataSet) {
-                    this.dataSet = PageMgr.create("dataSet", {
+                    this.dataSet = new DataSet({
                         fetchUrl: this.options.$url,
                         model: {
                             mainAlias: this.options.$mainAlias
@@ -896,7 +896,7 @@ define(['../BaseFormWidget', 'text!./ComboboxWidget.html', 'css!./ComboboxWidget
             if(widgetDom) {
             //.attr("value", this.options.display)
                 if(widgetDom.is("div")) {
-                    var inputObj = jQuery('<input class="form-control form-widget-to-focus-class">');
+                    var inputObj = jQuery('<input class="form-control form-widget-to-focus-class pageSelect">');
                     widgetDom.append(inputObj);
                     widgetDom = inputObj;
                 }

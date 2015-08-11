@@ -2,13 +2,14 @@
  * Created by JKYANG on 15/5/20.
  * 做数据的绑定动作
  */
-define(['../BaseLayout', 'text!./Fragment.html'], function (BaseLayout, tpl) {
+define(['../BaseLayout', 'text!./Fragment.html', '../../WidgetContainer', '../col/col', '../row/row'], function (BaseLayout, tpl, WidgetContainer, Col, Row) {
     var xtype = "fragment";
     var Fragment = new Class({
         Extends: BaseLayout,
         options: {
             $xtype: xtype,
             status: "default",
+            $PageMgr: null,
             dataSources: {}, // dataSet, dataValue,可能有多个,{ds1:{type:'', options:{}}}
             dataSourcesIds: [],
             dataBinders: {} //{db1:{componentId:'',dsId:'', fieldId:''}}
@@ -22,11 +23,14 @@ define(['../BaseLayout', 'text!./Fragment.html'], function (BaseLayout, tpl) {
             return this.$element;
         },
 
+        render: function() {
+            this.parent();
+        },
         _beforLayoutRender: function () {
             var ds = this.options.dataSources;
             var db = this.options.dataBinders;
             var dsId = this.options.dataSourcesIds;
-            this._widgetContainer = Page.create("widgetContainer", {
+            this._widgetContainer = new WidgetContainer({
                 dataSources: ds,
                 dataBinders: db,
                 dataSourcesIds:dsId
