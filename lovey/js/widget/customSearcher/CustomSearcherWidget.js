@@ -2,8 +2,8 @@
  * Created by BIKUI on 15/4/23.
  * todo 1、查询视图的更新，如果视图名已存在，则发送更新请求;
  */
-define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidget.css'
-    ,'css!../../../lib/bootstrap/css/plugins/chosen/chosen.css'], function (Base, template) {
+define(['../Base', 'text!./CustomSearcherWidget.html'
+    , '../../data/DataSet', '../layout/fragment/Fragment', '../form/input/InputWidget.js', '../form/checkbox/CheckboxWidget.js', 'css!./CustomSearcherWidget.css', 'css!./chosen.css'], function (Base, template, DataSet, Fragment, Input, Checkbox) {
     var xtype = "customSearcher";
     var CustomSearcherWidget = new Class({
         Extends: Base,
@@ -56,28 +56,28 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
 
 
 
-            searcherFocus: function (vid, span) {
-                var vm = avalon.vmodels[vid];
+            searcherFocus: function ($vid, span) {
+                var vm = avalon.vmodels[$vid];
                 vm.focused = true;
                 jQuery(this).find('input').focus();
 
             },
-            inputFocus: function(vid, $event) {
-                var vm = avalon.vmodels[vid];
+            inputFocus: function($vid, $event) {
+                var vm = avalon.vmodels[$vid];
                 vm.focused = true;
                 vm.clickItem = false;
 
             },
-            showClearIcon: function(vid, $event) {
-                var vm = avalon.vmodels[vid];
+            showClearIcon: function($vid, $event) {
+                var vm = avalon.vmodels[$vid];
                 vm.clearShow = true;
             },
-            displayClearIcon: function(vid, $event) {
-                var vm = avalon.vmodels[vid];
+            displayClearIcon: function($vid, $event) {
+                var vm = avalon.vmodels[$vid];
                 vm.clearShow = false;
             },
-            showRemoveIcon: function(vid, index, $event, type) {
-                var vm = avalon.vmodels[vid];
+            showRemoveIcon: function($vid, index, $event, type) {
+                var vm = avalon.vmodels[$vid];
 
                 if(type=='view') {
                     vm.viewIconShowIndex = index;
@@ -87,8 +87,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 }
 
             },
-            displayRemoveIcon: function(vid, $event, type) {
-                var vm = avalon.vmodels[vid];
+            displayRemoveIcon: function($vid, $event, type) {
+                var vm = avalon.vmodels[$vid];
                 if(type=='view') {
                     vm.viewIconShowIndex = null;
                 }
@@ -96,8 +96,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     vm.iconShowIndex = null;
                 }
             },
-            keyDown: function (vid, e) {
-                var vm = avalon.vmodels[vid];
+            keyDown: function ($vid, e) {
+                var vm = avalon.vmodels[$vid];
                 //删除已选项（如果是删除且输入区域为字符串长度为1）  键按下触发优先于值改变 vm.searchValue.length==1
                 if (e.keyCode == 8 && vm.searchValue=="" ) {
                     var cmpMgr = vm.getCmpMgr();
@@ -147,8 +147,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 }
                 vm.inputWidth = inputWidth;
             },
-            toggleViewPanel: function(vid, event) {
-                var vm = avalon.vmodels[vid];
+            toggleViewPanel: function($vid, event) {
+                var vm = avalon.vmodels[$vid];
 //                vm.searchValue = "";
                 if("viewPanel" == vm.showPanel) {
                     vm.showPanel = null;
@@ -173,19 +173,19 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                         customFilterArr = vm.$initShowArr;
                     }
                     for(var i=0; i<customFilterArr.length; i++) {
-                        vm.addCustomFilter(vm.vid, customFilterArr[i]);
+                        vm.addCustomFilter(vm.$vid, customFilterArr[i]);
                     }
                     //创建字段选择的下拉框DS
-                    PageMgr.create("dataSet", {
-                        $id: 'fieldSelectDs_'+vm.vid,
+                    new DataSet( {
+                        $id: 'fieldSelectDs_'+vm.$vid,
                         data: vm.$fieldSelectData
                     });
-                    vm.$objIdArr.push('fieldSelectDs_'+vm.vid);
+                    vm.$objIdArr.push('fieldSelectDs_'+vm.$vid);
 
                     //渲染保存视图面板
-                    PageMgr.create("input", {
-                        $parentId: 'viewName_'+vm.vid,
-                        $id: 'viewName_'+vm.vid,
+                    new Input({
+                        $parentId: 'viewName_'+vm.$vid,
+                        $id: 'viewName_'+vm.$vid,
                         value: viewData ? viewData.viewName:"",
                         parentTpl: "inline",
                         required: true,
@@ -198,9 +198,9 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                             }
                         }
                     }).render();
-                    PageMgr.create('checkbox', {
-                        $parentId: 'defaultView_'+vm.vid,
-                        $id: 'defaultView_'+vm.vid,
+                    new Checkbox({
+                        $parentId: 'defaultView_'+vm.$vid,
+                        $id: 'defaultView_'+vm.$vid,
                         parentTpl: "inline",
                         required: false,
                         showErrorMessage: false,
@@ -210,15 +210,15 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                             checked: viewData ? true:false
                         }]
                     }).render();
-                    vm.$objIdArr.push('viewName_'+vm.vid);
-                    vm.$objIdArr.push('defaultView_'+vm.vid);
+                    vm.$objIdArr.push('viewName_'+vm.$vid);
+                    vm.$objIdArr.push('defaultView_'+vm.$vid);
 
                     vm.$firstLoad = false;
                     event.stopPropagation();
                 }
             },
-            selectQuickItem: function(vid, el, event) {
-                var vm = avalon.vmodels[vid];
+            selectQuickItem: function($vid, el, event) {
+                var vm = avalon.vmodels[$vid];
                 var searchValue = vm.searchValue;
                 if(!searchValue) return;
                 var inArr = false;
@@ -245,8 +245,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 vm.inputWidth = 25;
             },
 
-            removeItem: function(vid, type, event, item, index) {
-                var vm = avalon.vmodels[vid];
+            removeItem: function($vid, type, event, item, index) {
+                var vm = avalon.vmodels[$vid];
                 if("quickSearch" == type) {
                     vm.quickSearchArr.removeAt(index);
                 }
@@ -262,9 +262,9 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 vm.callSubmit();
                 event.stopPropagation();
             },
-            removeAll: function(vid, event) {
+            removeAll: function($vid, event) {
                 event && event.stopPropagation();
-                var vm = vid ? avalon.vmodels[vid] : this;
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 vm.quickSearchArr.clear();
                 vm.viewSearchArr.clear();
                 vm.customSearchArr.clear();
@@ -273,8 +273,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
 
                 vm.callSubmit();
             },
-            showTipsPanel: function(vid, type, event) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            showTipsPanel: function($vid, type, event) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 if(vm.showPanel=="viewPanel") return;   //如果视图面板展开了，Tips
                 if("viewSearch" == type) {
                     vm.tipsArr = vm.viewSearchArr[0].viewValue;
@@ -285,8 +285,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 vm.showTips = true;
             },
 
-            selectView: function(vid, el, index, event) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            selectView: function($vid, el, index, event) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 vm.customSearchArr.clear();
                 vm.viewSearchArr = [el.$model];
                 vm.viewSelectedIndex = index;
@@ -298,21 +298,21 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     var arr = jQuery.extend([],  vm.fragmentArr.$model);   //克隆一个数组，因为要操作vm.fragmentArr，长度会发生变化
                     for(var i=arr.length-1; i>=0; i--) {
                         var el = arr[i];
-                        vm.removeCustomFilter(vm.vid, el, i);
+                        vm.removeCustomFilter(vm.$vid, el, i);
                     }
                 }
                 //渲染视图对应的自定义条件
                 if(viewData.viewValue) {
                     for(var i=0; i<viewData.viewValue.length; i++) {
-                        vm.addCustomFilter(vm.vid, viewData.viewValue[i]);
+                        vm.addCustomFilter(vm.$vid, viewData.viewValue[i]);
                     }
                 }
 
                 vm.callSubmit();
                 event.stopPropagation();
             },
-            deleteView: function(vid, el, index, event) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            deleteView: function($vid, el, index, event) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 //发送删除查询方案请求
                 var ds = vm._getDataSet();
                 ds.deleteRecord(el.viewId, false);
@@ -339,10 +339,10 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
 
                 event.stopPropagation();
             },
-            saveView: function(vid, event) {
-                var vm = vid ? avalon.vmodels[vid] : this;
-                var viewNameObj = PageMgr.manager.components['viewName_'+vm.vid];
-                var defaultViewObj = PageMgr.manager.components['defaultView_'+vm.vid];
+            saveView: function($vid, event) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
+                var viewNameObj = PageMgr.manager.components['viewName_'+vm.$vid];
+                var defaultViewObj = PageMgr.manager.components['defaultView_'+vm.$vid];
 
                 if(!viewNameObj.isValid()) {
                     return;
@@ -372,7 +372,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     viewName: viewName,
                     defaultView: defaultView,
                     viewValue: viewStr,
-                    searchId: vid
+                    searchId: $vid
                 };
                 var ds = vm._getDataSet();
                 ds.addRecord(param);
@@ -395,8 +395,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     }
                 });
             },
-            toggleCustomPanel: function(vid, type, event) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            toggleCustomPanel: function($vid, type, event) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 if('customPanel' == type) {
                     vm.customSearchPanel = !vm.customSearchPanel;
                 }
@@ -409,7 +409,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 if(!ds) return;
                 //发送获取数据请求
                 var that = this;
-                ds.setAttr("fetchParam", {searchId: this.vid});
+                ds.setAttr("fetchParam", {searchId: this.$vid});
                 Promise.all([ds.fetch()]).then(function() {
 
                     that._preProcessView();
@@ -437,7 +437,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     //渲染自定义查询
                     /*if(viewData.viewValue) {
                         for(var i=0; i<viewData.viewValue.length; i++) {
-                            vm.addCustomFilter(vm.vid, viewData.viewValue[i]);
+                            vm.addCustomFilter(vm.$vid, viewData.viewValue[i]);
                         }
                     }*/
 
@@ -454,24 +454,24 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     this.callSubmit();
                 }
             },
-            addCustomFilter: function(vid, initData) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            addCustomFilter: function($vid, initData) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 if(undefined == vm.filterIndex)
                     vm.filterIndex = 0;
                 var index = vm.filterIndex++;
-                var fragmentId = "filterIndex_"+index+"_"+vid;
-                var operDSId = 'operSelectDs_'+index+"_"+vid;
-                var fieldObjId = 'field_'+index+"_"+vid;
-                var operObjId = 'oper_'+index+"_"+vid;
-                var valueObjId = 'value_'+index+"_"+vid;
+                var fragmentId = "filterIndex_"+index+"_"+$vid;
+                var operDSId = 'operSelectDs_'+index+"_"+$vid;
+                var fieldObjId = 'field_'+index+"_"+$vid;
+                var operObjId = 'oper_'+index+"_"+$vid;
+                var valueObjId = 'value_'+index+"_"+$vid;
                 vm.fragmentArr.push(fragmentId);            //控制生成的行Dom
                 //创建DS
-                PageMgr.create("dataSet", {
+                new DataSet( {
                     $id: operDSId
                 });
 
                 //增加行片段
-                var fragment = PageMgr.create("fragment", {
+                var fragment = new Fragment({
                     $id: fragmentId,
                     $parentId: fragmentId,
                     items: [{
@@ -487,7 +487,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                             multi: false,
                             value: "",
                             display: "",
-                            dataSetId: 'fieldSelectDs_'+vm.vid,
+                            dataSetId: 'fieldSelectDs_'+vm.$vid,
                             showErrorMessage:true,
                             required:true,
                             tipPosition:"top",
@@ -579,8 +579,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 var valueObj = PageMgr.manager.components[valueObjId];
                 valueObj.setValue({value: initData.value, display: initData.valueDisplay});
             },
-            removeCustomFilter: function(vid, el, index, event) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            removeCustomFilter: function($vid, el, index, event) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 vm.fragmentArr.removeAt(index);
 //                vm.removeFilter = true;
                 //销毁行内所有组件
@@ -588,8 +588,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
 
                 event && event.stopPropagation();
             },
-            addCustomSearch: function(vid, $event) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            addCustomSearch: function($vid, $event) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 vm.viewSearchArr.clear();
                 vm.quickSearchArr.clear();
                 var res = vm._getCustomFilter();
@@ -607,9 +607,9 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     for(var i=0; i<vm.fragmentArr.length; i++) {
                         var rowId = vm.fragmentArr[i];
                         var index = rowId.split("_")[1];
-                        var fieldObjId = 'field_'+index+"_"+vm.vid;
-                        var operObjId = 'oper_'+index+"_"+vm.vid;
-                        var valueObjId = 'value_'+index+"_"+vm.vid;
+                        var fieldObjId = 'field_'+index+"_"+vm.$vid;
+                        var operObjId = 'oper_'+index+"_"+vm.$vid;
+                        var valueObjId = 'value_'+index+"_"+vm.$vid;
 
                         var fieldObj = vm.getCmpMgr(fieldObjId);
                         var operObj = vm.getCmpMgr(operObjId);
@@ -655,13 +655,13 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                     }
                 }
             },
-            sendSearch: function(vid, event){
-                var vm = vid ? avalon.vmodels[vid] : this;
+            sendSearch: function($vid, event){
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 vm.callSubmit(true);
                 event.stopPropagation();
             },
-            getSearchValue: function(vid) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            getSearchValue: function($vid) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 var res = [];
                 if(vm.customSearchArr.length>0) {
                     res = vm.customSearchArr.$model;
@@ -686,8 +686,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 }
                 return res;
             },
-            emptySearchValue: function(vid) {
-                var vm = vid ? avalon.vmodels[vid] : this;
+            emptySearchValue: function($vid) {
+                var vm = $vid ? avalon.vmodels[$vid] : this;
                 vm.customSearchArr.clear();
                 vm.viewSearchArr.clear();
                 vm.quickSearchArr.clear();
@@ -696,8 +696,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                 var cmpMgr = this.getCmpMgr();
                 return cmpMgr._getDataSet();
             },
-            getCmpMgr: function(vid) {
-                return PageMgr.manager.components[vid ? vid:this.vid];
+            getCmpMgr: function($vid) {
+                return PageMgr.manager.components[$vid ? $vid:this.$vid];
             }
 
 
@@ -718,7 +718,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
             var that = this;
             //点击其它区域，隐藏掉下拉面板
             jQuery(document).click(function(event) {
-                var name = "CustomSearcherWidget_"+that.options.vid;
+                var name = "CustomSearcherWidget_"+that.options.$vid;
                 if(!jQuery(event.target).closest("[name='"+name+"']").length) {
                     var hasCombox = false;
                     $('[id^="comboBox_panel_value"]').each(function() {
@@ -783,7 +783,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
                         continue;
                     }
                     //没有设定xtype的，则默认为input显示类型
-                    if(undefined == PageMgr.classMap[fieldModel.$xtype]) {
+                    if(undefined == fieldModel.$xtype) {
                         fieldModel.$xtype = 'input';
                     }
                     //判断哪些字段可用于快速查询
@@ -811,8 +811,8 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
             }
         },
         _getCompVM: function() {
-            var vid = this.options.vid;
-            return avalon.vmodels[vid]
+            var $vid = this.options.$vid;
+            return avalon.vmodels[$vid]
         },
         _getDataSet: function() {
             if(this.options.dataSetId) {
@@ -820,7 +820,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html', 'css!./CustomSearcherWidg
             }
             else if(this.options.$fetchUrl && this.options.$syncUrl) {
                 if(!this.dataSet) {
-                    this.dataSet = PageMgr.create("dataSet", {
+                    this.dataSet = new DataSet( {
                         fetchUrl: this.options.$fetchUrl,
                         syncUrl: this.options.$syncUrl,
                         model: this.options.$dsModel

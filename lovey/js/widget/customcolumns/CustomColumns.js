@@ -15,6 +15,7 @@ define(['../Base','text!./CustomColumnsWidget.html', 'css!./CustomColumnsWidget.
             componentId:null,
             $textField:"text",
             $valueField:"value",
+			$mainKeyValue: null,
             fetchUrl:null,
             syncUrl:null,
             showAllCheck:false,
@@ -79,9 +80,7 @@ define(['../Base','text!./CustomColumnsWidget.html', 'css!./CustomColumnsWidget.
                 e.append(tmp);
             }
             e.addClass("page_" + this.getAttr('$xtype')).attr("ms-controller", this.getId());
-            if(this.options.items.length>20) {
-                //height =
-            }
+            
             this.dialog = Page.create('dialog', {
                 width: "650px",
                 title:"自定义显示列",
@@ -111,7 +110,7 @@ define(['../Base','text!./CustomColumnsWidget.html', 'css!./CustomColumnsWidget.
             //this.dialog.content(e[0]);
             var clientHeight = window.top.document.body.clientHeight;
             if(clientHeight*0.6 < e.height()) {
-                this.dialog.dialogObj.size(650, clientHeight-190);
+                this.dialog.dialogObj.size(650, clientHeight-250);
                 this.dialog.dialogObj.position("50%", "0%");
             }
         },
@@ -127,19 +126,23 @@ define(['../Base','text!./CustomColumnsWidget.html', 'css!./CustomColumnsWidget.
                 if(!this.options.syncUrl){
                     var path = document.location.pathname;
                     var contentPath = path.split("/")[1];
-                    this.options.syncUrl = "/"+contentPath+"/sys/common/customPage/ymzjdz/update.do";
+                    this.options.syncUrl = "/"+contentPath+"/sys/common/customPage/ymzjdz/setting.do";
                 }
                 var metaData = comp.options.metaDataObj;
                 var params = {};
                 //params.userId = metaData.getUserId();//userId
                 //params.roleId = metaData.getRoleId();//roleId
-                params.pageId = metaData.getPage();//pageId
-                params.componentId = this.options.componentId;//componentId
-                params.setting = this.getAttr("value").$model;//列表显示列配置
+                params.PAGEID = metaData.geFormId();//pageId
+                params.COMPONENTID = this.options.componentId;//componentId
+                params.SETTING = JSON.stringify(this.getAttr("value").$model);//列表显示列配置
+				params.WID = this.options.$mainKeyValue;
                 var syncRes = Page.utils.syncAjax(this.options.syncUrl, params);
                 if(!syncRes){
                     Page.dialog.alert("保存到服务器失败！");
                     return false;
+                }
+                else {
+                    Page.dialog.tips("保存成功！");
                 }
             }
         },

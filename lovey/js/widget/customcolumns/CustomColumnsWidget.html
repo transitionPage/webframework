@@ -8,7 +8,7 @@
             <!--<button class="btn btn-warning btn-circle" type="button" ms-click="allCheck(vid, false)"><i class="fa fa-times"></i>-->
             <!--</button>-->
         <!--</div>-->
-        <label ms-click="allCheck(vid, this)" class="customCol_noMargin customCol_noPadding padding7">
+        <label ms-click="allCheck($vid, this)" class="customCol_noMargin customCol_noPadding padding7">
             <div class="form-horizontal ampS-form-xs">
                 <div class="icheckbox_square-green" ms-class-checked="allChecked" style="float: left;">
                 </div>
@@ -20,7 +20,7 @@
         <div class="form-widget-container col-md-6 divbordertop divborderleft customCol_con" ms-repeat-col="items"
                 ms-class-divborderright="$index%2==1" ms-class-oddback="$index%4==0||$index%4==1"
                 ms-class-divborderbottom="$index>(items.length-3)">
-            <label ms-click="itemCheck(vid,col)" class="customCol_noMargin">
+            <label ms-click="itemCheck($vid,col)" class="customCol_noMargin">
                 <div class="form-horizontal ampS-form-xs">
                     <div class="ampS-line-b customCol_font">
                         <div class="icheckbox_square-green" ms-class-checked="col.checked" ms-class-disabled="status=='disabled'"

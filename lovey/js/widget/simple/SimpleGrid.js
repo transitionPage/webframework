@@ -19,7 +19,9 @@
      * 每列配置属性{title:"操作",width:'10%',position:2,template:''}
      * position支持值为front、end和具体数字
  */
-define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'css!./SimpleGridWidget.css'], function (Base,Constant,template) {
+define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'css!./SimpleGridWidget.css',
+    '../pagination/PaginationWidget','../customcolumns/CustomColumns',"../WidgetContainer"], function (Base,Constant,
+                                                                                                       template,css,Pagination,CustomColumn,WidgetContainer) {
     var xtype = "simpleGrid";
     var SimpleGridWidget = new Class({
         Extends: Base,
@@ -43,6 +45,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
             $mouseoverToActive: false,//鼠标经过时激活行，通过getActiveRow获取
             $clickToActive: true,//点击激活行，通过getActiveRow获取
             $canMoveDataUpandDown: false,//提供行排序
+            pageMgr:null,
             /** ====================样式相关====================== */
             titleNoWrap: false,//标题不换行
             contentNoWrap: false,//内容不换行
@@ -52,7 +55,8 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
             /** ====================分页配置信息====================== */
             $usePager: true,  //是否分页
             pageIndex: 1,    //默认当前页
-            pageSize: 15,    //默认每页条数
+            pageSize: 10,    //默认每页条数
+            $pageArr: [10, 20, 30, 50],
             totalNum: 0, //总数据条数
             totalPage: 0,    //总页数
             $showPageIndexInput: true,   //显示跳转到某页输入框
@@ -96,6 +100,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
             afterCheckRow: null, //勾选行后事件
             changeOrderFunc: null, //改变排序前事件
             beforeChangePageNo: null,//改变页码前事件
+
             /** ====================中间参数，不提供使用者初始化====================== */
 
             editFieldNow: null,//当前编辑的属性
@@ -151,7 +156,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
             },
             checkRow: function (vid, row) {
                 var vm = avalon.vmodels[vid];
-                var grid = Page.manager.components[vid];
+                var grid = PageMgr.manager.components[vid];
                 if (!vm.$multiCheck && !row.checked && grid.getCheckedRows().length > 0) {
                     for (var i = 0; i < vm.data.$model.length; i++) {
                         if (vm.data[i]) {
@@ -180,7 +185,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                     orderType = "";
                 }
                 var vm = avalon.vmodels[vid];
-                var grid = Page.manager.components[vid];
+                var grid = PageMgr.manager.components[vid];
                 if (cols && cols.length > 0) {
                     for (var s = 0; s < cols.length; s++) {
                         if (cols[s] == col || cols[s].dataField == col.dataField) {
@@ -210,7 +215,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                 if (vm.editRowFunc) {
                     vm.editRowFunc(vm, row, rowDom);
                 } else {
-                    var grid = Page.manager.components[vid];
+                    var grid = PageMgr.manager.components[vid];
                     grid._defaultEditRow(vm, row, rowDom);
                 }
             },
@@ -219,22 +224,22 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                 if (vm.editFieldFunc) {
                     vm.editFieldFunc(vm, row, fieldName, fieldXtype, tdDom);
                 } else {
-                    var grid = Page.manager.components[vid];
+                    var grid = PageMgr.manager.components[vid];
                     grid._defaultEditField(vm, row, fieldName, fieldXtype, tdDom);
                 }
             },
             moveDataUpAndDown: function (vid,upFlag) {
-                var grid = Page.manager.components[vid];
+                var grid = PageMgr.manager.components[vid];
                 var row = null;
                 if(grid.getCheckedRows()){
                     var cRows = grid.getCheckedRows();
                     if(cRows&&cRows.length>1){
-                        Page.dialog.alert("只能勾选一条记录！");
+                        PageMgr.dialog.alert("只能勾选一条记录！");
                         return;
                     }
                     row =  grid.getCheckedRows()[0];
                 }else{
-                    Page.dialog.alert("只能勾选一条记录！");
+                    PageMgr.dialog.alert("只能勾选一条记录！");
                     return;
                 }
                 if (row && grid.getAttr("$idField")) {
@@ -257,7 +262,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                 }
             },
             resetEditState: function (vid) {
-                var grid = Page.manager.components[vid];
+                var grid = PageMgr.manager.components[vid];
                 grid._resetDataState();
             }
         },
@@ -270,7 +275,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
         _beforeInit: function (opts, columns) {
             if (opts.canCustomCols && opts.metaDataObj) {
                 //后台取数据，更新columns显示列
-                if (opts.fetchUrl) {
+                if (!opts.fetchUrl) {
                     var path = document.location.pathname;
                     var contentPath = path.split("/")[1];
                     opts.fetchUrl = "/" + contentPath + "/sys/common/customPage/ymzjdz/select.do";
@@ -279,20 +284,25 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                 var params = {};
                 params.PAGEID = metaData.geFormId();//pageId
                 params.COMPONENTID = opts.id || opts.$id;//componentId
-                var syncRes = Page.utils.syncAjax(opts.fetchUrl, params);
+                var syncRes = PageMgr.utils.syncAjax(opts.fetchUrl, params);
+				this.customColId = null;
                 if (syncRes && syncRes.result && syncRes.result.datas
                     && syncRes.result.datas.select.rows
                     && syncRes.result.datas.select.rows.length > 0) {
                     var rowData = syncRes.result.datas.select.rows[0];
+					this.customColId = rowData.WID;
                     var setting = rowData.SETTING;
                     if (setting) {
                         try {
                             var settingObj = JSON.parse(setting);
-                            if (settingObj.columns && settingObj.columns.length > 0) {
-                                var settingCols = settingObj.columns;
+                            if (settingObj && settingObj.length > 0) {
+                                var settingCols = settingObj;
                                 if (columns && columns.length > 0) {
                                     for (var i = 0; i < columns.length; i++) {
                                         var coli = columns[i];
+                                        if(coli.fixDisplay && coli.fixDisplay==true) {
+                                        	continue;
+                                        }
                                         if (coli && settingCols.contains(coli.dataField)) {
                                             coli.hidden = false;
                                         } else if (coli) {
@@ -318,11 +328,12 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                 this._renderEditComp();
             }
             if (this.getAttr("$usePager")) {
-                this.pagination = Page.create("pagination", {
-                    $parentId: "pager_" + this.getAttr("vid"),
+                this.pagination = new Pagination({
+                    $parentId: "pager_" + this.getAttr("$vid"),
                     totalNum: this.getAttr("totalNum"),
                     pageIndex: this.getAttr("pageIndex"),
                     pageSize: this.getAttr("pageSize"),
+                    pageArr: this.getAttr("$pageArr"),
                     showPageIndexInput: this.getAttr("$showPageIndexInput"),//显示跳转到某页输入框
                     showPageSizeInput: this.getAttr("$showPageSizeInput"),//显示每页条数输入框]
                     showFirstPage: this.getAttr("$showFirstPage"),//显示第一页按钮
@@ -659,7 +670,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                 var datas = this.getAttr("data").$model;
                 var cols = this.getAttr("columns");
                 var editCompMap = this.getAttr("editCompMap");
-                var dsId = "ds_" + this.getAttr("vid");
+                var dsId = "ds_" + this.getAttr("$vid");
                 for (var i = 0; i < datas.length; i++) {
                     var data = datas[i];
                     if (data && data[this._idField] && data.state != 'readonly') {
@@ -669,8 +680,8 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                             if (col.dataField && col.xtype && !col.isOpColumn && !col.hidden) {
                                 var fieldName = col.dataField;
                                 var xtype = col.xtype || "input";
-                                if (Page.manager.components['comp_' + fieldName + "_" + data[this._idField]]) {
-                                    Page.manager.components['comp_' + fieldName + "_" + data[this._idField]].destroy();
+                                if (PageMgr.manager.components['comp_' + fieldName + "_" + data[this._idField]]) {
+                                    PageMgr.manager.components['comp_' + fieldName + "_" + data[this._idField]].destroy();
                                 }
                                 if (that.options.$dbClickToEditRow || (that.getAttr("editFieldNow") == fieldName)) {
                                     var keyField = this._idField;
@@ -732,7 +743,8 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                                                 };
                                         }
                                         var allParams = jQuery.extend(baseParams, editParams);
-                                        var editField = Page.create(xtype, allParams);
+                                        var editField = that.options.pageMgr.create(xtype, allParams);
+
 
                                         editField.bindField = fieldName;
                                         //在属性中写displayChange无效，暂时用以下写法代替
@@ -758,14 +770,14 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                             var col = cols[t];
                             if (col.dataField && col.xtype && !col.isOpColumn && !col.hidden) {
                                 var fieldName = col.dataField;
-                                if (Page.manager.components['comp_' + fieldName + "_" + data[this._idField]]) {
-                                    Page.manager.components['comp_' + fieldName + "_" + data[this._idField]].destroy();
+                                if (PageMgr.manager.components['comp_' + fieldName + "_" + data[this._idField]]) {
+                                    PageMgr.manager.components['comp_' + fieldName + "_" + data[this._idField]].destroy();
                                 }
                             }
                         }
                     }
                 }
-                this.widgetContainer = Page.create("widgetContainer", {
+                this.widgetContainer = new WidgetContainer({
                     dataSourcesIds: this._getDataValuesByDataSet()
                 });
             }
@@ -814,7 +826,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
             }
         },
         _getDataSet: function () {
-            return Page.manager.components[this.getAttr("$dataSetId")];
+            return PageMgr.manager.components[this.getAttr("$dataSetId")];
         },
         _getDataValuesByDataSet: function () {
             var dataValues = [];
@@ -1204,7 +1216,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
         _defaultCustom: function (objId) {
             var obj = null;
             if (objId && typeof(objId) == 'string') {
-                obj = Page.manager.components[objId];
+                obj = PageMgr.manager.components[objId];
             } else {
                 obj = objId;
             }
@@ -1217,6 +1229,9 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                     var cols = obj.options.columns;
                     for (var s = 0; s < cols.length; s++) {
                         var col = cols[s];
+                        if(col.fixDisplay && col.fixDisplay==true) {
+                        	continue;
+                        }
                         var colObj = {};
                         colObj.text = col.title;
                         colObj.value = col.dataField;
@@ -1227,19 +1242,23 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                         }
                     }
                 }
-                var cusCols = Page.create("customColumns", {
+                var cusCols = this.options.pageMgr.create("customColumns", {
                     items: allColumns,
                     value: colValues,
                     metaDataObj: obj.options.$metaDataObj,
                     showAllCheck: obj.options.$showCustomAllCheck,
                     fixItems: obj.options.fixedCols,
                     componentId: obj.getId(),
+					mainKeyValue: obj.customColId,
                     afterSave: function (cus) {
                         var checkedCols = cus.options.value;
                         if (checkedCols && obj.options.columns) {
                             var cols = obj.getAttr("columns");
                             for (var s = 0; s < cols.length; s++) {
                                 var col = cols[s];
+                                if(col.fixDisplay && col.fixDisplay==true) {
+                                	continue;
+                                }
                                 if (checkedCols.contains(col.dataField)) {
                                     //col.dataField;
                                     col.hidden = false;

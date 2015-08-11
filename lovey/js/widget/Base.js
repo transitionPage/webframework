@@ -145,12 +145,13 @@ define([], function () {
             $this.element = e[0];
             //avalon.nextTick(function(){
                 //avalon.scan(parentDOM[0],this.vmodel);
+            parentDOM.append(e);
                 avalon.scan($this.element,this.vmodel);
                 $this.fireEvent("afterRender", [this.vmodel]);
                 if (this["_afterRender"]) {
                     this["_afterRender"](this.vmodel);
                 }
-                parentDOM.append(e);
+
             //});
 
 

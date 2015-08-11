@@ -1,4 +1,4 @@
-define(['../Base'], function (Base) {
+define(['../Base'], function (Base, Col, Row) {
     var BaseLayout = new Class({
         Extends: Base,
         options: {
@@ -67,7 +67,16 @@ define(['../Base'], function (Base) {
                 Object.merge(config, it);
                 delete config['$xtype'];
                 config.parentTpl="inline";
-                var widget = Page.create(it['$xtype'], config);
+                var widget;
+                if(it['$xtype'] == "col") {
+                    widget = new Col(config);
+                }
+                else if(it['$xtype'] == "row") {
+                    widget = new Row(config);
+                }
+                else {
+                    widget = Page.create(it['$xtype'], config);
+                }
                 if (widget.isFormWidget && widget.isFormWidget()) {
                     formWidgetBag && formWidgetBag.push(widget);
                     if (parentLayoutWidgetId) {
