@@ -22,7 +22,7 @@ require.config({
         pagination: '../../../../webframework/lovey/js/widget/pagination/PaginationWidget',
         progress: '../../../../webframework/lovey/js/widget/progress/ProgressWidget',
         expandGrid: '../../../../webframework/lovey/js/widget/simple/expandGrid/ExpandGrid',
-        simpleGrid: '../../../../webframework/lovey/js/widget/simple/simpleGrid/SimpleGrid',
+        simpleGrid: '../../../../webframework/lovey/js/widget/simple/SimpleGrid',
         tree: '../../../../webframework/lovey/js/widget/tree/TreeWidget',
         widgetContainer: '../../../../webframework/lovey/js/widget/WidgetContainer'
     }
