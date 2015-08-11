@@ -2,7 +2,7 @@
  * Created by JKYANG on 15/5/20.
  * 做数据的绑定动作
  */
-define(['./Base'], function (Base) {
+define(['./Base',"../data/DataBinder"], function (Base,DataBinder) {
     var xtype = "widgetContainer";
     var WidgetContainer = new Class({
         Implements: [Events, Options],
@@ -50,7 +50,7 @@ define(['./Base'], function (Base) {
             }
             for(var i=0; i<this.options.dataSourcesIds.length; i++){
                 var id = this.options.dataSourcesIds[i];
-                this.DS[id] = Page.manager.components[id];
+                this.DS[id] = PageMgr.manager.components[id];
             }
             /*
             for (var d in this.options.dataBinders) {
@@ -74,7 +74,7 @@ define(['./Base'], function (Base) {
          * @param ds
          */
         addDataBinder: function (id, ds) {
-            var dataBind = Page.create('dataBinder', ds);
+            var dataBind = new DataBinder(ds);
             this.DB[id] = dataBind;
         },
 
