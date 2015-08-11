@@ -1,11 +1,10 @@
 define(["./Manager","./Validation","./Utils"],function(Manager,Validation,Utils) {
     var Page = new Class({
-        Implements: [Events, Options],
+        Implements: [ Options],
         options:{
             components:[]
         },
         initialize:function(opts){
-            this.classMap = {};
             this.options.components = opts;
             var that = this;
             Array.each(this.options.components, function (c, index) {
@@ -15,16 +14,16 @@ define(["./Manager","./Validation","./Utils"],function(Manager,Validation,Utils)
             });
         },
         add:function(xtype, clazz){
-            this.classMap[xtype] = clazz;
+            PageMgr.classMap[xtype] = clazz;
         },
         getAll: function () {
-            return this.classMap;
+            return PageMgr.classMap;
         },
         create: function (xtype, config) {
             if (this.classMap[xtype] === undefined) {
                 return;
             }
-            var instance = new this.classMap[xtype](config);
+            var instance = new PageMgr.classMap[xtype](config);
             var id = instance.getId();
             PageMgr.manager.add(id, instance);
             return instance;
@@ -35,6 +34,7 @@ define(["./Manager","./Validation","./Utils"],function(Manager,Validation,Utils)
     });
     if (window["PageMgr"] == undefined) {
         Page.manager = new Manager();
+        Page.classMap = {};
         Page.validation = new Validation({onlyError: true});
         Page.utils = new Utils();
         window["PageMgr"] = Page;
