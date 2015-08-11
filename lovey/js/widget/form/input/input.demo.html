@@ -57,8 +57,8 @@
                         <input id="1" class="form-control form-widget-to-focus-class">
                     </div>
 
-                    <div class="col-md-4" >
-                        <input id="2" class="form-control form-widget-to-focus-class">
+                    <div class="col-md-4" id="2">
+                        <!--<input id="2" class="form-control form-widget-to-focus-class">-->
                     </div>
                     <div class="col-md-4" id="btnContainer">
                         <button onclick="valForm();">校验表单</button>
@@ -129,28 +129,15 @@
         for(var i=0; i<1;i++) {
             var inq = Page.create("input", {
                 $parentId: '2',
-                value: '',
+                $id: 'phone',
+                value: 'www',
                 glyphicon: 'glyphicon-ok',
                 message: '请输入手机号',
                 label: '联系方式',
-                placeholder: '联系方式',
-                valueChange:function(val){
-                    alert("value:"+val);
-                },
-                validationRules: {
-                    limit: {
-                        max: 11,
-                        min:1
-                    },
-                    required:true,//设置为false可关闭校验
-                    onlyInteger:true,
-                    mobilePhone:false
-                },
-                showErrorMessage:true,
                 /*onValueChange: function(value) {
                     alert(value)
                 },*/
-                $id: 'phone'//
+                placeholder: '联系方式',
             });
             inq.render();
 

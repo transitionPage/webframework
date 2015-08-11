@@ -895,6 +895,11 @@ define(['../BaseFormWidget', 'text!./ComboboxWidget.html', 'css!./ComboboxWidget
         handleDom: function(widgetDom) {
             if(widgetDom) {
             //.attr("value", this.options.display)
+                if(widgetDom.is("div")) {
+                    var inputObj = jQuery('<input class="form-control form-widget-to-focus-class">');
+                    widgetDom.append(inputObj);
+                    widgetDom = inputObj;
+                }
                 widgetDom.attr("ms-css-height", "$height")
                     .attr("ms-duplex", "display")
                     .attr("ms-attr-placeholder", "$placeholder")

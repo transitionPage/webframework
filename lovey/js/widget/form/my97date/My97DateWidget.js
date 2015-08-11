@@ -80,6 +80,11 @@ define(['../BaseFormWidget'], function (BaseFormWidget) {
         },
         handleDom: function(widgetDom) {
             if(widgetDom) {
+                if(widgetDom.is("div")) {
+                    var inputObj = jQuery('<input class="form-control form-widget-to-focus-class">');
+                    widgetDom.append(inputObj);
+                    widgetDom = inputObj;
+                }
                 widgetDom.attr("ms-attr-id", "datePicker_{{vid}}").attr("ms-duplex", "value").attr("ms-duplex", "value").attr("ms-attr-placeholder", "placeholder")
                     .attr("ms-attr-readonly", "status=='readonly'").attr("ms-attr-disabled", "status=='disabled'");
             }
