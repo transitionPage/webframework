@@ -73,7 +73,7 @@
             //allChecked:false,
             dataSetId: ds.getId(),
             mouseoverToActive:true,
-            canCustomCols:true,
+            //canCustomCols:true,
             //metaDataObj:metaData,
             fixedCols:['name','birthDate'],
             //isMerge:true,
@@ -135,8 +135,8 @@
                     template:"<a ms-click='editMyRow(vid,rowdata,this);'>编辑／完成</a>"}],
             //行编辑
             canEdit:true,
-            dbClickToEditRow:true,
-            //clickToEditField:true,
+            //dbClickToEditRow:true,
+            clickToEditField:true,
             editMultiRow:false, //同时编辑多行
             genTest:function(rowData,col){
                 if(rowData) {
