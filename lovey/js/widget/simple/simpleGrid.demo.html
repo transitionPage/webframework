@@ -44,7 +44,7 @@
 <script src="/webframework/lovey/style/css/head.js" type="text/javascript" ></script>
 <script>
     var simpleGrid = null;
-    require(["page","dataSet","simpleGrid","input","datepicker"], function () {
+    require(["page","dataSet","simpleGrid","input","datepicker","customColumns","switch","combobox"], function () {
         var Page = new PageMgr(arguments);
         ds = Page.create("dataSet", {
             $id: 'sampleGridDataSet',
@@ -80,15 +80,15 @@
             editComps:[],
             grouping: false,
             columns:[
-                {title:"出生年月",dataField:"birthDate",orderType:"desc",xtype:"input",hidden:false,width:"380px",
+                {title:"出生年月",dataField:"birthDate",orderType:"desc",xtype:"datepicker",hidden:false,width:"380px",
                     titleAlign:"center",textAlign:"center", groupName: "基本信息"},
                 {title:"入学时间",dataField:"rxDate",xtype:"datepicker",width:"380px",
                     titleAlign:"center",textAlign:"center"},
                 {title:"是否党员",dataField:"isParty",xtype:"switch",showDisplay:true,width:"380px",
                     titleAlign:"center",textAlign:"center"},
-                {title:"备注",dataField:"notes",hidden:true,sortDisabled:true,width:"380px",
-                    titleAlign:"center"},
-                {title:"姓名",dataField:"name",orderType:"asc",disabledEdit:false,width:"380px",
+                {title:"备注",xtype:"combobox",dataField:"notes",sortDisabled:true,width:"380px",
+                    titleAlign:"center",editParams:{url:"Data.demo.json"},showDisplay:true},
+                {title:"姓名",dataField:"name",xtype:"input",orderType:"asc",disabledEdit:false,width:"380px",
                     titleAlign:"center"}
             ],
            /* data: [
@@ -148,7 +148,7 @@
                 }
             }
             /*beforeChangePageNo:function(pager,grid){
-                //alert("要改页码了： "+pager.getAttr("pageIndex"));
+                //alert ("要改页码了： "+pager.getAttr("pageIndex"));
             },
             beforeChangeOrder:function(){
                //alert("change order!");
