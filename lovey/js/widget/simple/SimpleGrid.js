@@ -45,7 +45,6 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
             $mouseoverToActive: false,//鼠标经过时激活行，通过getActiveRow获取
             $clickToActive: true,//点击激活行，通过getActiveRow获取
             $canMoveDataUpandDown: false,//提供行排序
-            pageMgr:null,
             /** ====================样式相关====================== */
             titleNoWrap: false,//标题不换行
             contentNoWrap: false,//内容不换行
@@ -271,6 +270,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
         initialize: function (opts) {
             this.options.$multiSort = opts.multiSort;
             this.parent(this._formatOptions(opts));
+            this.Page = new PageMgr();
         },
         _beforeInit: function (opts, columns) {
             if (opts.canCustomCols && opts.metaDataObj) {
@@ -743,7 +743,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                                                 };
                                         }
                                         var allParams = jQuery.extend(baseParams, editParams);
-                                        var editField = that.options.pageMgr.create(xtype, allParams);
+                                        var editField = that.Page.create(xtype, allParams);
 
 
                                         editField.bindField = fieldName;
@@ -1242,7 +1242,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                         }
                     }
                 }
-                var cusCols = this.options.pageMgr.create("customColumns", {
+                var cusCols = this.Page.create("customColumns", {
                     items: allColumns,
                     value: colValues,
                     metaDataObj: obj.options.$metaDataObj,
