@@ -37,6 +37,8 @@ define(["./Manager","./Validation","./Utils"],function(Manager,Validation,Utils)
         Page.classMap = {};
         Page.validation = new Validation({onlyError: true});
         Page.utils = new Utils();
+        if(art)
+            Page.dialog = art.dialog;
         window["PageMgr"] = Page;
     }
     return Page;

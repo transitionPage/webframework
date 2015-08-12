@@ -14,4 +14,6 @@ document.write('<script src="/webframework/vendors/bower_components/bootstrap/js
 document.write('<script src="/webframework/vendors/lib/My97DatePicker/WdatePicker.js"></script>');
 document.write('<script src="/webframework/vendors/lib/kendoui/js/kendo.tooltip.js"></script>');
 document.write('<script src="/webframework/vendors/lib/zTree_v3/js/jquery.ztree.all-3.5.js"></script>');
+document.write('<script src="/webframework/vendors/lib/artdialog/artDialog.source.js"></script>');
+document.write('<script src="/webframework/vendors/lib/artdialog/iframeTools.source.js"></script>');
 

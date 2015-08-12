@@ -4,6 +4,8 @@
 @import url("/webframework/vendors/bower_components/bootstrap/css/style.css");
 @import url("/webframework/vendors/bower_components/bootstrap/css/plugins/iCheck/custom.css");
 @import url("/webframework/vendors/lib/zTree_v3/css/zTreeStyle/zTreeStyle.css");
+@import url("/webframework/vendors/lib/artdialog/skins/blue.css");
+@import url("/webframework/vendors/lib/artdialog/css/ui-dialog.css");
 /*@import url("/webframework/vendors/bower_components/bootstrap/css/plugins/iCheck/green.png");
 @import url("/webframework/vendors/bower_components/bootstrap/css/plugins/iCheck/green@2x.png");*/
 
