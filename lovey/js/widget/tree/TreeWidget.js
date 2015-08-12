@@ -1,8 +1,7 @@
 /**
  * Created by JK_YANG on 15/5/22.
  */
-define(['../Base','text!./TreeWidget.html', 'zTree2',
-    'css!./TreeWidget.css','css!../../../../vendors/lib/zTree_v3/css/zTreeStyle/zTreeStyle.css'], function (Base, treeTpl, zTree) {
+define(['../Base','text!./TreeWidget.html','css!./TreeWidget.css'], function (Base, treeTpl) {
     var xtype = "tree";
     var Tree = new Class({
         Extends: Base,
