@@ -27,7 +27,7 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
                     Promise.all([ds.fetch()]).then(function() {
                         var data = ds.getValue();
                         if(data) {
-                            vm.process(data);
+                            vm.items = vm.process(data);
                             resolve(true);
                         }
                     });
@@ -58,6 +58,7 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
                         }
                     }
                 }
+                return data;
             },
             getCmpMgr: function() {
                 return PageMgr.manager.components[this.$vid];
@@ -210,6 +211,9 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
         setValue: function (valueArr, notFireFormValueChangeEvent) {
             if(valueArr&&this.getAttr("items")){
                 var items = this.getAttr("items");
+                if(Object.prototype.toString.call(valueArr) == "[object Object]") {
+                    valueArr = valueArr.value.split(this.options.$split);
+                }
                 this.setAttr("value",valueArr, notFireFormValueChangeEvent);
 
                 $(checkbox.getElement()).find(".checked").removeClass("checked");

@@ -33,7 +33,11 @@ define([], function () {
             this.widgetValueChangeCallback = function (value) {
                 var fieldId = $this.options.fieldId;
                 var val = {};
+                var widgetObj = Page.manager.components[widgetId];
                 if (fieldId) {
+                    if(widgetObj.options.$xtype =="checkbox") {
+                        value = value.join(widgetObj.options.$split);
+                    }
                     val[fieldId] = value;
                 } else {
                     val = value;

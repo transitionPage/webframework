@@ -1,7 +1,8 @@
 .clearBtn {
     position: absolute;
     top: 12px;
-    right: 28px;
+    right: 35px;
+    z-index: 2;
     display: block;
     width: 12px;
     height: 12px;
