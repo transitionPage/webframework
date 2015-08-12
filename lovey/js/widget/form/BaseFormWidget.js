@@ -282,7 +282,7 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) 
                             content: msgs,
                             target: this.options.$parentId,
                             parentDom:this.getElement(),
-                            position:this.options.tipPosition,
+                            position:this.options.$tipPosition,
                             autoHide: false
                         });
                         this.toolTip.render();

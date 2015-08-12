@@ -28,6 +28,9 @@ define(['../BaseFormWidget','css!../slider/SliderWidget.css','css!./TooltipWidge
         },
         render: function (opts) {
             this.options.$opts["content"] = this.options.content;
+            if(this.options.position) {
+                this.options.$opts["position"] = this.options.position;
+            }
             if(this.options.$className && this.options.$target && this.options.$target != ""){
                 this.options.$opts["$target"] = this.options.$target;
                 this.options.$opts["$className"] = this.options.$className;
