@@ -27,29 +27,36 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
                     Promise.all([ds.fetch()]).then(function() {
                         var data = ds.getValue();
                         if(data) {
-                            for(var i=0; i<data.length; i++) {
-                                var el = data[i];
-                                el.checked = false;
-                                if(vm.value) {
-                                    var valueArr;
-                                    if(Object.prototype.toString.call(vm.value) == "[object Array]") {
-                                        valueArr = vm.value;
-                                    }
-                                    else {
-                                        valueArr = vm.value.split(vm.$split);
-                                    }
-                                    for(var j=0; j<valueArr.length; j++) {
-                                        if(el[vm.$valueField] == valueArr[j]) {
-                                            el.checked = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            vm.items = data;
+                            vm.process(data);
                             resolve(true);
                         }
                     });
+                }
+                else if(vm.items.length>0) {
+                    vm.process(vm.items);
+                    resolve(true);
+                }
+            },
+            process: function(data) {
+                var vm = this;
+                for(var i=0; i<data.length; i++) {
+                    var el = data[i];
+                    el.checked = false;
+                    if(vm.value) {
+                        var valueArr;
+                        if(Object.prototype.toString.call(vm.value) == "[object Array]") {
+                            valueArr = vm.value;
+                        }
+                        else {
+                            valueArr = vm.value.split(vm.$split);
+                        }
+                        for(var j=0; j<valueArr.length; j++) {
+                            if(el[vm.$valueField] == valueArr[j]) {
+                                el.checked = true;
+                                break;
+                            }
+                        }
+                    }
                 }
             },
             getCmpMgr: function() {
@@ -106,29 +113,7 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
             $this.$element = e;
             $this.element = e[0];
 
-            if ("inline" == $this.options
-                    .$parentTpl && (this.getAttr("$showMessage") || this.getAttr("$showErrorMessage"))) {
-                var msgs = "";
-                if (this.getAttr("$showMessage")) {
-                    msgs += this.getAttr("$message");
-                }
-                if (this.getAttr("$showErrorMessage") && this.getAttr("$errorMessage")) {
-                    msgs += this.getAttr("$errorMessage") + " ";
-                }
-                if (msgs) {
-                    this.toolTip = PageMgr.create("tooltip", {
-                        $target: this.options.$parentId,
-                        $parentDom:this.getParentElement()||this.getElement(),
-                        content: msgs,
-                        $opts:{
-                            position: this.options.$tipPosition,
-                            autoHide: false
-                        }
-                    });
-                    this.toolTip.render();
-                    this.toolTip.show();
-                }
-            }
+
             $this.fireEvent("afterRender", [$this.vmodel]);
             if ($this["_afterRender"]) {
                 $this["_afterRender"]($this.vmodel);

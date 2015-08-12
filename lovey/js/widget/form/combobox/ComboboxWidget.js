@@ -181,7 +181,7 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
                 event.stopPropagation();
             },
             judgePanelPosition: function(vm, event) {
-                var element = jQuery(this.getCmpMgr().getElement());
+                var element = jQuery(this.getCmpMgr().getElement()).find("input");
                 var panelObj = jQuery("#comboBox_panel_"+vm.$vid);
 
                 var panelHeight = panelObj.height();

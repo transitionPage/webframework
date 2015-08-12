@@ -46,8 +46,8 @@
                 </li>
 
                 <!--输入框-->
-                <li class="search-field">
-                    <input type="text" ms-duplex="searchValue" ms-attr-readonly="customSearchArr.length>0" autocomplete="off" tabindex="4" ms-css-width="inputWidth" ms-on-keydown="keyDown($vid, $event)" ms-on-focus="inputFocus($vid, $event)">
+                <li class="search-field" ms-css-width="(quickSearchArr.length==0 && viewSearchArr.length==0 && customSearchArr.length==0) ? '100%':''">
+                    <input type="text" ms-duplex="searchValue" ms-attr-readonly="customSearchArr.length>0" autocomplete="off" tabindex="4" ms-attr-placeholder="quickSearchArr.length==0 && viewSearchArr.length==0 && customSearchArr.length==0 && $placeholder" ms-css-width="(quickSearchArr.length==0 && viewSearchArr.length==0 && customSearchArr.length==0) ? '100%' : inputWidth" ms-on-keydown="keyDown($vid, $event)" ms-on-focus="inputFocus($vid, $event)">
                 </li>
             </ul>
             <div ms-if="$showDropIcon" ms-click="toggleViewPanel($vid, $event)" class="page-search-expand"><i class="fa" ms-class-1="fa-caret-down: showPanel!='viewPanel'" ms-class-2="fa-caret-up: showPanel=='viewPanel'" style=" line-height: 30px;"></i></div>
@@ -136,7 +136,7 @@
                 <div  ms-if="saveViewPanel" class="ibox-content">
                     <div class="row" style=" margin: 0px 0px 0px -18px;">
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" ms-attr-id="viewName_{{$vid}}"></div>
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ms-attr-id="defaultView_{{$vid}}" style="min-width: 120px;margin-top: 3px"></div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" ms-attr-id="defaultView_{{$vid}}" style="min-width: 127px;margin-top: 3px"></div>
                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-top: 3px;float: right;">
                             <a class="btn btn-primary" type="button" ms-click="saveView($vid, $event)">保存</a>
                         </div>

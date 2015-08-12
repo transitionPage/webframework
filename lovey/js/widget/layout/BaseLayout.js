@@ -47,6 +47,7 @@ define(['../Base'], function (Base, Col, Row) {
                 this._beforLayoutRender();
             }
             if (this.options.items) {
+                this.Page = new PageMgr();
                 for (var i = 0; i < this.options.items.length; i++) {
                     var it = this.options.items[i];
                     this._renderWidget(it, formWidgetBag, parentLayoutWidgetId);
@@ -67,16 +68,7 @@ define(['../Base'], function (Base, Col, Row) {
                 Object.merge(config, it);
                 delete config['$xtype'];
                 config.parentTpl="inline";
-                var widget;
-                if(it['$xtype'] == "col") {
-                    widget = new Col(config);
-                }
-                else if(it['$xtype'] == "row") {
-                    widget = new Row(config);
-                }
-                else {
-                    widget = Page.create(it['$xtype'], config);
-                }
+                var widget = this.Page.create(it['$xtype'], config);
                 if (widget.isFormWidget && widget.isFormWidget()) {
                     formWidgetBag && formWidgetBag.push(widget);
                     if (parentLayoutWidgetId) {
@@ -99,11 +91,11 @@ define(['../Base'], function (Base, Col, Row) {
         removeItem: function (index) {
             var widgetId = this.itemsArr.splice(index, 1)[0];
             this.options.items.splice(index, 1);
-            Page.manager.components[widgetId].destroy();
+            PageMgr.manager.components[widgetId].destroy();
         },
         destroy: function () {
             for (var i = 0; i < this.itemsArr.length; i++) {
-                Page.manager.components[this.itemsArr[i]].destroy();
+                PageMgr.manager.components[this.itemsArr[i]].destroy();
             }
             this.parent();
         }

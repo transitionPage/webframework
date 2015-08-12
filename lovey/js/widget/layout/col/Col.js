@@ -20,7 +20,7 @@ define(["../BaseLayout", "text!./Col.html", "css!./Col.css"], function (BaseLayo
             return colTpl;
         },
         getElementToAppend: function () {
-            return this.$element;
+            return this.$element.children();
         }
     });
     Col.xtype = xtype;
