@@ -32,7 +32,7 @@
 
 <script src="/webframework/lovey/style/css/head.js"></script>
 <script>
-    require(["page","input","datepicker", "customSearcher"], function () {
+    require(["page","input","datepicker", "combobox", "customSearcher"], function () {
         var Page = new PageMgr(arguments);
 
 //        var ds = Page.create("dataSet", {
@@ -48,6 +48,7 @@
             $id: "customSearcher",
             $parentId: "container",
             fetchUrl: 'Data.demo.json',
+            placeholder: "测试一下提示信息",
 //            showDropIcon: false,
 //            value: [{
 //                "linkOpt":"and",

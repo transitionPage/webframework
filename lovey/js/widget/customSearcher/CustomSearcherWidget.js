@@ -3,7 +3,7 @@
  * todo 1、查询视图的更新，如果视图名已存在，则发送更新请求;
  */
 define(['../Base', 'text!./CustomSearcherWidget.html'
-    , '../../data/DataSet', '../layout/fragment/Fragment', '../form/input/InputWidget.js', '../form/checkbox/CheckboxWidget.js', 'css!./CustomSearcherWidget.css', 'css!./chosen.css'], function (Base, template, DataSet, Fragment, Input, Checkbox) {
+    , '../../data/DataSet', '../layout/fragment/Fragment', '../form/input/InputWidget.js', '../form/checkbox/CheckboxWidget.js', , '../form/tooltip/TooltipWidget', 'css!./CustomSearcherWidget.css', 'css!./chosen.css'], function (Base, template, DataSet, Fragment, Input, Checkbox,  Tooltip) {
     var xtype = "customSearcher";
     var CustomSearcherWidget = new Class({
         Extends: Base,
@@ -11,6 +11,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
             $xtype: xtype,
             $value: null,
             dataSetId: null,
+            $placeholder: null,
             groupOper: "and", //条件分组之间的连接符
             matchAllFields: false,//查询条件是否匹配所有字段
             $showDropIcon: true,  //是否显示下拉小图标
@@ -176,14 +177,14 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
                         vm.addCustomFilter(vm.$vid, customFilterArr[i]);
                     }
                     //创建字段选择的下拉框DS
-                    new DataSet( {
+                    vm.Page.create("dataSet", {
                         $id: 'fieldSelectDs_'+vm.$vid,
                         data: vm.$fieldSelectData
                     });
                     vm.$objIdArr.push('fieldSelectDs_'+vm.$vid);
 
                     //渲染保存视图面板
-                    new Input({
+                    vm.Page.create("input", {
                         $parentId: 'viewName_'+vm.$vid,
                         $id: 'viewName_'+vm.$vid,
                         value: viewData ? viewData.viewName:"",
@@ -198,16 +199,16 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
                             }
                         }
                     }).render();
-                    new Checkbox({
+                    vm.Page.create("checkbox", {
                         $parentId: 'defaultView_'+vm.$vid,
                         $id: 'defaultView_'+vm.$vid,
                         parentTpl: "inline",
+                        value: viewData ? "1":"0",
                         required: false,
                         showErrorMessage: false,
                         items: [{
                             value: '1',
-                            display: '默认方案',
-                            checked: viewData ? true:false
+                            display: '默认方案'
                         }]
                     }).render();
                     vm.$objIdArr.push('viewName_'+vm.$vid);
@@ -405,6 +406,14 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
                 }
             },
             _renderView: function() {
+                PageMgr.classMap["dataSet"] = DataSet;
+                PageMgr.classMap["fragment"] = Fragment;
+                PageMgr.classMap["input"] = Input;
+                PageMgr.classMap["checkbox"] = Checkbox;
+                PageMgr.classMap["tooltip"] = Tooltip;
+
+                this.Page = new PageMgr();
+
                 var ds = this._getDataSet();
                 if(!ds) return;
                 //发送获取数据请求
@@ -466,12 +475,12 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
                 var valueObjId = 'value_'+index+"_"+$vid;
                 vm.fragmentArr.push(fragmentId);            //控制生成的行Dom
                 //创建DS
-                new DataSet( {
+                vm.Page.create("dataSet", {
                     $id: operDSId
                 });
 
                 //增加行片段
-                var fragment = new Fragment({
+                var fragment = vm.Page.create("fragment", {
                     $id: fragmentId,
                     $parentId: fragmentId,
                     items: [{
@@ -820,7 +829,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
             }
             else if(this.options.$fetchUrl && this.options.$syncUrl) {
                 if(!this.dataSet) {
-                    this.dataSet = new DataSet( {
+                    this.dataSet = this._getCompVM().Page.create("dataSet", {
                         fetchUrl: this.options.$fetchUrl,
                         syncUrl: this.options.$syncUrl,
                         model: this.options.$dsModel

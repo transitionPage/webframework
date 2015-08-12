@@ -1,7 +1,7 @@
 /**
  * Created by qianqianyi on 15/4/23.
  */
-define(['../Base','../../data/DataBinder'], function (Base,DataBinder) {
+define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) {
     var xtype = "baseFormWidget";
     var BaseFormWidget = new Class({
         Extends: Base,
@@ -23,11 +23,11 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder) {
             $showLabel: true,
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-            $message: '',
-            $showMessage: true,
+            message: '',
+            showMessage: true,
 
-            $errorMessage: '',
-            $showErrorMessage: false,
+            errorMessage: '',
+            showErrorMessage: false,
             $tipPosition:"bottom",
 
             $glyphicon: '',//eg:$glyphicon-ok
@@ -210,11 +210,11 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder) {
                 valRes = validateTool.validateValue(this.getValue(), this.getAttr("$validationRules"));
             }
             if (valRes && !valRes.result) {//将错误信息赋值给属性
-                this.setAttr("$errorMessage", valRes.errorMsg);
-                this.setAttr("$showErrorMessage", true);
+                this.setAttr("errorMessage", valRes.errorMsg);
+                this.setAttr("showErrorMessage", true);
             } else {//清空错误信息
-                this.setAttr("$errorMessage", "");
-                this.setAttr("$showErrorMessage", false);
+                this.setAttr("errorMessage", "");
+                this.setAttr("showErrorMessage", false);
             }
         },
         isValid: function (notShowMessage) {
@@ -231,16 +231,16 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder) {
                 if (notShowMessage) {
 
                 } else {
-                    this.setAttr("$errorMessage", valRes.errorMsg);
-                    this.setAttr("$showErrorMessage", true);
+                    this.setAttr("errorMessage", valRes.errorMsg);
+                    this.setAttr("showErrorMessage", true);
                 }
                 return false;
             } else {//清空错误信息
                 if (notShowMessage) {
 
                 } else {
-                    this.setAttr("$errorMessage", "");
-                    this.setAttr("$showErrorMessage", false);
+                    this.setAttr("errorMessage", "");
+                    this.setAttr("showErrorMessage", false);
                 }
                 return true;
             }
@@ -264,10 +264,33 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder) {
         _errorMessageChange: function () {
             var msgs = "";
 
-            if (this.getAttr("$showErrorMessage") && this.getAttr("$errorMessage")) {
-                msgs = this.getAttr("$errorMessage");
-            }else if(this.getAttr("$showMessage")) {
-                msgs = this.getAttr("$message");
+            if (this.getAttr("showErrorMessage") && this.getAttr("errorMessage")) {
+                msgs = this.getAttr("errorMessage");
+            }
+
+            if (msgs === "") {
+                if (this.toolTip) {
+                    this.toolTip.destroy();
+                    this.toolTip = null;
+                }
+            } else if ("inline" == this.options.$parentTpl && this.getAttr("showErrorMessage")) {
+                if(this.toolTip) {
+                    this.toolTip.setAttr("content", msgs||"");
+                }else{
+                    if(PageMgr.classMap['tooltip']) {
+                        this.toolTip = new PageMgr.classMap['tooltip']({
+                            content: msgs,
+                            target: this.options.$parentId,
+                            parentDom:this.getElement(),
+                            position:this.options.tipPosition,
+                            autoHide: false
+                        });
+                        this.toolTip.render();
+                        this.toolTip.show();
+                    }
+                }
+            } else if (this.toolTip) {
+                this.toolTip.destroy();
             }
         }
     });

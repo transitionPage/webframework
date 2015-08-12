@@ -9,7 +9,6 @@ define(['../BaseLayout', 'text!./Fragment.html', '../../WidgetContainer', '../co
         options: {
             $xtype: xtype,
             status: "default",
-            $PageMgr: null,
             dataSources: {}, // dataSet, dataValue,可能有多个,{ds1:{type:'', options:{}}}
             dataSourcesIds: [],
             dataBinders: {} //{db1:{componentId:'',dsId:'', fieldId:''}}
@@ -20,10 +19,12 @@ define(['../BaseLayout', 'text!./Fragment.html', '../../WidgetContainer', '../co
         },
 
         getElementToAppend: function () {
-            return this.$element;
+            return this.$element.children();
         },
 
         render: function() {
+            PageMgr.classMap["col"] = Col;
+            PageMgr.classMap["row"] = Row;
             this.parent();
         },
         _beforLayoutRender: function () {
