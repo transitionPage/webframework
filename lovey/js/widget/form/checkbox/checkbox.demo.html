@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="/page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="/page2/lib/bootstrap/css/animate.css" rel="stylesheet">
-    <link href="/page2/lib/bootstrap/css/style.css" rel="stylesheet">
-    <link href="/page2/src/css/page.css" rel="stylesheet">
-    <link href="/page2/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="/page2/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
-    <link href="/page2/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet">
 </head>
 <body ms-skip>
 <br>
@@ -37,21 +30,11 @@
 
     </div>
 </div>
-<script src="/page2/bower_components/mootools/Source/Core/Core.js"></script>
-<script src="/page2/bower_components/mootools/Source/Types/Array.js"></script>
-<script src="/page2/bower_components/mootools/Source/Types/String.js"></script>
-<script src="/page2/bower_components/mootools/Source/Types/Object.js"></script>
-<script src="/page2/bower_components/mootools/Source/Types/Number.js"></script>
-<script src="/page2/bower_components/mootools/Source/Types/Function.js"></script>
-<script src="/page2/bower_components/mootools/Source/Class/Class.js"></script>
-<script src="/page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
-<script src="/page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
-<script src="/page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
 <script src="./template.js"></script>
-
-<script src="/page2/bower_components/avalon/avalon.js"></script>
+<script src="/webframework/lovey/style/css/head.js"></script>
 <script>
-    require(["../../../page2/src/Bootstrap"], function () {
+    require(["page","dataSet","checkbox"], function () {
+        var Page = new PageMgr(arguments);
         var ds = Page.create("dataSet", {
             $id: 'checkboxDS',
 //            fetchUrl: 'checkbox.data.json'
