@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="/Page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="/Page2/lib/bootstrap/css/animate.css" rel="stylesheet">
-    <link href="/Page2/lib/bootstrap/css/style.css" rel="stylesheet">
-    <link href="/Page2/src/css/page.css" rel="stylesheet">
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -54,31 +50,17 @@
 
     </div>
 </div>
-<script src="/Page2/bower_components/mootools/Source/Core/Core.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Array.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/String.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Object.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Number.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Function.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Class/Class.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
-<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
-<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
-
+<script src="/webframework/lovey/style/css/head.js"></script>
 <!--依赖的外部组件kendoui-->
-<script src="/Page2/lib/kendoui/js/kendo.core.js"></script>
-<script src="/Page2/lib/kendoui/js/kendo.maskedtextbox.js"></script>
+<!--<script src="/webframework/vendors/lib/kendoui/js/kendo.core.js"></script>
+<script src="/webframework/vendors/lib/kendoui/js/kendo.maskedtextbox.js"></script>-->
 
-<script>
-    $.noConflict();
-</script>
-<script src="/Page2/bower_components/avalon/avalon.js"></script>
 <script>
     function valForm(){
-        var validateTool = Page.create("validation",{onlyError:true});//后续由系统统一创建，只需调用即可
+        var validateTool = PageMgr.validation;//后续由系统统一创建，只需调用即可
 
         //获取数据
-        var comps = Page.manager.components;
+        var comps = PageMgr.manager.components;
         var formValues = {};
         formValues.username = comps.username.getValue();
         formValues.phone = comps.phone.getValue();
@@ -102,7 +84,8 @@
             alert("校验结果："+JSON.stringify(valRes.errorMsg));
         }
     }
-    require(["../../src/Bootstrap"], function () {
+    require(["page","maskedtextbox"], function () {
+        var Page = new PageMgr(arguments);
         var inp = Page.create("maskedtextbox", {
             $parentId: 'nameContainer',
             value: '',
@@ -117,7 +100,7 @@
             }
         });
         inp.render();
-        var inq = Page.create("maskedtextbox", {
+        var inq1 = Page.create("maskedtextbox", {
             $parentId: 'phoneContainer',
             $required: true,
             $glyphicon: 'glyphicon-ok',
@@ -137,7 +120,7 @@
                 promptChar:"-"
             }
         });
-        inq.render();
+        inq1.render();
         //console.log(inq);
     });
 </script>
