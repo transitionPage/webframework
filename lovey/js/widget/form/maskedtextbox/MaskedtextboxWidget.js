@@ -1,4 +1,4 @@
-define(['../BaseFormWidget'], function (BaseFormWidget) {
+define(['../BaseFormWidget','../../../../../vendors/lib/kendoui/js/kendo.maskedtextbox.js'], function (BaseFormWidget,maskedtextbox) {
     var xtype = "maskedtextbox";
     var MaskedtextboxWidget = new Class({
         Extends: BaseFormWidget,
@@ -84,7 +84,7 @@ define(['../BaseFormWidget'], function (BaseFormWidget) {
         },
         validate: function () {
             //var valRes = PageMgr.validation.validateValue(this.getValue(),this.getAttr("validationRules"));
-            var validateTool = PageMgr.create("validation", {onlyError: true});//后续由系统统一创建，只需调用即可
+            var validateTool = PageMgr.validation;//后续由系统统一创建，只需调用即可
 
             var valRes = null;
             if (this.getAttr("$required")) {//先判断是否必填
