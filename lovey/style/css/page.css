@@ -8,6 +8,7 @@ body {
     -moz-appearance: none;
     appearance: none;
     padding: 0 20px 0 12px !important;
+    cursor: pointer;
 }
 .form-horizontal-table {
     width: 100%;
