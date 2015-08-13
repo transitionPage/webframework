@@ -6,8 +6,9 @@
                 <div ms-if="$showPageSizeInput" class="emap_pagination_displayInline">
                     每页
                     <div class="emap_pagination_displayInline emap_pagination_verticalAlign">
-                        <input class="form-control input-sm emap_pagination_pageSizeInput" aria-controls="editable"
-                               ms-attr-value="pageSize" ms-on-keypress="inputPageSize(event,$vid,this)">
+                        <select ms-each-el="pageArr" ms-duplex="pageSize" class="form-control emap_pagination_pageSizeInput">
+                            <option>{{el}}</option>
+                        </select>
                     </div>
                     条.
                 </div>
