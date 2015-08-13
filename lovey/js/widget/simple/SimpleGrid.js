@@ -21,7 +21,7 @@
  */
 define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'css!./SimpleGridWidget.css',
     '../pagination/PaginationWidget','../customcolumns/CustomColumns',"../WidgetContainer"], function (Base,Constant,
-                                                                                                       template,css,Pagination,CustomColumn,WidgetContainer) {
+                                                                                                       template,css,Pagination,CustomColumns,WidgetContainer) {
     var xtype = "simpleGrid";
     var SimpleGridWidget = new Class({
         Extends: Base,
@@ -1242,7 +1242,8 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                         }
                     }
                 }
-                var cusCols = this.Page.create("customColumns", {
+
+                var cusCols = new CustomColumns({
                     items: allColumns,
                     value: colValues,
                     metaDataObj: obj.options.$metaDataObj,
