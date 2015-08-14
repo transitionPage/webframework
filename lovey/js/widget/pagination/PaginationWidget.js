@@ -10,6 +10,7 @@ define(['../Base', 'text!./PaginationWidget.html', 'css!./PaginationWidget.css']
             $xtype: xtype,//类型
             totalNum: 0,//总数据数
             pageSize: 10,//每页条数
+            pageArr: [10, 20, 30, 50],
             pageIndex: 1,//当前页，默认显示第一页
 
             totalPage: 0,//总页数,计算所得，设置无效
@@ -148,7 +149,7 @@ define(['../Base', 'text!./PaginationWidget.html', 'css!./PaginationWidget.css']
             this._calculateBeginAndTo();
         },
         _pageSizeChange: function (tNum, oldNum, model) {
-            if(tNum&&tNum<(this.getAttr("totalNum")+1)){
+           /* if(tNum&&tNum<(this.getAttr("totalNum")+1)){
                 this.options.pageChangeEvent(this,this.getAttr("pageIndex"),this.getAttr("pageIndex"),this.getAttr("pageSize"),model)
             }else{
                 if(tNum==0){
@@ -159,7 +160,8 @@ define(['../Base', 'text!./PaginationWidget.html', 'css!./PaginationWidget.css']
                 if(this.getAttr("pageIndex")>1){
                     this.setAttr("pageIndex",1,true);
                 }
-            }
+            }*/
+            this.options.pageChangeEvent(this,this.getAttr("pageIndex"),this.getAttr("pageIndex"),this.getAttr("pageSize"),model)
         },
         _calculateTotalPage: function () {
             if (this.getAttr("totalNum") && this.getAttr("pageSize")) {

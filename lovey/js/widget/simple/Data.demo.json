@@ -4,11 +4,11 @@
       "rows": [
         {
           "value": "1",
-          "display": "是"
+          "display": "少数民族"
         },
         {
           "value": "2",
-          "display": "否"
+          "display": "基督教徒"
         }
       ],
       "pageSize": 5,
