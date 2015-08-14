@@ -18,6 +18,7 @@
                     <button class="btn btn-primary" onclick="changeStatus('edit')">编辑状态</button>
                     <button class="btn btn-primary" onclick="changeStatus('readonly')">只读状态</button>
                     <button class="btn btn-primary" onclick="changeStatus('disabled')">禁用状态</button>
+                    <button class="btn btn-primary" onclick="checkAll()">全选/未选</button>
                 </div>
                 <div class="row">
                     <div class="col-md-6" id="comboboxContainer">
@@ -115,6 +116,11 @@ for(var i=0; i<1; i++) {
 
     function changeStatus(status) {
         checkbox.switchStatus(status);
+    }
+    var checkAllFlag = true;
+    function checkAll() {
+        checkAllFlag ? checkbox.checkAll() : checkbox.deCheckAll();
+        checkAllFlag = !checkAllFlag;
     }
 </script>
 <!--<script src="bower_components/avalon/avalon.js" ></script>-->
