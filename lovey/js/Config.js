@@ -3,6 +3,7 @@ require.config({
         page: '../../../../webframework/lovey/js/Page',
         dataSet: '../../../../webframework/lovey/js/data/DataSet',
         dataValue: '../../../../webframework/lovey/js/data/DataValue',
+        dataBinder: '../../../../webframework/lovey/js/data/DataBinder',
         customColumns: '../../../../webframework/lovey/js/widget/customcolumns/CustomColumns',
         customProgress: '../../../../webframework/lovey/js/widget/customprogress/CustomProgress',
         customSearcher: '../../../../webframework/lovey/js/widget/customSearcher/CustomSearcherWidget',

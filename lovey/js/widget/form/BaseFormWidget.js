@@ -51,7 +51,9 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) 
             $parentLayoutWidgetId:''//在表单布局的时候使用
 
         },
+        Page:null,
         initialize: function (opts) {
+            this.Page = new PageMgr();
             if (opts['display'] == undefined) {
                 opts['display'] = opts['value'];
             }
@@ -112,7 +114,7 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) 
                         fieldId: dsField,
                         widgetId: $this.getId()
                     };
-                    var dbinder = new DataBinder(ds);
+                    var dbinder = this.Page.create("dataBinder",ds);
                     $this.dataBind = dbinder;
                 }
             }

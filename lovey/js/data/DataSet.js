@@ -47,7 +47,7 @@ define(["./DataConstant", "./DataSource", "./DataValue"], function (Constant, Da
                 remove: Constant.remove
             }
         },
-
+        Page:null,
         mix$: function (opts) {
             var result = {};
             for (var o in opts) {
@@ -65,6 +65,8 @@ define(["./DataConstant", "./DataSource", "./DataValue"], function (Constant, Da
         },
 
         initialize: function (opts) {
+            PageMgr.classMap["dataValue"] = DataValue;
+            this.Page = new PageMgr();
             opts = this.mix$(opts);
             this.setOptions(opts);
             if (!this.options || this.options.$id == "") {
@@ -103,7 +105,7 @@ define(["./DataConstant", "./DataSource", "./DataValue"], function (Constant, Da
             if (this.options.data && this.options.data.length > 0) {
                 for (var i = 0; i < this.options.data.length; i++) {
                     var d = this.options.data[i];
-                    var dv = new DataValue({
+                    var dv = this.Page.create("dataValue",{
                         data: d,
                         model: $this.options.model
                     });
@@ -236,7 +238,7 @@ define(["./DataConstant", "./DataSource", "./DataValue"], function (Constant, Da
             }else {
                 record[this.options.model.status] = this.options.model.add;
             }
-            var dv = new DataValue({
+            var dv = this.Page.create("dataValue",{
                 data: record
             });
             this.options._dataMap[rid] = dv;
