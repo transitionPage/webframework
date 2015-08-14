@@ -1,4 +1,4 @@
-define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget.css'], function (BaseFormWidget, tpl) {
+define(['../BaseFormWidget', 'text!./CheckboxWidget.html', '../../../data/DataSet', 'css!./CheckboxWidget.css'], function (BaseFormWidget, tpl, DataSet) {
     var xtype = "checkbox";
     var CheckboxWidget = new Class({
         Extends: BaseFormWidget,
@@ -187,7 +187,7 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
             }
             else if(this.options.$url) {
                 if(!this.dataSet) {
-                    this.dataSet = PageMgr.create("dataSet", {
+                    this.dataSet = new DataSet({
                         fetchUrl: this.options.$url,
                         model: {
                             mainAlias: this.options.$mainAlias
@@ -236,7 +236,12 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
             }
         },
         checkAll:function(){
-            $(this.getElement()).find("label div").addClass("checked");
+            if(avalon.vmodels[this.options.$vid].status !="edit") return;
+            var element = $(this.getElement());
+            if(element.attr("avalonctrl")) {
+                element = element.siblings();
+            }
+            element.find("label div").addClass("checked");
             var items = this.getAttr("items");
             var values = [], display=[];
             for (var i = 0; i < items.length; i++) {
@@ -247,7 +252,12 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
             this.setAttr("value",display.join(this.options.$split));
         },
         deCheckAll:function(){
-            $(this.getElement()).find("label div").removeClass("checked");
+            if(avalon.vmodels[this.options.$vid].status!="edit") return;
+            var element = $(this.getElement());
+            if(element.attr("avalonctrl")) {
+                element = element.siblings();
+            }
+            element.find("label div").removeClass("checked");
             this.setAttr("value",[]);
             this.setAttr("display","");
         },
@@ -273,7 +283,11 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
         },
         switchStatus: function (status) {
             var that = this;
-            if (status == 'edit' || status == 'disabled') {
+            var element = $(this.getElement());
+            if(element.attr("avalonctrl")) {
+                element = element.siblings();
+            }
+            if (status == 'edit') {
                 this.setAttrs({
                     status: status,
                     $showErrorMessage: false,
@@ -286,10 +300,10 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
                 }
                 else {
                     //显示items
-                    $(this.getElement()).siblings().show();
+                    element.show();
                 }
                 //操作dom
-                $(this.getElement()).find("label div").removeClass("disable");
+                element.find("label div").removeClass("disabled");
             } else if (status == 'readonly') {
                 this.setAttrs({
                     status: status,
@@ -297,11 +311,11 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
                     $showMessage: false,
                     $showRequired: false
                 });
-                if(!this.readOnly) {
+                if(!this.readonlyObj) {
                     this.render();
-                    this.readOnly = true;
+                    this.readonlyObj = true;
                 }
-                $(this.getElement()).siblings().hide();
+                element.hide();
             } else if (status == 'disabled') {
                 this.setAttrs({
                     status: status,
@@ -314,10 +328,10 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', 'css!./CheckboxWidget
                     this.editObj = true;
                 }
                 else {
-                    $(this.getElement()).siblings().show();
+                    element.show();
                 }
                 //操作dom设置为disabled
-                $(this.getElement()).find("label div").addClass("disable");
+                element.find("label div").addClass("disabled");
             }else {
                 window.console.error("unknown status, it should be in edit|readonly|ready2edit|disabled");
             }
