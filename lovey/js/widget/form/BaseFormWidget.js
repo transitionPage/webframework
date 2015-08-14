@@ -83,7 +83,7 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) 
                 widgetDom.append(e);
                 widgetDom = e;
             }
-            else if(widgetDom.is("input")) {
+            else if(widgetDom.is("input") || widgetDom.is("textarea")) {
                 widgetDom.wrap("<div></div>");
                 e = widgetDom.parent();
             }
