@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="/Page2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Page2/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="/Page2/lib/bootstrap/css/animate.css" rel="stylesheet">
-    <link href="/Page2/lib/bootstrap/css/style.css" rel="stylesheet">
-    <link href="/Page2/src/css/page.css" rel="stylesheet">
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet" />
 
     <!--<link href="../../../../lib/kendoui/styles/kendo.common.min.css" rel="stylesheet">
     <link href="../../../../lib/kendoui/styles/kendo.rtl.min.css" rel="stylesheet">
@@ -59,30 +55,18 @@
 
     </div>
 </div>
-<script src="/Page2/bower_components/mootools/Source/Core/Core.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Array.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/String.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Object.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Number.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Types/Function.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Class/Class.js"></script>
-<script src="/Page2/bower_components/mootools/Source/Class/Class.Extras.js"></script>
-<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
-<script src="/Page2/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
+<script src="/webframework/lovey/style/css/head.js"></script>
 
 <!--依赖的外部组件kendoui-->
-<script src="/Page2/lib/kendoui/js/kendo.core.js"></script>
+<!--<script src="/Page2/lib/kendoui/js/kendo.core.js"></script>
 <script src="/Page2/lib/kendoui/js/kendo.userevents.js"></script>
 <script src="/Page2/lib/kendoui/js/kendo.draganddrop.js"></script>
-<script src="/Page2/lib/kendoui/js/kendo.slider.js"></script>
+<script src="/Page2/lib/kendoui/js/kendo.slider.js"></script>-->
 
 <script>
-    $.noConflict();
-</script>
-<script src="/Page2/bower_components/avalon/avalon.js"></script>
-<script>
     var inp,inp1;
-    require(["../../src/Bootstrap"], function () {
+    require(["page","slider"], function () {
+        var Page = new PageMgr(arguments);
         inp = Page.create("slider", {
             $parentId: 'nameContainer',
             $id: 'username',
@@ -127,7 +111,5 @@
         inp1.setValue(10);
     }
 </script>
-<!--<script src="bower_components/avalon/avalon.js" ></script>-->
-<!--<script src="dist/page-build.js" data-main="demo.js"></script>-->
 </body>
 </html>

@@ -1,4 +1,4 @@
-define(['../BaseFormWidget', 'text!./SliderWidget.html', 'css!./SliderWidget.css'], function (BaseFormWidget,template) {
+define(['../BaseFormWidget', '../../../../../vendors/lib/kendoui/js/kendo.slider', 'text!./SliderWidget.html', 'css!./SliderWidget.css'], function (BaseFormWidget,slider,template) {
     var xtype = "slider";
     var SliderWidget = new Class({
         Extends: BaseFormWidget,
