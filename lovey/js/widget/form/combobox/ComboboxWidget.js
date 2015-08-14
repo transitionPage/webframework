@@ -40,7 +40,7 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
 
             $pagination: null,
             $downShow: true,
-            $clearShow: false, //控制清空图标是否显示
+            clearShow: false, //控制清空图标是否显示
             showPager: true,
             $firstLoad: true,
             selectedItems: [],
@@ -82,7 +82,7 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
             mouseoverEvent: function($vid, $event) {
                 var vm = avalon.vmodels[$vid];
                 if(vm.isDisabled()) return;
-                vm.$clearShow = true;
+                vm.clearShow = true;
 
                 vm._asynScanTpl();
 
@@ -94,12 +94,15 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
                     panelObj.appendTo(jQuery("body"));
                     avalon.scan(panelObj[2], this);
                     this.hasScanned = true;
+
+                    PageMgr.classMap["tree"] = Tree;
+                    this.Page = new PageMgr();
                 }
             },
             displayClearIcon: function($vid, $event) {
                 var vm = avalon.vmodels[$vid];
                 if(vm.isDisabled()) return;
-                vm.$clearShow = false;
+                vm.clearShow = false;
             },
             keyUp: function ($vid, event) {
                 var vm = avalon.vmodels[$vid];
@@ -419,6 +422,16 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
                         return;
                     }
                 }
+                if("tree" == vm.model) {
+                    var treeObj = vm.getCmpMgr().tree;
+                    if(vm.multi) {
+                        treeObj.checkAllNodes(false);
+                    }
+                    else {
+                        treeObj.cancelSelectedNode();
+                    }
+                    vm.clearCheckedOldNodes();
+                }
             },
             clearCheckedOldNodes: function() {
                 var treeObj = this.getCmpMgr().tree;
@@ -564,7 +577,7 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
                 var that = this;
                 var vm = that._getCompVM();
                 var options = that.options;
-                that.tree = new Tree({
+                that.tree = vm.Page.create("tree", {
                     $parentId: "comboBox_panel_tree_"+options.$vid,
                     idKey: options.$valueField,  //节点id Key
                     nodeName: options.$textField,  //节点文本key
@@ -907,8 +920,10 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
                     .attr("ms-attr-disabled", "status=='disabled'")
                     .attr("ms-class", "form-text:status=='readonly'")
                     .attr("ms-on-mouseover", "mouseoverEvent($vid, $event)")
+                    //.attr("ms-on-mouseout", "displayClearIcon($vid, $event)")
                     .attr("ms-on-keyup", "keyUp($vid, $event)")
                     .attr("ms-on-click", "changePanelShow($vid, $event)");
+                widgetDom.after('<a ms-if="$showClear && display" ms-click="removeAll($vid, $event)" class="clearBtn" ></a>');
             }
         }
     });
