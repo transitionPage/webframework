@@ -21,6 +21,9 @@
                     <button class="btn btn-primary" onclick="checkAll()">全选/未选</button>
                 </div>
                 <div class="row">
+                    <p style="display: inline;">组件选中值为：</p><span id="curValue"></span>
+                </div>
+                <div class="row">
                     <div class="col-md-6" id="comboboxContainer">
 
                     </div>
@@ -99,15 +102,14 @@ for(var i=0; i<1; i++) {
                 }
             },
             onValueChange: function(value, oldValue, vm) {
-
-                alert("值改变事件： "+value)
+                jQuery("#curValue").text(value);
             },
             beforeSelectEvent: function(value, display, el) {
-                alert("选中前事件： "+value+" "+display);
+//                alert("选中前事件： "+value+" "+display);
 //                return false;     //这样可以阻止选中事件， 默认不需要
             },
             selectedEvent: function(value, display, el) {
-                alert("选中事件： "+value+" "+display);
+//                alert("选中事件： "+value+" "+display);
             }
         });
         checkbox.render();

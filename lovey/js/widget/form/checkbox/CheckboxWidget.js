@@ -216,9 +216,9 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', '../../../data/DataSe
                 }
                 this.setAttr("value",valueArr, notFireFormValueChangeEvent);
 
-                $(checkbox.getElement()).find(".checked").removeClass("checked");
+                $(this.getElement()).find(".checked").removeClass("checked");
                 var displayArr = [];
-                var labelArr = $(checkbox.getElement()).find("label");
+                var labelArr = $(this.getElement()).find("label");
                 for (var t = 0; t < valueArr.length; t++) {//设置新的值
                     var valueT = valueArr[t];
                     for (var i = 0; i < labelArr.length; i++) {
@@ -249,7 +249,7 @@ define(['../BaseFormWidget', 'text!./CheckboxWidget.html', '../../../data/DataSe
                 display.push(items[i][this.options.$textField]);
             }
             this.setAttr("value",values);
-            this.setAttr("value",display.join(this.options.$split));
+            this.setAttr("display",display.join(this.options.$split));
         },
         deCheckAll:function(){
             if(avalon.vmodels[this.options.$vid].status!="edit") return;
