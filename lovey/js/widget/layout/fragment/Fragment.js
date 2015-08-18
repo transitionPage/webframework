@@ -2,7 +2,7 @@
  * Created by JKYANG on 15/5/20.
  * 做数据的绑定动作
  */
-define(['../BaseLayout', 'text!./Fragment.html', '../../WidgetContainer', '../col/col', '../row/row'], function (BaseLayout, tpl, WidgetContainer, Col, Row) {
+define(['../BaseLayout', 'text!./Fragment.html', '../../WidgetContainer', '../col/Col', '../row/Row'], function (BaseLayout, tpl, WidgetContainer, Col, Row) {
     var xtype = "fragment";
     var Fragment = new Class({
         Extends: BaseLayout,
