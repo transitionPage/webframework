@@ -80,8 +80,8 @@ define(['../Base','text!./CustomColumnsWidget.html', 'css!./CustomColumnsWidget.
                 e.append(tmp);
             }
             e.addClass("page_" + this.getAttr('$xtype')).attr("ms-controller", this.getId());
-            
-            this.dialog = Page.create('dialog', {
+            this.Page = new PageMgr();
+            this.dialog = this.Page.create('dialog', {
                 width: "650px",
                 title:"自定义显示列",
                 content:e[0],
@@ -136,13 +136,13 @@ define(['../Base','text!./CustomColumnsWidget.html', 'css!./CustomColumnsWidget.
                 params.COMPONENTID = this.options.componentId;//componentId
                 params.SETTING = JSON.stringify(this.getAttr("value").$model);//列表显示列配置
 				params.WID = this.options.$mainKeyValue;
-                var syncRes = Page.utils.syncAjax(this.options.syncUrl, params);
+                var syncRes = PageMgr.utils.syncAjax(this.options.syncUrl, params);
                 if(!syncRes){
-                    Page.dialog.alert("保存到服务器失败！");
+                    PageMgr.dialog.alert("保存到服务器失败！");
                     return false;
                 }
                 else {
-                    Page.dialog.tips("保存成功！");
+                    PageMgr.dialog.tips("保存成功！");
                 }
             }
         },
