@@ -53,6 +53,7 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) 
         },
         Page:null,
         initialize: function (opts) {
+            PageMgr.classMap['dataBinder'] = DataBinder;
             this.Page = new PageMgr();
             if (opts['display'] == undefined) {
                 opts['display'] = opts['value'];
@@ -118,8 +119,6 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) 
                     $this.dataBind = dbinder;
                 }
             }
-
-
             return this;
         },
         getValue: function () {
@@ -252,10 +251,10 @@ define(['../Base','../../data/DataBinder'], function (Base,DataBinder, Tooltip) 
         },
 
         destroy: function () {
-            this.parent();
-            if (this.dataBind) {
+            if (this.dataBind&&this.dataBind.destroy) {
                 this.dataBind.destroy();
             }
+            this.parent();
         },
         _showMessageChange:function(){
             this._errorMessageChange();
