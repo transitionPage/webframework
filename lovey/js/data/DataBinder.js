@@ -33,7 +33,7 @@ define([], function () {
             this.widgetValueChangeCallback = function (value) {
                 var fieldId = $this.options.fieldId;
                 var val = {};
-                var widgetObj = PageMgr.manager.components[widgetId];
+                var widgetObj = PageMgr.manager.components[$this.options.widgetId];
                 if (fieldId) {
                     if(widgetObj.options.$xtype =="checkbox") {
                         value = value.join(widgetObj.options.$split);
@@ -53,8 +53,8 @@ define([], function () {
                 var display = record[fieldId+"_DISPLAY"];
                 widget.setValue({value: v, display: display}, true);
             }
-            widget.addEvent("valueChange", this.widgetValueChangeCallback);
-            dataValue.addEvent("afterUpdateRecord", this.dataValueChangeCallback);
+            widget.addEvent("valueChange", $this.widgetValueChangeCallback);
+            dataValue.addEvent("afterUpdateRecord", $this.dataValueChangeCallback);
         },
         getId: function () {
             return this.options.$id;
