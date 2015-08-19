@@ -10,7 +10,7 @@ define(['../BaseFormWidget', '../../pagination/PaginationWidget', '../../../data
             value: null,
             display: null,
             multi: false,
-            $placeholder:null,
+            $placeholder: "--请选择--",
             $searchable: true,
             $searchKey: "searchValue",
             $showClear: true,  //是否要显示清空图标

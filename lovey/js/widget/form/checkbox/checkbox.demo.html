@@ -18,6 +18,8 @@
                     <button class="btn btn-primary" onclick="changeStatus('edit')">编辑状态</button>
                     <button class="btn btn-primary" onclick="changeStatus('readonly')">只读状态</button>
                     <button class="btn btn-primary" onclick="changeStatus('disabled')">禁用状态</button>
+                    <button class="btn btn-primary" onclick="reset()">恢复默认值</button>
+                    <button class="btn btn-primary" onclick="refresh()">重新加载选项</button>
                     <button class="btn btn-primary" onclick="checkAll()">全选/未选</button>
                 </div>
                 <div class="row">
@@ -39,7 +41,7 @@
 <script>
     require(["page","dataSet","checkbox"], function () {
         var Page = new PageMgr(arguments);
-        var ds = Page.create("dataSet", {
+        ds = Page.create("dataSet", {
             $id: 'checkboxDS',
 //            fetchUrl: 'checkbox.data.json'
             data: [
@@ -123,6 +125,13 @@ for(var i=0; i<1; i++) {
     function checkAll() {
         checkAllFlag ? checkbox.checkAll() : checkbox.deCheckAll();
         checkAllFlag = !checkAllFlag;
+    }
+    function reset() {
+        checkbox.reset();
+    }
+    function refresh() {
+        ds.setData([{"id": "1", "name": "我是新选项"}])
+        checkbox.refresh();
     }
 </script>
 <!--<script src="bower_components/avalon/avalon.js" ></script>-->
