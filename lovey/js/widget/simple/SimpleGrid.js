@@ -709,7 +709,7 @@ define(['../Base',"../../data/DataConstant", 'text!./SimpleGridWidget.html', 'cs
                                                 //属性背景
                                                 that.getAttr("dataChangedField").push(data._uuid + fieldName);
                                             },
-                                            status: "edit"
+                                            status: (col.disabledEdit || col.readonly)?"readonly":"edit"
                                         };
                                         if (!col.width) {
                                             baseParams.width = "200px";
