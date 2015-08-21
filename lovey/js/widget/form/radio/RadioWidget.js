@@ -144,8 +144,8 @@ define(['../BaseFormWidget', 'text!./RadioWidget.html', '../../../data/DataSet',
             if(!el.checked){
                 //把之前选中的选项设置成未选
                 $(this.getParentElement()).find(".checked").removeClass("checked");
-                vm.value = el.value;
                 vm.display = el.display;
+                vm.value = el.value;
                 checkObj.addClass("checked");
             }
 

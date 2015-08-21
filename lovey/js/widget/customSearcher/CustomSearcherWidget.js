@@ -27,6 +27,7 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
             autoSubmit: true, //自动提交查询条件
             searchSubmit: null,
             $showGroupOper: false,
+            $defaultQuickSearch: true,
 
             focused: false,
             quickSearchArr: [],  //快速查询的选中项
@@ -795,12 +796,16 @@ define(['../Base', 'text!./CustomSearcherWidget.html'
                     if(undefined == fieldModel.$xtype) {
                         fieldModel.$xtype = 'input';
                     }
-                    //判断哪些字段可用于快速查询
+
+                    //判断哪些字段可用于快速查询,  默认设置为false
                     if(undefined == fieldModel.quickSearch) {
                         if(quickType.contains(fieldModel.$xtype)) {
-                            fieldModel.quickSearch = true;
+                            if(opts.defaultQuickSearch !== false) {
+                                fieldModel.quickSearch = true;
+                            }
                         }
                     }
+
                     //判断哪些字段是初始化时默认加入自定义条件项中
                     if(fieldModel.initShow) {
                         opts.$initShowArr.push({
