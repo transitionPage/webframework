@@ -5,7 +5,7 @@
         <tr>
             <th style="width:20px" ms-if="showCheckbox">
                 <div class="icheckbox_square-green" style="position: relative;"
-                     ms-class-checked="allChecked" ms-click="allClick(vid, this)">
+                     ms-class-checked="allChecked" ms-click="allClick($vid, this)">
                 </div>
             </th>
             <th ms-if="opColumnMap['op_front']" ms-repeat-opcolumn="opColumnMap['op_front']"
@@ -17,9 +17,9 @@
                     {{col.title}}
                 </div>
                 <div ms-if="!col.isOpColumn&&canSort">
-                    <div ms-if="!col.sortDisabled&&col.orderType=='asc'" ms-click="sortByCol(vid,col,'desc')">{{col.title}} <div class="fa fa-caret-down"></div></div>
-                    <div ms-if="!col.sortDisabled&&col.orderType=='desc'" ms-click="sortByCol(vid,col,'unsort')">{{col.title}} <div class="fa fa-caret-up"></div></div>
-                    <div ms-if="!col.sortDisabled&&!col.orderType" ms-click="sortByCol(vid,col,'asc')">{{col.title}} <div class="fa fa-unsorted"></div></div>
+                    <div ms-if="!col.sortDisabled&&col.orderType=='asc'" ms-click="sortByCol($vid,col,'desc')">{{col.title}} <div class="fa fa-caret-down"></div></div>
+                    <div ms-if="!col.sortDisabled&&col.orderType=='desc'" ms-click="sortByCol($vid,col,'unsort')">{{col.title}} <div class="fa fa-caret-up"></div></div>
+                    <div ms-if="!col.sortDisabled&&!col.orderType" ms-click="sortByCol($vid,col,'asc')">{{col.title}} <div class="fa fa-unsorted"></div></div>
                     <div ms-if="col.sortDisabled"> {{col.title}} </div>
                 </div>
             </th>
@@ -29,19 +29,19 @@
         </tr>
         </thead>
         <tbody ms-repeat-rowdata="data" ms-attr-id="rowdata._uuid" style="border:0px;">
-            <tr ms-click="activeRow(vid,rowdata,this)">
+            <tr ms-click="activeRow($vid,rowdata,this)">
                 <td ms-if="showCheckbox">
                     <div class="icheckbox_square-green"
-                         ms-class-checked="rowdata['checked']" ms-click="checkRow(vid,rowdata)">
+                         ms-class-checked="rowdata['checked']" ms-click="checkRow($vid,rowdata)">
                     </div>
                 </td>
                 <td ms-attr-rowIndex="$index" ms-if="opColumnMap['op_front']"
                     ms-repeat-opcolumn="opColumnMap['op_front']"
                     style="vertical-align:middle;"
-                    ms-html="getColTemplate(vid,rowdata,opcolumn)">
+                    ms-html="getColTemplate($vid,rowdata,opcolumn)">
                 </td>
                 <td ms-repeat-col="allColumns" ms-attr-xtype="col.xtype" style="vertical-align:middle;">
-                    <div ms-if="col.isOpColumn" ms-html="getColTemplate(vid,rowdata,col)">
+                    <div ms-if="col.isOpColumn" ms-html="getColTemplate($vid,rowdata,col)">
                     </div>
                     <div ms-if="!col.isOpColumn">
                         <div ms-if="col.showDisplay">
@@ -55,7 +55,7 @@
                 <td ms-attr-rowIndex="$index" ms-if="opColumnMap['op_end']"
                     ms-repeat-opcolumn="opColumnMap['op_end']"
                     style="vertical-align:middle;"
-                    ms-html="getColTemplate(vid,rowdata,opcolumn)">
+                    ms-html="getColTemplate($vid,rowdata,opcolumn)">
                 </td>
             </tr>
             <tr ms-if="canExpand&&rowdata._customDetailShow">
@@ -68,6 +68,6 @@
     </table>
     </div>
     <nav ms-if="usePager">
-        <div ms-attr-id="'pager_'+vid"></div>
+        <div ms-attr-id="'pager_'+$vid"></div>
     </nav>
 </div>

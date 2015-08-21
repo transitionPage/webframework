@@ -2,7 +2,8 @@
  * Created by qianqianyi on 15/5/8.
  *
  */
-define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html', 'css!./ExpandGridWidget.css'], function (Base,Constant,template) {
+define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html', 'css!./ExpandGridWidget.css',
+    '../../pagination/PaginationWidget'], function (Base,Constant,template,css,Pagination) {
     var xtype = "expandGrid";
     var ExpandGridWidget = new Class({
         Extends: Base,
@@ -88,7 +89,7 @@ define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html
             },
             checkRow: function (vid,row) {
                 var vm = avalon.vmodels[vid];
-                var grid = Page.manager.components[vid];
+                var grid = PageMgr.manager.components[vid];
                 if(!vm.multiCheck&&!row.checked&&grid.getCheckedRows().length>0){
                     for (var i = 0; i < vm.data.$model.length; i++) {
                         if (vm.data[i]) {
@@ -127,7 +128,7 @@ define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html
                 if(vm.beforeChangeOrder){
                     vm.beforeChangeOrder(vm,col,orderType);
                 }else{
-                    var grid = Page.manager.components[vid];
+                    var grid = PageMgr.manager.components[vid];
                     grid.reloadData();// 调用dataset接口进行查询
                 }
             },
@@ -144,7 +145,7 @@ define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html
                 if(vm.editRowFunc){
                     vm.editRowFunc(vm,row,rowDom);
                 }else{
-                    var grid = Page.manager.components[vid];
+                    var grid = PageMgr.manager.components[vid];
                     grid._defaultEditRow(vm,row,rowDom);
                 }
             },
@@ -153,14 +154,14 @@ define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html
                 if(vm.editFieldFunc){
                     vm.editFieldFunc(vm,row,fieldName,fieldXtype,tdDom);
                 }else{
-                    var grid = Page.manager.components[vid];
+                    var grid = PageMgr.manager.components[vid];
                     grid._defaultEditField(vm,row,fieldName,fieldXtype,tdDom);
                 }
             },
             deleteRow: function (vid,row,real) {
                 //删除行，remove掉
                 var vm = avalon.vmodels[vid];
-                var grid = Page.manager.components[vid];
+                var grid = PageMgr.manager.components[vid];
                 if(grid){
                     grid.deleteRow(row,real);
                 }
@@ -173,9 +174,11 @@ define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html
         render:function(){
             this.parent();
             var that = this;
+            PageMgr.classMap['pagination'] = Pagination;
+            this.Page = new PageMgr();
             if(this.getAttr("usePager")){
-                this.pagination = Page.create("pagination", {
-                    $parentId: "pager_" + this.getAttr("vid"),
+                this.pagination = this.Page.create("pagination", {
+                    $parentId: "pager_" + this.getAttr("$vid"),
                     totalNum: this.getAttr("totalNum"),
                     pageIndex:this.getAttr("pageIndex"),
                     pageSize: this.getAttr("pageSize"),
@@ -462,7 +465,7 @@ define(['../../Base',"../../../data/DataConstant", 'text!./ExpandGridWidget.html
         },
 
         _getDataSet: function() {
-            return Page.manager.components[this.getAttr("dataSetId")];
+            return PageMgr.manager.components[this.getAttr("dataSetId")];
         },
         _getDataValuesByDataSet:function(){
             var dataValues = [];

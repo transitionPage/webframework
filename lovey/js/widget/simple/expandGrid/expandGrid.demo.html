@@ -4,52 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="/page/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/page/lib/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="/page/lib/bootstrap/css/animate.css" rel="stylesheet">
-    <link href="/page/lib/bootstrap/css/style.css" rel="stylesheet">
-    <link href="/page/src/css/page.css" rel="stylesheet">
-
-    <link href="/page/lib/bootstrap/css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="/page/lib/bootstrap/css/plugins/iCheck/green.png" rel="stylesheet">
-    <link href="/page/lib/bootstrap/css/plugins/iCheck/green@2x.png" rel="stylesheet">
+    <link href="/webframework/vendors/lib/switchery/switchery.css" rel="stylesheet" />
+    <script src="/webframework/vendors/lib/switchery/switchery.js"></script>
+    <link href="/webframework/lovey/style/css/head.css" rel="stylesheet">
+    <style>
+        .form-horizontal-table .form-text {
+            text-align: left;
+        }
+    </style>
+</head>
 </head>
 <body>
 <br>
-
 <div class="container">
     <div class="row">
         <div class="ibox float-e-margins">
-
             <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12" id="ops" style="padding-bottom: 30px;">
+                        <a class="btn btn-primary" href="javascript:addRow();">新增行</a>
+                        <a class="btn btn-primary" href="javascript:delCheckedRow();">删除勾选的行</a>
+                        <a class="btn btn-primary" href="javascript:simpleGrid.deleteActiveRow();">删除激活的行</a>
+                        <a class="btn btn-primary" href="javascript:simpleGrid.checkRowsByDataId(['001','002'],true);">勾选前两行</a>
+                        <a class="btn btn-primary" href="javascript:simpleGrid.checkRowsByDataId(['001','002'],false);">取消勾选前两行</a>
+                        <a class="btn btn-primary" href="javascript:cancelAllChecked();">取消全部勾选</a>
+                        <a class="btn btn-primary" href="javascript:customColumns();">自定义显示列</a>
+                    </div>
+                </div>
+
                 <div class="row" style="" width="200px">
                     <div class="col-md-12" id="expandGrid">
 
                     </div>
                 </div>
+
             </div>
         </div>
-
     </div>
 </div>
-<script src="/page/bower_components/mootools/Source/Core/Core.js"></script>
-<script src="/page/bower_components/mootools/Source/Types/Array.js"></script>
-<script src="/page/bower_components/mootools/Source/Types/String.js"></script>
-<script src="/page/bower_components/mootools/Source/Types/Object.js"></script>
-<script src="/page/bower_components/mootools/Source/Types/Number.js"></script>
-<script src="/page/bower_components/mootools/Source/Types/Function.js"></script>
-<script src="/page/bower_components/mootools/Source/Class/Class.js"></script>
-<script src="/page/bower_components/mootools/Source/Class/Class.Extras.js"></script>
-<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/jquery-2.1.1.js"></script>
-<script src="/page/thirdpart/products-WB0R5L90S/Static_Full_Version/js/bootstrap.js"></script>
-
+<script src="/webframework/vendors/lib/My97DatePicker/WdatePicker.js" type="text/javascript" ></script>
+<script src="/webframework/lovey/style/css/head.js" type="text/javascript" ></script>
 <script>
-    $.noConflict();
-</script>
-<script src="/page/bower_components/avalon/avalon.js"></script>
-<script>
-    var inp = null;
-    require(["../../../page/src/Bootstrap"], function () {
+    var simpleGrid = null;
+    require(["page","dataSet","expandGrid","input","datepicker","customColumns","switch","combobox"], function () {
+        var Page = new PageMgr(arguments);
         var ds = Page.create("dataSet", {
             $id: 'sampleGridDataSet',
             fetchUrl: 'expandGrid.demo.json',
@@ -59,7 +57,6 @@
         inp = Page.create("expandGrid", {
             $parentId: 'expandGrid',
             idField:"wid",
-            $id:"simpleGrid",
             canExpand:true,
             //tableClass:"table table-striped table-bordered table-hover dataTables-example dataTable dtr-inline",
             totalNum:200,
